@@ -149,8 +149,29 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleInitialAssessment() {
         logic.filterPersonsByInitialAssessment();
-        resultDisplay.setFeedbackToUser("Filtered persons based on initial assessment.");
+        resultDisplay.setFeedbackToUser("Showing applicants that are in initial assessment stage.");
     }
+
+    @FXML
+    private void handleTechnicalAssessment() {
+        logic.filterPersonsByTechnicalAssessment();
+        resultDisplay.setFeedbackToUser("Showing applicants that are in technical assessment " +
+                "stage.");
+    }
+    @FXML
+    private void handleInterview() {
+        logic.filterPersonsByInterview();
+        resultDisplay.setFeedbackToUser("Showing applicants that are in interview " +
+                "stage.");
+    }
+
+    @FXML
+    private void handleDecisionAndOffer() {
+        logic.filterPersonsByDecisionAndOffer();
+        resultDisplay.setFeedbackToUser("Showing applicants that are in Decision and offer " +
+                "stage.");
+    }
+
 
     void show() {
         primaryStage.show();

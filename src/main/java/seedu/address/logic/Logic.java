@@ -49,4 +49,8 @@ public interface Logic {
     void setGuiSettings(GuiSettings guiSettings);
 
     void filterPersonsByInitialAssessment();
+
+    void filterPersonsByTechnicalAssessment();
+    void filterPersonsByInterview();
+    void filterPersonsByDecisionAndOffer();
 }

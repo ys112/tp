@@ -150,14 +150,45 @@ public class ModelManager implements Model {
     @Override
     public void filterPersonsByInitialAssessment() {
         Predicate<Person> initialAssessmentPredicate = person -> {
-            //if (!(person instanceof Applicant)) {
-                //return false;
-            //}
             Applicant applicant = (Applicant) person;
-
-            // Check if the roleName matches filteredRole and stageName matches filteredStage
+            // Check if the stageName matches initial_application
             boolean stageMatches = applicant.getStage().equals(new Stage("initial_application"));
-            //change later
+            //change later USE FUZZY SEARCH OR ENUMERATION OR THROW ERROR
+            return stageMatches;
+
+        };
+        updateFilteredPersonList(initialAssessmentPredicate);
+    }
+
+    public void filterPersonsByTechnicalAssessment() {
+        Predicate<Person> initialAssessmentPredicate = person -> {
+            Applicant applicant = (Applicant) person;
+            // Check if the stageName matches technical_assessment
+            boolean stageMatches = applicant.getStage().equals(new Stage("technical_assessment"));
+            //change later USE FUZZY SEARCH OR ENUMERATION OR THROW ERROR
+            return stageMatches;
+
+        };
+        updateFilteredPersonList(initialAssessmentPredicate);
+    }
+
+    public void filterPersonsByInterview() {
+        Predicate<Person> initialAssessmentPredicate = person -> {
+            Applicant applicant = (Applicant) person;
+            // Check if the stageName matches interview
+            boolean stageMatches = applicant.getStage().equals(new Stage("interview"));
+            //change later USE FUZZY SEARCH OR ENUMERATION OR THROW ERROR
+            return stageMatches;
+
+        };
+        updateFilteredPersonList(initialAssessmentPredicate);
+    }
+    public void filterPersonsByDecisionAndOffer() {
+        Predicate<Person> initialAssessmentPredicate = person -> {
+            Applicant applicant = (Applicant) person;
+            // Check if the stageName matches Decision and Offer
+            boolean stageMatches = applicant.getStage().equals(new Stage("final_stage"));
+            //change later USE FUZZY SEARCH OR ENUMERATION OR THROW ERROR
             return stageMatches;
 
         };

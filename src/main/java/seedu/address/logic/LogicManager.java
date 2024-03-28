@@ -88,4 +88,11 @@ public class LogicManager implements Logic {
 
     @Override
     public void filterPersonsByInitialAssessment() {model.filterPersonsByInitialAssessment();}
+
+    @Override
+    public void filterPersonsByTechnicalAssessment() {model.filterPersonsByTechnicalAssessment();}
+    @Override
+    public void filterPersonsByInterview() {model.filterPersonsByInterview();}
+    @Override
+    public void filterPersonsByDecisionAndOffer() {model.filterPersonsByDecisionAndOffer();}
 }

@@ -80,7 +80,8 @@
                                                     <Insets bottom="5" left="5" top="5" />
                                                 </padding>
                                                 <children>
-                                                    <RadioButton mnemonicParsing="false" prefWidth="0.0" />
+                                                    <RadioButton text="Technical Assessment"
+                                                                 onAction="#handleTechnicalAssessment" mnemonicParsing="false" prefWidth="0.0" />
                                                 </children>
                                              </StackPane>
                                           </children>
@@ -101,7 +102,9 @@
                                                     <Insets bottom="5" left="5" top="5" />
                                                 </padding>
                                                 <children>
-                                                    <RadioButton mnemonicParsing="false" prefWidth="0.0" />
+                                                    <RadioButton text="Interview"
+                                                                 onAction="#handleInterview"
+                                                                 mnemonicParsing="false" prefWidth="0.0" />
                                                 </children>
                                              </StackPane>
                                           </children>
@@ -122,7 +125,9 @@
                                                    <Insets bottom="5" left="5" top="5" />
                                                 </padding>
                                                 <children>
-                                                    <RadioButton mnemonicParsing="false" prefWidth="0.0" />
+                                                    <RadioButton text="Decision &amp; Offer"
+                                                                 onAction="#handleDecisionAndOffer"
+                                                                 mnemonicParsing="false" prefWidth="0.0" />
                                                 </children>
                                              </StackPane>
                                           </children>
