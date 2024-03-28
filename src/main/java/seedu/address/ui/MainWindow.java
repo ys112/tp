@@ -146,6 +146,11 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.focus();
         }
     }
+    @FXML
+    private void handleInitialAssessment() {
+        logic.filterPersonsByInitialAssessment();
+        resultDisplay.setFeedbackToUser("Filtered persons based on initial assessment.");
+    }
 
     void show() {
         primaryStage.show();

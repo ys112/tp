@@ -11,6 +11,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.applicant.Applicant;
+import seedu.address.model.applicant.Stage;
 import seedu.address.model.person.Person;
 
 /**
@@ -143,6 +145,23 @@ public class ModelManager implements Model {
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
+    }
+
+    @Override
+    public void filterPersonsByInitialAssessment() {
+        Predicate<Person> initialAssessmentPredicate = person -> {
+            //if (!(person instanceof Applicant)) {
+                //return false;
+            //}
+            Applicant applicant = (Applicant) person;
+
+            // Check if the roleName matches filteredRole and stageName matches filteredStage
+            boolean stageMatches = applicant.getStage().equals(new Stage("initial_application"));
+            //change later
+            return stageMatches;
+
+        };
+        updateFilteredPersonList(initialAssessmentPredicate);
     }
 
 }

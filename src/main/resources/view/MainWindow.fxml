@@ -57,7 +57,7 @@
                                               </StackPane>
                                               <Region HBox.hgrow="ALWAYS" />
                                               <StackPane>
-                                                  <RadioButton mnemonicParsing="false" prefWidth="0.0" />
+                                                  <RadioButton text="Initial Assessment" onAction="#handleInitialAssessment" mnemonicParsing="false" prefWidth="0.0" />
                                                   <padding>
                                                       <Insets bottom="5" left="5" top="5" />
                                                   </padding>
