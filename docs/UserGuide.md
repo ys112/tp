@@ -58,7 +58,7 @@ By using commands, HR officers can efficiently organize contacts for their recru
 * Items in square brackets are optional.<br>
   e.g `/name NAME [/tag TAG]` can be used as `/name John Doe /tag friend` or as `/name John Doe`.
 
-* Parameters can be in any order for `add_applicant` and `edit_applicant` commands.<br>
+* Parameters can be in any order for `add_applicant` and `edit` commands.<br>
   e.g. if the command specifies `/name NAME /phone PHONE_NUMBER`, `/phone PHONE_NUMBER /name NAME` is also acceptable.
 
 * Parameters must be in strict order for `filter`, `note`, `export`, and `tag` command.
@@ -94,11 +94,11 @@ Shows a list of all applicants in the HRConnect.
 
 Format: `list`
 
-### Editing an applicant : `edit_applicant`
+### Editing an applicant : `edit`
 
 Edits an existing applicant in the HRConnect.
 
-Format: `edit_applicant Index [/name Name] [/phone Phone] [/email Email] [/address Address] [/stage Stage] [/role Role] [/tag Tag]…​`
+Format: `edit Index [/name Name] [/phone Phone] [/email Email] [/address Address] [/stage Stage] [/role Role] [/tag Tag]…​`
 
 * Edits the applicant at the specified `Index`. The index refers to the index number shown in the displayed applicant list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -108,8 +108,8 @@ Format: `edit_applicant Index [/name Name] [/phone Phone] [/email Email] [/addre
     specifying any tags after it.
 
 Examples:
-*  `edit_applicant 1 /phone 91234567 /email johndoe@example.com` Edits the phone number and email address of the 1st applicant to be `91234567` and `johndoe@example.com` respectively.
-*  `edit_applicant 2 /name Betsy Crower /tag` Edits the name of the 2nd applicant to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 /phone 91234567 /email johndoe@example.com` Edits the phone number and email address of the 1st applicant to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 /name Betsy Crower /tag` Edits the name of the 2nd applicant to be `Betsy Crower` and clears all existing tags.
 
 ### Locating applicants by name: `find`
 
@@ -220,7 +220,7 @@ Action | Format, Examples
 **Add_applicant** | `add_applicant /name Name /phone Phone_Number /email Email /address Address /role Role [/tag Tag]…​` <br> e.g., `add_applicant /name James Chow /phone 96622612 /email james@example.com /address 321, Clementi Ave 2, #02-25 /role Junior Engineer`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit_applicant** | `edit_applicant Index [/name Name] [/phone Phone] [/email Email] [/address Address] [/stage Stage] [/role Role] [/tag Tag]…​`<br> e.g., `edit_applicant 2 /stage waitlisted`
+**Edit** | `edit Index [/name Name] [/phone Phone] [/email Email] [/address Address] [/stage Stage] [/role Role] [/tag Tag]…​`<br> e.g., `edit 2 /stage waitlisted`
 **Find** | `find Keyword [More_Keywords]`<br> e.g., `find alice bob charlie`
 **List** | `list`
 **Help** | `help`
