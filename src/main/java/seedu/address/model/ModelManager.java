@@ -171,43 +171,53 @@ public class ModelManager implements Model {
     }
 
     public int updateInitialAssessmentCount() {
-        Predicate<Person> stagePredicate = person -> {
-            Applicant applicant = (Applicant) person;
-            // Check if the person's stage matches any of the selected stages
-            return applicant.getStage().equals(new Stage("initial_application"));
-        };
-
-        updateFilteredPersonList(stagePredicate);
-        return filteredPersons.size();
+        int count = 0;
+        for (Person person : filteredPersons) {
+            if (person instanceof Applicant) {
+                Applicant applicant = (Applicant) person;
+                if (applicant.getStage().equals(new Stage("initial_application"))) {
+                    count++;
+                }
+            }
+        }
+        return count;
     }
 
     public int updateTechnicalAssessmentCount() {
-        Predicate<Person> stagePredicate = person -> {
-            Applicant applicant = (Applicant) person;
-            // Check if the person's stage matches any of the selected stages
-            return applicant.getStage().equals(new Stage("Technical Assessment"));
-        };
-        updateFilteredPersonList(stagePredicate);
-        return filteredPersons.size();
+        int count = 0;
+        for (Person person : filteredPersons) {
+            if (person instanceof Applicant) {
+                Applicant applicant = (Applicant) person;
+                if (applicant.getStage().equals(new Stage("Technical Assessment"))) {
+                    count++;
+                }
+            }
+        }
+        return count;
     }
     public int updateInterviewCount() {
-        Predicate<Person> stagePredicate = person -> {
-            Applicant applicant = (Applicant) person;
-            // Check if the person's stage matches any of the selected stages
-            return applicant.getStage().equals(new Stage("Interview"));
-        };
-
-        updateFilteredPersonList(stagePredicate);
-        return filteredPersons.size();
+        int count = 0;
+        for (Person person : filteredPersons) {
+            if (person instanceof Applicant) {
+                Applicant applicant = (Applicant) person;
+                if (applicant.getStage().equals(new Stage("Interview"))) {
+                    count++;
+                }
+            }
+        }
+        return count;
     }
-    public int updateDecisionAndOfferCount() {
-        Predicate<Person> stagePredicate = person -> {
-            Applicant applicant = (Applicant) person;
-            // Check if the person's stage matches any of the selected stages
-            return applicant.getStage().equals(new Stage("final_stage"));
-        };
 
-        updateFilteredPersonList(stagePredicate);
-        return filteredPersons.size();
+    public int updateDecisionAndOfferCount() {
+        int count = 0;
+        for (Person person : filteredPersons) {
+            if (person instanceof Applicant) {
+                Applicant applicant = (Applicant) person;
+                if (applicant.getStage().equals(new Stage("final_stage"))) {
+                    count++;
+                }
+            }
+        }
+        return count;
     }
 }

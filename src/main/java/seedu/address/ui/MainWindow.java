@@ -219,8 +219,8 @@ public class MainWindow extends UiPart<Stage> {
     public void updateOverviewCount() {
         updateDecisionAndOfferCount();
         updateInterviewCount();
-        updateInitialAssessmentCount();
         updateTechnicalAssessmentCount();
+        updateInitialAssessmentCount();
     }
     void show() {
         primaryStage.show();

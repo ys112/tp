@@ -43,7 +43,7 @@ public class UiManager implements Ui {
             mainWindow = new MainWindow(primaryStage, logic);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
-            mainWindow.updateOverviewCount(); // NEW
+            mainWindow.updateOverviewCount(); //This will initialised the overview count
 
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
