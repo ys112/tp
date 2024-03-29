@@ -6,12 +6,14 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -52,7 +54,14 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
-
+    @FXML
+    private Label initialAssessmentCountLabel;
+    @FXML
+    private Label technicalAssessmentCountLabel;
+    @FXML
+    private Label interviewCountLabel;
+    @FXML
+    private Label decisionAndOfferCountLabel;
     @FXML
     private RadioButton initialAssessmentRadioButton;
 
@@ -163,6 +172,7 @@ public class MainWindow extends UiPart<Stage> {
     }
     @FXML
     private void handleFilter() {
+        updateOverviewCount();
         List<String> selectedStages = new ArrayList<>();
         if (initialAssessmentRadioButton.isSelected()) {
             selectedStages.add("initial_application");
@@ -189,6 +199,29 @@ public class MainWindow extends UiPart<Stage> {
     }
 
 
+    private void updateInitialAssessmentCount() {
+        int count = logic.updateInitialAssessmentCount();
+        initialAssessmentCountLabel.setText("Initial Assessment (" + count + ")");
+    }
+    private void updateTechnicalAssessmentCount() {
+        int count = logic.updateTechnicalAssessmentCount();
+        technicalAssessmentCountLabel.setText("Technical Assessment (" + count + ")");
+    }
+
+    private void updateInterviewCount() {
+        int count = logic.updateInterviewCount();
+        interviewCountLabel.setText("Interview (" + count + ")");
+    }
+    private void updateDecisionAndOfferCount() {
+        int count = logic.updateDecisionAndOfferCount();
+        decisionAndOfferCountLabel.setText("Decision And Offer (" + count + ")");
+    }
+    public void updateOverviewCount() {
+        updateDecisionAndOfferCount();
+        updateInterviewCount();
+        updateInitialAssessmentCount();
+        updateTechnicalAssessmentCount();
+    }
     void show() {
         primaryStage.show();
     }

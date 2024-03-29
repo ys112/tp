@@ -14,6 +14,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.applicant.Applicant;
+import seedu.address.model.applicant.Stage;
 import seedu.address.model.person.Person;
 
 /**
@@ -167,5 +168,46 @@ public class ModelManager implements Model {
 
         // Update the filtered person list based on the stagePredicate
         updateFilteredPersonList(stagePredicate);
+    }
+
+    public int updateInitialAssessmentCount() {
+        Predicate<Person> stagePredicate = person -> {
+            Applicant applicant = (Applicant) person;
+            // Check if the person's stage matches any of the selected stages
+            return applicant.getStage().equals(new Stage("initial_application"));
+        };
+
+        updateFilteredPersonList(stagePredicate);
+        return filteredPersons.size();
+    }
+
+    public int updateTechnicalAssessmentCount() {
+        Predicate<Person> stagePredicate = person -> {
+            Applicant applicant = (Applicant) person;
+            // Check if the person's stage matches any of the selected stages
+            return applicant.getStage().equals(new Stage("Technical Assessment"));
+        };
+        updateFilteredPersonList(stagePredicate);
+        return filteredPersons.size();
+    }
+    public int updateInterviewCount() {
+        Predicate<Person> stagePredicate = person -> {
+            Applicant applicant = (Applicant) person;
+            // Check if the person's stage matches any of the selected stages
+            return applicant.getStage().equals(new Stage("Interview"));
+        };
+
+        updateFilteredPersonList(stagePredicate);
+        return filteredPersons.size();
+    }
+    public int updateDecisionAndOfferCount() {
+        Predicate<Person> stagePredicate = person -> {
+            Applicant applicant = (Applicant) person;
+            // Check if the person's stage matches any of the selected stages
+            return applicant.getStage().equals(new Stage("final_stage"));
+        };
+
+        updateFilteredPersonList(stagePredicate);
+        return filteredPersons.size();
     }
 }

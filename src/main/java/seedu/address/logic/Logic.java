@@ -49,4 +49,12 @@ public interface Logic {
      */
     void setGuiSettings(GuiSettings guiSettings);
     void filterPersonsByButton(List<String> selectedStages);
+
+    int updateInitialAssessmentCount();
+
+    int updateDecisionAndOfferCount();
+
+    int updateInterviewCount();
+
+    int updateTechnicalAssessmentCount();
 }

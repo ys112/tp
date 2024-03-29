@@ -18,6 +18,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.stage.Stage?>
 
+<?import javafx.scene.control.Label?>
 <fx:root minHeight="600" minWidth="650" maxHeight="960" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
@@ -154,7 +155,9 @@
                                              <Insets bottom="5" left="10" right="5" top="5" />
                                           </padding>
                                           <children>
-                                             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Initial Assessment (0)" />
+                                              <Label fx:id="initialAssessmentCountLabel"
+                                                     text="Initial Assessment (0)"
+                                              />
                                           </children>
                                        </StackPane>
                                        <StackPane alignment="CENTER_LEFT">
@@ -162,7 +165,9 @@
                                              <Insets bottom="5" left="10" right="5" top="5" />
                                           </padding>
                                           <children>
-                                             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Technical Assessment (0)" />
+                                              <Label fx:id="technicalAssessmentCountLabel"
+                                                     text="Technical Assessment (0)"
+                                              />
                                           </children>
                                        </StackPane>
                                        <StackPane alignment="CENTER_LEFT">
@@ -170,7 +175,9 @@
                                              <Insets bottom="5" left="10" right="5" top="5" />
                                           </padding>
                                           <children>
-                                             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Interview (0)" />
+                                              <Label fx:id="interviewCountLabel"
+                                                     text="Interview (0)"
+                                              />
                                           </children>
                                        </StackPane>
                                        <StackPane alignment="CENTER_LEFT">
@@ -178,7 +185,8 @@
                                              <Insets bottom="5" left="10" right="5" top="5" />
                                           </padding>
                                           <children>
-                                             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Decision &amp; Offer (0)" />
+                                             <Label fx:id="decisionAndOfferCountLabel"
+                                                text="Decision &amp; Offer (0)" />
                                           </children>
                                        </StackPane>
                                     </children>

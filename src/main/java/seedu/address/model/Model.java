@@ -87,5 +87,13 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     void filterPersonsByButton(List<String> selectedStages);
+
+    int updateInitialAssessmentCount();
+
+    int updateTechnicalAssessmentCount();
+
+    int updateInterviewCount();
+
+    int updateDecisionAndOfferCount();
 }
 
