@@ -110,7 +110,7 @@ public class EditApplicantCommand extends Command {
         }
 
         model.setPerson(personToEdit, editedApplicant);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        //model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_APPLICANT_SUCCESS,
                 Messages.format(editedApplicant)));
     }
