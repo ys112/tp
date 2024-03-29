@@ -57,7 +57,8 @@
                                               </StackPane>
                                               <Region HBox.hgrow="ALWAYS" />
                                               <StackPane>
-                                                  <RadioButton text="Initial Assessment" onAction="#handleInitialAssessment" mnemonicParsing="false" prefWidth="0.0" />
+                                                  <RadioButton fx:id="initialAssessmentRadioButton" text="Initial Assessment"
+                                                               onAction="#handleFilter" mnemonicParsing="false" prefWidth="0.0" />
                                                   <padding>
                                                       <Insets bottom="5" left="5" top="5" />
                                                   </padding>
@@ -80,8 +81,8 @@
                                                     <Insets bottom="5" left="5" top="5" />
                                                 </padding>
                                                 <children>
-                                                    <RadioButton text="Technical Assessment"
-                                                                 onAction="#handleTechnicalAssessment" mnemonicParsing="false" prefWidth="0.0" />
+                                                    <RadioButton fx:id="technicalAssessmentRadioButton" text="Technical Assessment"
+                                                                 onAction="#handleFilter" mnemonicParsing="false" prefWidth="0.0" />
                                                 </children>
                                              </StackPane>
                                           </children>
@@ -102,9 +103,8 @@
                                                     <Insets bottom="5" left="5" top="5" />
                                                 </padding>
                                                 <children>
-                                                    <RadioButton text="Interview"
-                                                                 onAction="#handleInterview"
-                                                                 mnemonicParsing="false" prefWidth="0.0" />
+                                                    <RadioButton fx:id="interviewRadioButton" text="Interview"
+                                                                 onAction="#handleFilter" mnemonicParsing="false" prefWidth="0.0" />
                                                 </children>
                                              </StackPane>
                                           </children>
@@ -125,9 +125,8 @@
                                                    <Insets bottom="5" left="5" top="5" />
                                                 </padding>
                                                 <children>
-                                                    <RadioButton text="Decision &amp; Offer"
-                                                                 onAction="#handleDecisionAndOffer"
-                                                                 mnemonicParsing="false" prefWidth="0.0" />
+                                                    <RadioButton fx:id="decisionOfferRadioButton" text="Decision &amp; Offer"
+                                                                 onAction="#handleFilter" mnemonicParsing="false" prefWidth="0.0" />
                                                 </children>
                                              </StackPane>
                                           </children>

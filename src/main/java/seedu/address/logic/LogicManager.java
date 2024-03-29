@@ -3,6 +3,7 @@ package seedu.address.logic;
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -95,4 +96,6 @@ public class LogicManager implements Logic {
     public void filterPersonsByInterview() {model.filterPersonsByInterview();}
     @Override
     public void filterPersonsByDecisionAndOffer() {model.filterPersonsByDecisionAndOffer();}
+    @Override
+    public void filterPersonsByButton(List<String> selectedStages) {model.filterPersonsByButton(selectedStages);}
 }

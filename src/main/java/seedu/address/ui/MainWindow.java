@@ -1,10 +1,13 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -49,6 +52,18 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private RadioButton initialAssessmentRadioButton;
+
+    @FXML
+    private RadioButton technicalAssessmentRadioButton;
+
+    @FXML
+    private RadioButton interviewRadioButton;
+
+    @FXML
+    private RadioButton decisionOfferRadioButton;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -146,6 +161,35 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.focus();
         }
     }
+    @FXML
+    private void handleFilter() {
+        List<String> selectedStages = new ArrayList<>();
+        if (initialAssessmentRadioButton.isSelected()) {
+            selectedStages.add("Initial Assessment");
+        }
+        if (technicalAssessmentRadioButton.isSelected()) {
+            selectedStages.add("Technical Assessment");
+        }
+        if (interviewRadioButton.isSelected()) {
+            selectedStages.add("Interview");
+        }
+        if (decisionOfferRadioButton.isSelected()) {
+            selectedStages.add("Decision & Offer");
+        }
+        if (selectedStages.size() == 4) {
+            logic.filterPersonsByButton(selectedStages);
+            resultDisplay.setFeedbackToUser("Showing applicants that are in all stages");
+        } else if (!selectedStages.isEmpty()) {
+            logic.filterPersonsByButton(selectedStages);
+            resultDisplay.setFeedbackToUser("Showing applicants that are in the selected stages");
+        } else {
+            // Either this or just dont say anything
+            logic.filterPersonsByButton(selectedStages);
+            resultDisplay.setFeedbackToUser("No stage selected so showing applicants in all " +
+                    "stages");
+        }
+    }
+
     @FXML
     private void handleInitialAssessment() {
         logic.filterPersonsByInitialAssessment();

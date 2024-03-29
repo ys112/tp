@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -195,4 +196,18 @@ public class ModelManager implements Model {
         updateFilteredPersonList(initialAssessmentPredicate);
     }
 
+    public void filterPersonsByButton(List<String> selectedStages) {
+        // Create a Predicate that checks if the person's stage matches any of the selected stages
+        Predicate<Person> stagePredicate = person -> {
+            if (selectedStages.size() == 4 || selectedStages.isEmpty()) {
+                return true;
+            }
+            Applicant applicant = (Applicant) person;
+            // Check if the person's stage matches any of the selected stages
+            return selectedStages.contains(applicant.getStage().stageName);
+        };
+
+        // Update the filtered person list based on the stagePredicate
+        updateFilteredPersonList(stagePredicate);
+    }
 }
