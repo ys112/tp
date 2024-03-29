@@ -69,7 +69,8 @@ public class FilterCommand extends Command {
 
             return roleMatches && stageMatches;
         };
-        model.updateFilteredPersonList(matchesCriteria);
+        model.filterPersonList(matchesCriteria);
+        //model.updateFilteredPersonList(matchesCriteria);
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
 
