@@ -132,6 +132,27 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    /**
+     * Updates the (currently filtered) person list with an additional predicate.
+     * This method filters from the current filtered list instead of the original list.
+     * @param additionalPredicate Additional predicate to apply to the current filtered list.
+     */
+    public void filterPersonList(Predicate<Person> additionalPredicate) {
+        requireNonNull(additionalPredicate);
+        // Get the current predicate
+        Predicate<? super Person> currentPredicate = filteredPersons.getPredicate();
+        // Combine the existing predicate with the additional predicate
+        Predicate<? super Person> combinedPredicate;
+        if (currentPredicate != null) {
+            combinedPredicate = p -> currentPredicate.test(p) && additionalPredicate.test(p);
+        } else {
+            combinedPredicate = additionalPredicate;
+        }
+
+        // Update the filtered person list with the combined predicate
+        filteredPersons.setPredicate(combinedPredicate);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -170,9 +191,10 @@ public class ModelManager implements Model {
         updateFilteredPersonList(stagePredicate);
     }
 
+
     public int updateCount(String stageName) {
         int count = 0;
-        for (Person person : filteredPersons) {
+        for (Person person : this.addressBook.getPersonList()) {
             if (person instanceof Applicant) {
                 Applicant applicant = (Applicant) person;
                 if (applicant.getStage().equals(new Stage(stageName))) {

@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 
 /**
@@ -87,6 +88,8 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     void filterPersonsByButton(List<String> selectedStages);
+
+    void filterPersonList(Predicate<Person> predicate);
 
     int updateCount(String stageName);
 

@@ -157,6 +157,7 @@
                                           <children>
                                               <Label fx:id="initialAssessmentCountLabel"
                                                      text="Initial Assessment (0)"
+                                                     style="-fx-text-fill: white;"
                                               />
                                           </children>
                                        </StackPane>
@@ -167,6 +168,7 @@
                                           <children>
                                               <Label fx:id="technicalAssessmentCountLabel"
                                                      text="Technical Assessment (0)"
+                                                     style="-fx-text-fill: white;"
                                               />
                                           </children>
                                        </StackPane>
@@ -177,6 +179,7 @@
                                           <children>
                                               <Label fx:id="interviewCountLabel"
                                                      text="Interview (0)"
+                                                     style="-fx-text-fill: white;"
                                               />
                                           </children>
                                        </StackPane>
@@ -186,7 +189,9 @@
                                           </padding>
                                           <children>
                                              <Label fx:id="decisionAndOfferCountLabel"
-                                                text="Decision &amp; Offer (0)" />
+                                                    style="-fx-text-fill: white;"
+                                                    text="Decision &amp; Offer (0)"
+                                             />
                                           </children>
                                        </StackPane>
                                     </children>
