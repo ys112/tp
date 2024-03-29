@@ -14,7 +14,6 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.applicant.Applicant;
-import seedu.address.model.applicant.Stage;
 import seedu.address.model.person.Person;
 
 /**
@@ -149,6 +148,12 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
 
+    /**
+     * Filters the list of applicants based on the stages selected on side panel.
+     * If the number of selected stages is equal to the total number of stages or if no stages are selected,
+     * all applicants will be showed.
+     * Otherwise, only persons whose stage matches any of the selected stages are included.
+     */
     public void filterPersonsByButton(List<String> selectedStages) {
         // Create a Predicate that checks if the person's stage matches any of the selected stages
         Predicate<Person> stagePredicate = person -> {

@@ -25,10 +25,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * a menu bar and space where other JavaFX elements can be placed.
  */
 public class MainWindow extends UiPart<Stage> {
-
-    private static final String FXML = "MainWindow.fxml";
-
     public static final int TOTAL_NUMBER_OF_STAGES = 4;
+    private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -186,8 +184,7 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser("Showing applicants that are in the selected stages");
         } else {
             logic.filterPersonsByButton(selectedStages);
-            resultDisplay.setFeedbackToUser("No stage selected so showing applicants in all " +
-                    "stages");
+            resultDisplay.setFeedbackToUser("No stage selected so showing applicants in all stages");
         }
     }
 

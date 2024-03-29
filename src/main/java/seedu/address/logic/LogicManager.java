@@ -88,5 +88,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public void filterPersonsByButton(List<String> selectedStages) {model.filterPersonsByButton(selectedStages);}
+    public void filterPersonsByButton(List<String> selectedStages) {
+        model.filterPersonsByButton(selectedStages);
+    }
 }
