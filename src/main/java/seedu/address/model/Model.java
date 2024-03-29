@@ -88,12 +88,7 @@ public interface Model {
 
     void filterPersonsByButton(List<String> selectedStages);
 
-    int updateInitialAssessmentCount();
+    int updateCount(String stageName);
 
-    int updateTechnicalAssessmentCount();
-
-    int updateInterviewCount();
-
-    int updateDecisionAndOfferCount();
 }
 

@@ -170,50 +170,12 @@ public class ModelManager implements Model {
         updateFilteredPersonList(stagePredicate);
     }
 
-    public int updateInitialAssessmentCount() {
+    public int updateCount(String stageName) {
         int count = 0;
         for (Person person : filteredPersons) {
             if (person instanceof Applicant) {
                 Applicant applicant = (Applicant) person;
-                if (applicant.getStage().equals(new Stage("initial_application"))) {
-                    count++;
-                }
-            }
-        }
-        return count;
-    }
-
-    public int updateTechnicalAssessmentCount() {
-        int count = 0;
-        for (Person person : filteredPersons) {
-            if (person instanceof Applicant) {
-                Applicant applicant = (Applicant) person;
-                if (applicant.getStage().equals(new Stage("Technical Assessment"))) {
-                    count++;
-                }
-            }
-        }
-        return count;
-    }
-    public int updateInterviewCount() {
-        int count = 0;
-        for (Person person : filteredPersons) {
-            if (person instanceof Applicant) {
-                Applicant applicant = (Applicant) person;
-                if (applicant.getStage().equals(new Stage("Interview"))) {
-                    count++;
-                }
-            }
-        }
-        return count;
-    }
-
-    public int updateDecisionAndOfferCount() {
-        int count = 0;
-        for (Person person : filteredPersons) {
-            if (person instanceof Applicant) {
-                Applicant applicant = (Applicant) person;
-                if (applicant.getStage().equals(new Stage("final_stage"))) {
+                if (applicant.getStage().equals(new Stage(stageName))) {
                     count++;
                 }
             }

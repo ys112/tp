@@ -50,11 +50,6 @@ public interface Logic {
     void setGuiSettings(GuiSettings guiSettings);
     void filterPersonsByButton(List<String> selectedStages);
 
-    int updateInitialAssessmentCount();
+    int updateCount(String stageName);
 
-    int updateDecisionAndOfferCount();
-
-    int updateInterviewCount();
-
-    int updateTechnicalAssessmentCount();
 }

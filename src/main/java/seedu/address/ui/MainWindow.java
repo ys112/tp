@@ -172,7 +172,7 @@ public class MainWindow extends UiPart<Stage> {
     }
     @FXML
     private void handleFilter() {
-        updateOverviewCount();
+        //updateOverviewCount();
         List<String> selectedStages = new ArrayList<>();
         if (initialAssessmentRadioButton.isSelected()) {
             selectedStages.add("initial_application");
@@ -200,20 +200,20 @@ public class MainWindow extends UiPart<Stage> {
 
 
     private void updateInitialAssessmentCount() {
-        int count = logic.updateInitialAssessmentCount();
+        int count = logic.updateCount("initial_application");
         initialAssessmentCountLabel.setText("Initial Assessment (" + count + ")");
     }
     private void updateTechnicalAssessmentCount() {
-        int count = logic.updateTechnicalAssessmentCount();
+        int count = logic.updateCount("Technical Assessment");
         technicalAssessmentCountLabel.setText("Technical Assessment (" + count + ")");
     }
 
     private void updateInterviewCount() {
-        int count = logic.updateInterviewCount();
+        int count = logic.updateCount("Interview");
         interviewCountLabel.setText("Interview (" + count + ")");
     }
     private void updateDecisionAndOfferCount() {
-        int count = logic.updateDecisionAndOfferCount();
+        int count = logic.updateCount("final_stage");
         decisionAndOfferCountLabel.setText("Decision And Offer (" + count + ")");
     }
     public void updateOverviewCount() {

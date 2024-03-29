@@ -92,22 +92,10 @@ public class LogicManager implements Logic {
         model.filterPersonsByButton(selectedStages);
     }
     @Override
-    public int updateInitialAssessmentCount() {
-        return model.updateInitialAssessmentCount();
+    public int updateCount(String stageName) {
+        return model.updateCount(stageName);
     }
 
-    @Override
-    public int updateTechnicalAssessmentCount() {
-        return model.updateTechnicalAssessmentCount();
-    }
-    @Override
-    public int updateInterviewCount() {
-        return model.updateInterviewCount();
-    }
-    @Override
-    public int updateDecisionAndOfferCount() {
-        return model.updateDecisionAndOfferCount();
-    }
 
 
 }
