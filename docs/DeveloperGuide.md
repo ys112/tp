@@ -183,8 +183,8 @@ assumed to be at the `'initial_application'` stage.
 ![AddApplicantSequenceDiagram.png](images%2FAddApplicantSequenceDiagram.png)
 
 
-### \[Developed\] Edit_Applicant feature
-The edit_applicant functionality allows users to edit applicants' details. The details that can be edited include `Name`, `Phone`, `Email`, `Address`, `Stage`, `Role` and `Tag`.
+### \[Developed\] Edit applicant feature
+The `edit` command gives users the ability to edit the applicants' details. The details that can be edited include `Name`, `Phone`, `Email`, `Address`, `Stage`, `Role`, `Note` and `Tag`. Note that at least one field has to be chosen.
 
 ![EditSequenceDiagram](images/EditSequenceDiagram.png)
 

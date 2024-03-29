@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAGE;
@@ -38,7 +39,7 @@ import seedu.address.model.tag.Tag;
  */
 public class EditApplicantCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit_applicant";
+    public static final String COMMAND_WORD = "edit";
     public static final String DEFAULT_ROLE = "SWE";
     public static final String DEFAULT_STAGE = "initial_application";
 
@@ -54,6 +55,7 @@ public class EditApplicantCommand extends Command {
             + "[" + PREFIX_ADDRESS + " ADDRESS] "
             + "[" + PREFIX_ROLE + " ROLE] "
             + "[" + PREFIX_STAGE + " STAGE] "
+            + "[" + PREFIX_NOTE + " NOTE] "
             + "[" + PREFIX_TAG + " TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + " 91234567 "
@@ -62,7 +64,7 @@ public class EditApplicantCommand extends Command {
             + PREFIX_STAGE + " final_round "
             + PREFIX_ROLE + " SWE "
             + PREFIX_TAG + " friends "
-            + PREFIX_TAG + " owesMoney";
+            + PREFIX_NOTE + " 4 Week Notice";
 
     public static final String MESSAGE_EDIT_APPLICANT_SUCCESS = "Edited Applicant: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
