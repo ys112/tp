@@ -86,10 +86,6 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    void filterPersonsByInitialAssessment();
-    void filterPersonsByTechnicalAssessment();
-    void filterPersonsByInterview();
-    void filterPersonsByDecisionAndOffer();
     void filterPersonsByButton(List<String> selectedStages);
 }
 

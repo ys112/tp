@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.ui.MainWindow.TOTAL_NUMBER_OF_STAGES;
 
 import java.nio.file.Path;
 import java.util.List;
@@ -148,58 +149,10 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
 
-    @Override
-    public void filterPersonsByInitialAssessment() {
-        Predicate<Person> initialAssessmentPredicate = person -> {
-            Applicant applicant = (Applicant) person;
-            // Check if the stageName matches initial_application
-            boolean stageMatches = applicant.getStage().equals(new Stage("initial_application"));
-            //change later USE FUZZY SEARCH OR ENUMERATION OR THROW ERROR
-            return stageMatches;
-
-        };
-        updateFilteredPersonList(initialAssessmentPredicate);
-    }
-
-    public void filterPersonsByTechnicalAssessment() {
-        Predicate<Person> initialAssessmentPredicate = person -> {
-            Applicant applicant = (Applicant) person;
-            // Check if the stageName matches technical_assessment
-            boolean stageMatches = applicant.getStage().equals(new Stage("technical_assessment"));
-            //change later USE FUZZY SEARCH OR ENUMERATION OR THROW ERROR
-            return stageMatches;
-
-        };
-        updateFilteredPersonList(initialAssessmentPredicate);
-    }
-
-    public void filterPersonsByInterview() {
-        Predicate<Person> initialAssessmentPredicate = person -> {
-            Applicant applicant = (Applicant) person;
-            // Check if the stageName matches interview
-            boolean stageMatches = applicant.getStage().equals(new Stage("interview"));
-            //change later USE FUZZY SEARCH OR ENUMERATION OR THROW ERROR
-            return stageMatches;
-
-        };
-        updateFilteredPersonList(initialAssessmentPredicate);
-    }
-    public void filterPersonsByDecisionAndOffer() {
-        Predicate<Person> initialAssessmentPredicate = person -> {
-            Applicant applicant = (Applicant) person;
-            // Check if the stageName matches Decision and Offer
-            boolean stageMatches = applicant.getStage().equals(new Stage("final_stage"));
-            //change later USE FUZZY SEARCH OR ENUMERATION OR THROW ERROR
-            return stageMatches;
-
-        };
-        updateFilteredPersonList(initialAssessmentPredicate);
-    }
-
     public void filterPersonsByButton(List<String> selectedStages) {
         // Create a Predicate that checks if the person's stage matches any of the selected stages
         Predicate<Person> stagePredicate = person -> {
-            if (selectedStages.size() == 4 || selectedStages.isEmpty()) {
+            if (selectedStages.size() == TOTAL_NUMBER_OF_STAGES || selectedStages.isEmpty()) {
                 return true;
             }
             Applicant applicant = (Applicant) person;

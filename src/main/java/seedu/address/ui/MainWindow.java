@@ -28,6 +28,8 @@ public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
 
+    public static final int TOTAL_NUMBER_OF_STAGES = 4;
+
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Stage primaryStage;
@@ -165,7 +167,7 @@ public class MainWindow extends UiPart<Stage> {
     private void handleFilter() {
         List<String> selectedStages = new ArrayList<>();
         if (initialAssessmentRadioButton.isSelected()) {
-            selectedStages.add("Initial Assessment");
+            selectedStages.add("initial_application");
         }
         if (technicalAssessmentRadioButton.isSelected()) {
             selectedStages.add("Technical Assessment");
@@ -174,46 +176,19 @@ public class MainWindow extends UiPart<Stage> {
             selectedStages.add("Interview");
         }
         if (decisionOfferRadioButton.isSelected()) {
-            selectedStages.add("Decision & Offer");
+            selectedStages.add("final_stage");
         }
-        if (selectedStages.size() == 4) {
+        if (selectedStages.size() == TOTAL_NUMBER_OF_STAGES) {
             logic.filterPersonsByButton(selectedStages);
             resultDisplay.setFeedbackToUser("Showing applicants that are in all stages");
         } else if (!selectedStages.isEmpty()) {
             logic.filterPersonsByButton(selectedStages);
             resultDisplay.setFeedbackToUser("Showing applicants that are in the selected stages");
         } else {
-            // Either this or just dont say anything
             logic.filterPersonsByButton(selectedStages);
             resultDisplay.setFeedbackToUser("No stage selected so showing applicants in all " +
                     "stages");
         }
-    }
-
-    @FXML
-    private void handleInitialAssessment() {
-        logic.filterPersonsByInitialAssessment();
-        resultDisplay.setFeedbackToUser("Showing applicants that are in initial assessment stage.");
-    }
-
-    @FXML
-    private void handleTechnicalAssessment() {
-        logic.filterPersonsByTechnicalAssessment();
-        resultDisplay.setFeedbackToUser("Showing applicants that are in technical assessment " +
-                "stage.");
-    }
-    @FXML
-    private void handleInterview() {
-        logic.filterPersonsByInterview();
-        resultDisplay.setFeedbackToUser("Showing applicants that are in interview " +
-                "stage.");
-    }
-
-    @FXML
-    private void handleDecisionAndOffer() {
-        logic.filterPersonsByDecisionAndOffer();
-        resultDisplay.setFeedbackToUser("Showing applicants that are in Decision and offer " +
-                "stage.");
     }
 
 
