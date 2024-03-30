@@ -206,6 +206,7 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    @FXML
     public void updateOverviewCount() {
         initialAssessmentCount.set(logic.updateCount("initial_application"));
         technicalAssessmentCount.set(logic.updateCount("Technical Assessment"));

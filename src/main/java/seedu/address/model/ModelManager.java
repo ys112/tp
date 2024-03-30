@@ -193,8 +193,10 @@ public class ModelManager implements Model {
 
 
     public int updateCount(String stageName) {
+        Predicate currentPredicate = filteredPersons.getPredicate(); //new
+        //updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS); //new
         int count = 0;
-        for (Person person : this.addressBook.getPersonList()) {
+        for (Person person : this.filteredPersons) { //new
             if (person instanceof Applicant) {
                 Applicant applicant = (Applicant) person;
                 if (applicant.getStage().equals(new Stage(stageName))) {
@@ -202,6 +204,10 @@ public class ModelManager implements Model {
                 }
             }
         }
+        if (currentPredicate == null) {
+            currentPredicate = PREDICATE_SHOW_ALL_PERSONS;
+        }
+        updateFilteredPersonList(currentPredicate);
         return count;
     }
 }
