@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -74,7 +77,10 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private RadioButton decisionOfferRadioButton;
-
+    private IntegerProperty initialAssessmentCount = new SimpleIntegerProperty(0);
+    private IntegerProperty technicalAssessmentCount = new SimpleIntegerProperty(0);
+    private IntegerProperty interviewCount = new SimpleIntegerProperty(0);
+    private IntegerProperty decisionAndOfferCount = new SimpleIntegerProperty(0);
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -146,6 +152,7 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        updateOverviewCount();
     }
 
     /**
@@ -173,6 +180,7 @@ public class MainWindow extends UiPart<Stage> {
     }
     @FXML
     private void handleFilter() {
+        updateOverviewCount();
         List<String> selectedStages = new ArrayList<>();
         if (initialAssessmentRadioButton.isSelected()) {
             selectedStages.add("initial_application");
@@ -196,33 +204,20 @@ public class MainWindow extends UiPart<Stage> {
             logic.filterPersonsByButton(selectedStages);
             resultDisplay.setFeedbackToUser("No stage selected so showing applicants in all stages");
         }
-        updateOverviewCount();
     }
 
-
-    private void updateInitialAssessmentCount() {
-        int count = logic.updateCount("initial_application");
-        initialAssessmentCountLabel.setText("Initial Assessment (" + count + ")");
-    }
-    private void updateTechnicalAssessmentCount() {
-        int count = logic.updateCount("Technical Assessment");
-        technicalAssessmentCountLabel.setText("Technical Assessment (" + count + ")");
-    }
-
-    private void updateInterviewCount() {
-        int count = logic.updateCount("Interview");
-        interviewCountLabel.setText("Interview (" + count + ")");
-    }
-    private void updateDecisionAndOfferCount() {
-        int count = logic.updateCount("final_stage");
-        decisionAndOfferCountLabel.setText("Decision And Offer (" + count + ")");
-    }
     public void updateOverviewCount() {
-        updateDecisionAndOfferCount();
-        updateInterviewCount();
-        updateTechnicalAssessmentCount();
-        updateInitialAssessmentCount();
+        initialAssessmentCount.set(logic.updateCount("initial_application"));
+        technicalAssessmentCount.set(logic.updateCount("Technical Assessment"));
+        interviewCount.set(logic.updateCount("Interview"));
+        decisionAndOfferCount.set(logic.updateCount("final_stage"));
+        initialAssessmentCountLabel.textProperty().bind(Bindings.concat("Initial Assessment (", initialAssessmentCount, ")"));
+        technicalAssessmentCountLabel.textProperty().bind(Bindings.concat("Technical Assessment (", technicalAssessmentCount, ")"));
+        interviewCountLabel.textProperty().bind(Bindings.concat("Interview (", interviewCount, ")"));
+        decisionAndOfferCountLabel.textProperty().bind(Bindings.concat("Decision & Offer (", decisionAndOfferCount, ")"));
     }
+
+
     void show() {
         primaryStage.show();
     }
@@ -240,6 +235,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     public PersonListPanel getPersonListPanel() {
+        updateOverviewCount();
         return personListPanel;
     }
 
