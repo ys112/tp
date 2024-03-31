@@ -244,6 +244,16 @@ public class MainWindow extends UiPart<Stage> {
         decisionOfferRadioButton.setSelected(false);
     }
 
+    /**
+     * Testing Phase
+     */
+    @FXML
+    public void handleShowAll() {
+        resultDisplay.setFeedbackToUser("Showing all applicants");
+        List<String> emptyList = new ArrayList<>();
+        logic.filterPersonsByButton(emptyList);
+
+    }
 
     void show() {
         primaryStage.show();
