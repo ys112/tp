@@ -112,6 +112,10 @@ public class EditApplicantCommand extends Command {
         }
 
         model.setPerson(personToEdit, editedApplicant);
+        model.updateCount("final_stage");
+        model.updateCount("initial_application");
+        model.updateCount("Interview");
+        model.updateCount("Technical Assessment");
         //model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_APPLICANT_SUCCESS,
                 Messages.format(editedApplicant)));

@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -87,7 +88,7 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    void filterPersonsByButton(List<String> selectedStages);
+    void filterPersonsByButton(List<String> selectedStages, Consumer<Void> filterCompleteCallback);
 
     void filterPersonList(Predicate<Person> predicate);
 

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.AccessDeniedException;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -58,7 +59,10 @@ public class LogicManager implements Logic {
         } catch (IOException ioe) {
             throw new CommandException(String.format(FILE_OPS_ERROR_FORMAT, ioe.getMessage()), ioe);
         }
-
+        updateCount("final_stage");
+        updateCount("initial_application");
+        updateCount("Interview");
+        updateCount("Technical Assessment");
         return commandResult;
     }
 
@@ -69,6 +73,10 @@ public class LogicManager implements Logic {
 
     @Override
     public ObservableList<Person> getFilteredPersonList() {
+        updateCount("final_stage");
+        updateCount("initial_application");
+        updateCount("Interview");
+        updateCount("Technical Assessment");
         return model.getFilteredPersonList();
     }
 
@@ -88,8 +96,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public void filterPersonsByButton(List<String> selectedStages) {
-        model.filterPersonsByButton(selectedStages);
+    public void filterPersonsByButton(List<String> selectedStages, Consumer<Void> filterCompleteCallback) {
+        model.filterPersonsByButton(selectedStages, filterCompleteCallback);
     }
     @Override
     public int updateCount(String stageName) {

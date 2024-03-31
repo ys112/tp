@@ -6,6 +6,7 @@ import static seedu.address.ui.MainWindow.TOTAL_NUMBER_OF_STAGES;
 
 import java.nio.file.Path;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -132,6 +133,7 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+
     /**
      * Updates the (currently filtered) person list with an additional predicate.
      * This method filters from the current filtered list instead of the original list.
@@ -176,19 +178,20 @@ public class ModelManager implements Model {
      * all applicants will be showed.
      * Otherwise, only persons whose stage matches any of the selected stages are included.
      */
-    public void filterPersonsByButton(List<String> selectedStages) {
-        // Create a Predicate that checks if the person's stage matches any of the selected stages
+    public void filterPersonsByButton(List<String> selectedStages, Consumer<Void> filterCompleteCallback) {
         Predicate<Person> stagePredicate = person -> {
             if (selectedStages.size() == TOTAL_NUMBER_OF_STAGES || selectedStages.isEmpty()) {
                 return true;
             }
             Applicant applicant = (Applicant) person;
-            // Check if the person's stage matches any of the selected stages
             return selectedStages.contains(applicant.getStage().stageName);
         };
 
         // Update the filtered person list based on the stagePredicate
         updateFilteredPersonList(stagePredicate);
+
+        // Invoke the callback to signal filtering completion
+        filterCompleteCallback.accept(null);
     }
 
 

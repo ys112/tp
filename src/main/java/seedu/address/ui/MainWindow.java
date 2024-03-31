@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.logging.Logger;
 
 import javafx.beans.binding.Bindings;
@@ -180,7 +181,6 @@ public class MainWindow extends UiPart<Stage> {
     }
     @FXML
     private void handleFilter() {
-        updateOverviewCount();
         List<String> selectedStages = new ArrayList<>();
         if (initialAssessmentRadioButton.isSelected()) {
             selectedStages.add("initial_application");
@@ -194,17 +194,20 @@ public class MainWindow extends UiPart<Stage> {
         if (decisionOfferRadioButton.isSelected()) {
             selectedStages.add("final_stage");
         }
-        if (selectedStages.size() == TOTAL_NUMBER_OF_STAGES) {
-            logic.filterPersonsByButton(selectedStages);
-            resultDisplay.setFeedbackToUser("Showing applicants that are in all stages");
-        } else if (!selectedStages.isEmpty()) {
-            logic.filterPersonsByButton(selectedStages);
-            resultDisplay.setFeedbackToUser("Showing applicants that are in the selected stages");
-        } else {
-            logic.filterPersonsByButton(selectedStages);
-            resultDisplay.setFeedbackToUser("No stage selected so showing applicants in all stages");
-        }
+
+        Consumer<Void> filterCompleteCallback = unused -> {
+            updateOverviewCount();
+            if (selectedStages.isEmpty()) {
+                resultDisplay.setFeedbackToUser("No stage selected, showing applicants in all stages");
+            } else {
+                resultDisplay.setFeedbackToUser("Showing applicants that are in the selected stages");
+            }
+        };
+
+        // Filter persons by selected stages and update counts after filtering
+        logic.filterPersonsByButton(selectedStages, filterCompleteCallback);
     }
+
 
     @FXML
     public void updateOverviewCount() {

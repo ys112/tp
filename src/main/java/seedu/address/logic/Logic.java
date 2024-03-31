@@ -2,6 +2,7 @@ package seedu.address.logic;
 
 import java.nio.file.Path;
 import java.util.List;
+import java.util.function.Consumer;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -48,8 +49,18 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
-    void filterPersonsByButton(List<String> selectedStages);
 
+    /**
+     * Filters the list of persons based on the selected stages.
+     * @param selectedStages List of selected stages.
+     * @param filterCompleteCallback Callback function to be executed after filtering is complete.
+     */
+    void filterPersonsByButton(List<String> selectedStages, Consumer<Void> filterCompleteCallback);
+
+    /**
+     * Updates the count of persons in the specified stage.
+     * @param stageName Name of the stage.
+     * @return The count of persons in the stage.
+     */
     int updateCount(String stageName);
-
 }
