@@ -83,6 +83,13 @@ public class HelpWindow extends UiPart<Stage> {
     }
 
     /**
+     * Close the help window.
+     */
+    public void close() {
+        getRoot().close();
+    }
+
+    /**
      * Focuses on the help window.
      */
     public void focus() {

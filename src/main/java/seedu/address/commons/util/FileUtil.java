@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Locale;
 
 /**
  * Writes and reads files
@@ -25,6 +26,24 @@ public class FileUtil {
     public static boolean isValidPath(String path) {
         try {
             Paths.get(path);
+        } catch (InvalidPathException ipe) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Returns true if {@code path} for JSON file can be converted into a {@code Path} via {@link Paths#get(String)},
+     * otherwise returns false.
+     * @param path A string representing the json file path. Cannot be null.
+     */
+    public static boolean isValidJsonPath(String path) {
+        try {
+            Path filePath = Paths.get(path);
+            String fileExtension = filePath.getFileName().toString().toLowerCase(Locale.ROOT);
+            if (!fileExtension.endsWith(".json")) {
+                return false;
+            }
         } catch (InvalidPathException ipe) {
             return false;
         }
