@@ -2,13 +2,10 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.util.List;
-import java.util.function.Consumer;
 import java.util.function.Predicate;
 
-import javafx.beans.property.IntegerProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 
 /**

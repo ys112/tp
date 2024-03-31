@@ -164,6 +164,16 @@ public class AddApplicantCommandTest {
         public void filterPersonsByButton(List<String> selectedStages) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public void filterPersonList(Predicate<Person> additionalPredicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+
+        @Override
+        public int updateCount(String stageName) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

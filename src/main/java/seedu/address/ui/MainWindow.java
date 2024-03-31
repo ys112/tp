@@ -2,7 +2,6 @@ package seedu.address.ui;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 import java.util.logging.Logger;
 
 import javafx.beans.binding.Bindings;
@@ -10,11 +9,14 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -22,7 +24,6 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ModelManager;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -98,8 +99,6 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-        refreshButton.setMaxWidth(19);
-        refreshButton.setMaxHeight(19);
     }
 
     public Stage getPrimaryStage() {
@@ -208,25 +207,36 @@ public class MainWindow extends UiPart<Stage> {
         } else if (!selectedStages.isEmpty()) {
             resultDisplay.setFeedbackToUser("Showing applicants that are in the selected stages");
         } else {
-            resultDisplay.setFeedbackToUser("No stage selected so showing applicants in all " +
-                    "stages");
+            resultDisplay.setFeedbackToUser("No stage selected so showing applicants in all stages");
         }
 
     }
 
 
+    /**
+     * Updates the overview count labels with the latest count values retrieved from the logic.
+     * Counts are updated for Initial Assessment, Technical Assessment, Interview, and Decision &
+     * Offer stages.
+     * The count values are bound to corresponding labels for display in the user interface.
+     */
     @FXML
     public void updateOverviewCount() {
         initialAssessmentCount.set(logic.updateCount("initial_application"));
         technicalAssessmentCount.set(logic.updateCount("Technical Assessment"));
         interviewCount.set(logic.updateCount("Interview"));
         decisionAndOfferCount.set(logic.updateCount("final_stage"));
-        initialAssessmentCountLabel.textProperty().bind(Bindings.concat("Initial Assessment (", initialAssessmentCount, ")"));
-        technicalAssessmentCountLabel.textProperty().bind(Bindings.concat("Technical Assessment (", technicalAssessmentCount, ")"));
+        initialAssessmentCountLabel.textProperty().bind(Bindings.concat("Initial Assessment (",
+                initialAssessmentCount, ")"));
+        technicalAssessmentCountLabel.textProperty().bind(Bindings.concat("Technical Assessment (",
+                technicalAssessmentCount, ")"));
         interviewCountLabel.textProperty().bind(Bindings.concat("Interview (", interviewCount, ")"));
-        decisionAndOfferCountLabel.textProperty().bind(Bindings.concat("Decision & Offer (", decisionAndOfferCount, ")"));
+        decisionAndOfferCountLabel.textProperty().bind(Bindings.concat("Decision & Offer (",
+                decisionAndOfferCount, ")"));
     }
 
+    /**
+     * Testing Phase
+     */
     public void deselectAllButtons() {
         initialAssessmentRadioButton.setSelected(false);
         technicalAssessmentRadioButton.setSelected(false);

@@ -6,12 +6,9 @@ import static seedu.address.ui.MainWindow.TOTAL_NUMBER_OF_STAGES;
 
 import java.nio.file.Path;
 import java.util.List;
-import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -193,12 +190,16 @@ public class ModelManager implements Model {
         updateFilteredPersonList(stagePredicate);
     }
 
+    /**
+     * Updates the count of persons at a specific stage.
+     * @param stageName The name of the stage for which the count needs to be updated.
+     * @return The count of persons at the specified stage in the filteredPersons.
+     */
 
     public int updateCount(String stageName) {
-        Predicate currentPredicate = filteredPersons.getPredicate(); //new
-        //updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS); //new
+        Predicate currentPredicate = filteredPersons.getPredicate();
         int count = 0;
-        for (Person person : this.filteredPersons) { //new
+        for (Person person : this.filteredPersons) {
             if (person instanceof Applicant) {
                 Applicant applicant = (Applicant) person;
                 if (applicant.getStage().equals(new Stage(stageName))) {
