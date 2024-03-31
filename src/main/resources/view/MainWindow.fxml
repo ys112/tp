@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
@@ -19,222 +18,235 @@
 <?import javafx.stage.Stage?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
 <fx:root minHeight="600" minWidth="650" maxHeight="960" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
-  <icons>
-    <Image url="@/images/address_book_32.png" />
-  </icons>
-  <scene>
-    <Scene>
-      <stylesheets>
-        <URL value="@DarkTheme.css" />
-        <URL value="@Extensions.css" />
-      </stylesheets>
+    <icons>
+        <Image url="@/images/address_book_32.png" />
+    </icons>
+    <scene>
+        <Scene>
+            <stylesheets>
+                <URL value="@DarkTheme.css" />
+                <URL value="@Extensions.css" />
+            </stylesheets>
 
-      <VBox>
-     <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
-       <Menu mnemonicParsing="false" text="File">
-         <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
-       </Menu>
-       <Menu mnemonicParsing="false" text="Help">
-         <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
-       </Menu>
-     </MenuBar>
-        <HBox VBox.vgrow="ALWAYS">
             <VBox>
-               <children>
-                  <TitledPane animated="false" collapsible="false" text="Filter">
-                    <content>
-                         <AnchorPane prefHeight="400">
-                              <children>
-                                 <VBox>
-                                    <children>
-                                       <HBox>
-                                          <children>
-                                              <StackPane>
-                                                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Initial Assessment" />
-                                                  <padding>
-                                                      <Insets bottom="5" left="10" right="5" top="5" />
-                                                  </padding>
-                                              </StackPane>
-                                              <Region HBox.hgrow="ALWAYS" />
-                                              <StackPane>
-                                                  <RadioButton fx:id="initialAssessmentRadioButton" text="Initial Assessment"
-                                                               onAction="#handleFilter" mnemonicParsing="false" prefWidth="0.0" />
-                                                  <padding>
-                                                      <Insets bottom="5" left="5" top="5" />
-                                                  </padding>
-                                              </StackPane>
-                                          </children>
-                                       </HBox>
-                                       <HBox>
-                                          <children>
-                                             <StackPane>
-                                                <padding>
-                                                   <Insets bottom="5" left="10" right="5" top="5" />
-                                                </padding>
+                <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
+                    <Menu mnemonicParsing="false" text="File">
+                        <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="Help">
+                        <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
+                    </Menu>
+                </MenuBar>
+                <HBox VBox.vgrow="ALWAYS">
+                    <VBox>
+                        <children>
+                            <TitledPane animated="false" collapsible="false" text="Filter">
+                                <content>
+                                    <AnchorPane prefHeight="400">
+                                        <children>
+                                            <VBox>
                                                 <children>
-                                                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Technical Assessment" />
+                                                    <HBox>
+                                                        <children>
+                                                            <StackPane>
+                                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Initial Assessment" />
+                                                                <padding>
+                                                                    <Insets bottom="5" left="10" right="5" top="5" />
+                                                                </padding>
+                                                            </StackPane>
+                                                            <Region HBox.hgrow="ALWAYS" />
+                                                            <StackPane>
+                                                                <RadioButton fx:id="initialAssessmentRadioButton" text="Initial Assessment"
+                                                                             onAction="#handleFilter" mnemonicParsing="false" prefWidth="0.0" />
+                                                                <padding>
+                                                                    <Insets bottom="5" left="5" top="5" />
+                                                                </padding>
+                                                            </StackPane>
+                                                        </children>
+                                                    </HBox>
+                                                    <HBox>
+                                                        <children>
+                                                            <StackPane>
+                                                                <padding>
+                                                                    <Insets bottom="5" left="10" right="5" top="5" />
+                                                                </padding>
+                                                                <children>
+                                                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Technical Assessment" />
+                                                                </children>
+                                                            </StackPane>
+                                                            <Region HBox.hgrow="ALWAYS" />
+                                                            <StackPane>
+                                                                <padding>
+                                                                    <Insets bottom="5" left="5" top="5" />
+                                                                </padding>
+                                                                <children>
+                                                                    <RadioButton fx:id="technicalAssessmentRadioButton" text="Technical Assessment"
+                                                                                 onAction="#handleFilter" mnemonicParsing="false" prefWidth="0.0" />
+                                                                </children>
+                                                            </StackPane>
+                                                        </children>
+                                                    </HBox>
+                                                    <HBox>
+                                                        <children>
+                                                            <StackPane>
+                                                                <padding>
+                                                                    <Insets bottom="5" left="10" right="5" top="5" />
+                                                                </padding>
+                                                                <children>
+                                                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Interview" />
+                                                                </children>
+                                                            </StackPane>
+                                                            <Region HBox.hgrow="ALWAYS" />
+                                                            <StackPane>
+                                                                <padding>
+                                                                    <Insets bottom="5" left="5" top="5" />
+                                                                </padding>
+                                                                <children>
+                                                                    <RadioButton fx:id="interviewRadioButton" text="Interview"
+                                                                                 onAction="#handleFilter" mnemonicParsing="false" prefWidth="0.0" />
+                                                                </children>
+                                                            </StackPane>
+                                                        </children>
+                                                    </HBox>
+                                                    <HBox>
+                                                        <children>
+                                                            <StackPane>
+                                                                <padding>
+                                                                    <Insets bottom="5" left="10" right="5" top="5" />
+                                                                </padding>
+                                                                <children>
+                                                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Decision &amp; Offer" />
+                                                                </children>
+                                                            </StackPane>
+                                                            <Region HBox.hgrow="ALWAYS" />
+                                                            <StackPane>
+                                                                <padding>
+                                                                    <Insets bottom="5" left="5" top="5" />
+                                                                </padding>
+                                                                <children>
+                                                                    <RadioButton fx:id="decisionOfferRadioButton" text="Decision &amp; Offer"
+                                                                                 onAction="#handleFilter" mnemonicParsing="false" prefWidth="0.0" />
+                                                                </children>
+                                                            </StackPane>
+                                                        </children>
+                                                    </HBox>
                                                 </children>
-                                             </StackPane>
-                                              <Region HBox.hgrow="ALWAYS" />
-                                             <StackPane>
-                                                <padding>
-                                                    <Insets bottom="5" left="5" top="5" />
-                                                </padding>
+                                            </VBox>
+                                        </children>
+                                    </AnchorPane>
+                                </content>
+                                <graphic>
+                                    <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                        <image>
+                                            <Image url="@../images/filter_icon.png" />
+                                        </image>
+                                    </ImageView>
+                                </graphic>
+                            </TitledPane>
+                            <TitledPane animated="false" collapsible="false" text="Overview">
+                                <content>
+                                    <AnchorPane prefHeight="400.0">
+                                        <children>
+                                            <VBox>
                                                 <children>
-                                                    <RadioButton fx:id="technicalAssessmentRadioButton" text="Technical Assessment"
-                                                                 onAction="#handleFilter" mnemonicParsing="false" prefWidth="0.0" />
+                                                    <StackPane alignment="CENTER_LEFT">
+                                                        <padding>
+                                                            <Insets bottom="5" left="10" right="5" top="5" />
+                                                        </padding>
+                                                        <children>
+                                                            <Label fx:id="initialAssessmentCountLabel"
+                                                                   text="Initial Assessment (0)"
+                                                                   style="-fx-text-fill: white;" />
+                                                        </children>
+                                                    </StackPane>
+                                                    <StackPane alignment="CENTER_LEFT">
+                                                        <padding>
+                                                            <Insets bottom="5" left="10" right="5" top="5" />
+                                                        </padding>
+                                                        <children>
+                                                            <Label fx:id="technicalAssessmentCountLabel"
+                                                                   text="Technical Assessment (0)"
+                                                                   style="-fx-text-fill: white;" />
+                                                        </children>
+                                                    </StackPane>
+                                                    <StackPane alignment="CENTER_LEFT">
+                                                        <padding>
+                                                            <Insets bottom="5" left="10" right="5" top="5" />
+                                                        </padding>
+                                                        <children>
+                                                            <Label fx:id="interviewCountLabel"
+                                                                   text="Interview (0)"
+                                                                   style="-fx-text-fill: white;" />
+                                                        </children>
+                                                    </StackPane>
+                                                    <StackPane alignment="CENTER_LEFT">
+                                                        <padding>
+                                                            <Insets bottom="5" left="10" right="5" top="5" />
+                                                        </padding>
+                                                        <children>
+                                                            <Label fx:id="decisionAndOfferCountLabel"
+                                                                   style="-fx-text-fill: white;"
+                                                                   text="Decision &amp; Offer (0)" />
+                                                        </children>
+                                                    </StackPane>
                                                 </children>
-                                             </StackPane>
-                                          </children>
-                                       </HBox>
-                                       <HBox>
-                                          <children>
-                                             <StackPane>
-                                                <padding>
-                                                   <Insets bottom="5" left="10" right="5" top="5" />
-                                                </padding>
-                                                <children>
-                                                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Interview" />
-                                                </children>
-                                             </StackPane>
-                                              <Region HBox.hgrow="ALWAYS" />
-                                             <StackPane>
-                                                <padding>
-                                                    <Insets bottom="5" left="5" top="5" />
-                                                </padding>
-                                                <children>
-                                                    <RadioButton fx:id="interviewRadioButton" text="Interview"
-                                                                 onAction="#handleFilter" mnemonicParsing="false" prefWidth="0.0" />
-                                                </children>
-                                             </StackPane>
-                                          </children>
-                                       </HBox>
-                                       <HBox>
-                                          <children>
-                                             <StackPane>
-                                                <padding>
-                                                   <Insets bottom="5" left="10" right="5" top="5" />
-                                                </padding>
-                                                <children>
-                                                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Decision &amp; Offer" />
-                                                </children>
-                                             </StackPane>
-                                              <Region HBox.hgrow="ALWAYS" />
-                                             <StackPane>
-                                                <padding>
-                                                   <Insets bottom="5" left="5" top="5" />
-                                                </padding>
-                                                <children>
-                                                    <RadioButton fx:id="decisionOfferRadioButton" text="Decision &amp; Offer"
-                                                                 onAction="#handleFilter" mnemonicParsing="false" prefWidth="0.0" />
-                                                </children>
-                                             </StackPane>
-                                          </children>
-                                       </HBox>
-                                    </children>
-                                 </VBox>
-                              </children>
-                        </AnchorPane>
-                    </content>
-                        <graphic>
-                           <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                              <image>
-                                 <Image url="@../images/filter_icon.png" />
-                              </image></ImageView>
-                        </graphic>
-                  </TitledPane>
-                  <TitledPane animated="false" collapsible="false" text="Overview">
-                    <content>
-                      <AnchorPane prefHeight="400.0">
-                              <children>
-                                 <VBox>
-                                    <children>
-                                       <StackPane alignment="CENTER_LEFT">
-                                          <padding>
-                                             <Insets bottom="5" left="10" right="5" top="5" />
-                                          </padding>
-                                          <children>
-                                              <Label fx:id="initialAssessmentCountLabel"
-                                                     text="Initial Assessment (0)"
-                                                     style="-fx-text-fill: white;"
-                                              />
-                                          </children>
-                                       </StackPane>
-                                       <StackPane alignment="CENTER_LEFT">
-                                          <padding>
-                                             <Insets bottom="5" left="10" right="5" top="5" />
-                                          </padding>
-                                          <children>
-                                              <Label fx:id="technicalAssessmentCountLabel"
-                                                     text="Technical Assessment (0)"
-                                                     style="-fx-text-fill: white;"
-                                              />
-                                          </children>
-                                       </StackPane>
-                                       <StackPane alignment="CENTER_LEFT">
-                                          <padding>
-                                             <Insets bottom="5" left="10" right="5" top="5" />
-                                          </padding>
-                                          <children>
-                                              <Label fx:id="interviewCountLabel"
-                                                     text="Interview (0)"
-                                                     style="-fx-text-fill: white;"
-                                              />
-                                          </children>
-                                       </StackPane>
-                                       <StackPane alignment="CENTER_LEFT">
-                                          <padding>
-                                             <Insets bottom="5" left="10" right="5" top="5" />
-                                          </padding>
-                                          <children>
-                                             <Label fx:id="decisionAndOfferCountLabel"
-                                                    style="-fx-text-fill: white;"
-                                                    text="Decision &amp; Offer (0)"
-                                             />
-                                          </children>
-                                       </StackPane>
-                                    </children>
-                                 </VBox>
-                              </children></AnchorPane>
-                    </content>
-                        <graphic>
-                           <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                              <image>
-                                 <Image url="@../images/chart_icon.png" />
-                              </image>
-                           </ImageView>
-                        </graphic>
-                  </TitledPane>
-               </children>
+                                            </VBox>
+                                        </children>
+                                    </AnchorPane>
+                                </content>
+                                <graphic>
+                                    <HBox alignment="CENTER_RIGHT">
+                                        <padding>
+                                            <Insets right="5" />
+                                        </padding>
+                                        <children>
+                                            <Button fx:id="refreshButton" onAction="#handleRefresh"
+                                                    style="-fx-background-color: transparent;-fx-background-insets: 0;">
+                                                <graphic>
+                                                    <ImageView fitHeight="18.0" fitWidth="18.0">
+                                                        <image>
+                                                            <Image url="@../images/refresh_icon.png" />
+                                                        </image>
+                                                    </ImageView>
+                                                </graphic>
+                                            </Button>
+                                        </children>
+                                    </HBox>
+                                </graphic>
+                            </TitledPane>
+                        </children>
+                    </VBox>
+                    <VBox HBox.hgrow="ALWAYS">
+                        <children>
+
+                            <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
+                                <padding>
+                                    <Insets bottom="5" left="10" right="10" top="5" />
+                                </padding>
+                            </StackPane>
+
+                            <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
+                                <padding>
+                                    <Insets bottom="5" left="10" right="10" top="5" />
+                                </padding>
+                            </StackPane>
+
+                            <VBox fx:id="personList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                                <padding>
+                                    <Insets bottom="10" left="10" right="10" top="10" />
+                                </padding>
+                                <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                            </VBox>
+
+                            <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+                        </children>
+                    </VBox>
+                </HBox>
             </VBox>
-            <VBox HBox.hgrow="ALWAYS">
-               <children>
-
-              <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
-                <padding>
-                  <Insets bottom="5" left="10" right="10" top="5" />
-                </padding>
-              </StackPane>
-
-              <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
-                <padding>
-                  <Insets bottom="5" left="10" right="10" top="5" />
-                </padding>
-              </StackPane>
-
-              <VBox fx:id="personList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-                <padding>
-                  <Insets bottom="10" left="10" right="10" top="10" />
-                </padding>
-                <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-              </VBox>
-
-              <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
-               </children>
-            </VBox>
-        </HBox>
-      </VBox>
-    </Scene>
-  </scene>
+        </Scene>
+    </scene>
 </fx:root>
+
+

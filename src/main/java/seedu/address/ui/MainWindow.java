@@ -10,10 +10,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextInputControl;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -50,6 +47,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private Button refreshButton;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -99,6 +99,8 @@ public class MainWindow extends UiPart<Stage> {
 
         helpWindow = new HelpWindow();
         initializeBindings();
+        refreshButton.setMaxWidth(19);
+        refreshButton.setMaxHeight(19);
     }
 
     public Stage getPrimaryStage() {
@@ -183,6 +185,11 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.focus();
         }
     }
+
+    @FXML
+    public void handleRefresh() {
+        updateOverviewCount();
+    }
     @FXML
     private void handleFilter() {
         List<String> selectedStages = new ArrayList<>();
@@ -255,6 +262,18 @@ public class MainWindow extends UiPart<Stage> {
 
     void show() {
         primaryStage.show();
+        refreshButton.setStyle(
+                "-fx-background-radius: 30em; " +
+                        "-fx-min-width: 30px; " +
+                        "-fx-min-height: 30px; " +
+                        "-fx-max-width: 30px; " +
+                        "-fx-max-height: 30px; " +
+                        "-fx-background-color: transparent; " +
+                        "-fx-border-color: white; " +
+                        "-fx-border-width: 2;" +
+                        "-fx-border-radius: 30em;"
+
+        );
     }
 
     /**
