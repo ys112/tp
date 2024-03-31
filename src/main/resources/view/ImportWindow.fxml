@@ -22,7 +22,6 @@
       </stylesheets>
          <VBox>
             <children>
-            
             <HBox fx:id="importMessageContainer" alignment="CENTER" prefHeight="130.0" prefWidth="277.0">
               <children>
                      <VBox alignment="CENTER" prefHeight="115.0" prefWidth="342.0">
