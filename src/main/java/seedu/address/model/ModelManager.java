@@ -5,15 +5,19 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.ui.MainWindow.TOTAL_NUMBER_OF_STAGES;
 
 import java.nio.file.Path;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.applicant.Applicant;
+import seedu.address.model.applicant.Role;
 import seedu.address.model.applicant.Stage;
 import seedu.address.model.person.Person;
 
@@ -121,6 +125,23 @@ public class ModelManager implements Model {
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
      * {@code versionedAddressBook}
      */
+    @Override
+    public ObservableList<Role> getFilteredRoleList() {
+        Set<Role> uniqueRoles = new HashSet<>();
+        for (Person person : this.filteredPersons) {
+            if (person instanceof Applicant) {
+                Applicant applicant = (Applicant) person;
+                Role role = applicant.getRole();
+                // Check if the role is unique, if so, add it to the set
+                if (!uniqueRoles.contains(role)) {
+                    uniqueRoles.add(role);
+                }
+            }
+        }
+        ObservableList<Role> observableRoles = FXCollections.observableArrayList(uniqueRoles);
+        return observableRoles;
+    }
+
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;

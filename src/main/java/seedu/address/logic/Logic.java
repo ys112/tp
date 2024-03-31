@@ -9,6 +9,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.applicant.Role;
 import seedu.address.model.person.Person;
 
 /**
@@ -61,5 +62,7 @@ public interface Logic {
      * @return The count of persons in the stage.
      */
     int updateCount(String stageName);
+
+    public ObservableList<Role> getFilteredRoleList();
 
 }
