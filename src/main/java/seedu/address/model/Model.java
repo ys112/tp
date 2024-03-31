@@ -89,15 +89,11 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    void filterPersonsByButton(List<String> selectedStages, Consumer<Void> filterCompleteCallback);
+    void filterPersonsByButton(List<String> selectedStages);
 
     void filterPersonList(Predicate<Person> predicate);
 
     int updateCount(String stageName);
-    public IntegerProperty decisionAndOfferCountProperty();
-    public IntegerProperty technicalAssessmentCountProperty();
-    public IntegerProperty interviewCountProperty();
-    public IntegerProperty initialAssessmentCountProperty();
 
 }
 

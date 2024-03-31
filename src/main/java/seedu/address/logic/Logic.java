@@ -55,9 +55,8 @@ public interface Logic {
     /**
      * Filters the list of persons based on the selected stages.
      * @param selectedStages List of selected stages.
-     * @param filterCompleteCallback Callback function to be executed after filtering is complete.
      */
-    void filterPersonsByButton(List<String> selectedStages, Consumer<Void> filterCompleteCallback);
+    void filterPersonsByButton(List<String> selectedStages);
 
     /**
      * Updates the count of persons in the specified stage.
@@ -65,12 +64,5 @@ public interface Logic {
      * @return The count of persons in the stage.
      */
     int updateCount(String stageName);
-
-    void initialize();
-    public IntegerProperty decisionAndOfferCountProperty();
-    public IntegerProperty technicalAssessmentCountProperty();
-    public IntegerProperty interviewCountProperty();
-    public IntegerProperty initialAssessmentCountProperty();
-
 
 }

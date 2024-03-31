@@ -98,13 +98,11 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-        initializeBindings();
         refreshButton.setMaxWidth(19);
         refreshButton.setMaxHeight(19);
     }
 
     public Stage getPrimaryStage() {
-        initializeBindings();
         return primaryStage;
     }
 
@@ -157,8 +155,6 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
-        logic.initialize();
-        initializeBindings();
         updateOverviewCount();
     }
 
@@ -205,51 +201,30 @@ public class MainWindow extends UiPart<Stage> {
         if (decisionOfferRadioButton.isSelected()) {
             selectedStages.add("final_stage");
         }
-
-        Consumer<Void> filterCompleteCallback = unused -> {
-            updateOverviewCount();
-            if (selectedStages.isEmpty()) {
-                resultDisplay.setFeedbackToUser("No stage selected, showing applicants in all stages");
-            } else {
-                resultDisplay.setFeedbackToUser("Showing applicants that are in the selected stages");
-            }
-        };
-
         // Filter persons by selected stages and update counts after filtering
-        logic.filterPersonsByButton(selectedStages, filterCompleteCallback);
-    }
-    public void initializeBindings() {
-        // Retrieve count properties from the logic
-        IntegerProperty initialAssessmentCountProperty = logic.initialAssessmentCountProperty();
-        IntegerProperty technicalAssessmentCountProperty = logic.technicalAssessmentCountProperty();
-        IntegerProperty interviewCountProperty = logic.interviewCountProperty();
-        IntegerProperty decisionAndOfferCountProperty = logic.decisionAndOfferCountProperty();
+        logic.filterPersonsByButton(selectedStages);
+        if (selectedStages.size() == 4) {
+            resultDisplay.setFeedbackToUser("Showing applicants that are in all stages");
+        } else if (!selectedStages.isEmpty()) {
+            resultDisplay.setFeedbackToUser("Showing applicants that are in the selected stages");
+        } else {
+            resultDisplay.setFeedbackToUser("No stage selected so showing applicants in all " +
+                    "stages");
+        }
 
-        // Bind count properties to corresponding UI labels
-        initialAssessmentCountLabel.textProperty().bind(Bindings.concat("Initial Assessment (", initialAssessmentCountProperty, ")"));
-        technicalAssessmentCountLabel.textProperty().bind(Bindings.concat("Technical Assessment (", technicalAssessmentCountProperty, ")"));
-        interviewCountLabel.textProperty().bind(Bindings.concat("Interview (", interviewCountProperty, ")"));
-        decisionAndOfferCountLabel.textProperty().bind(Bindings.concat("Decision & Offer (", decisionAndOfferCountProperty, ")"));
     }
 
 
-//    @FXML
-//    public void updateOverviewCount() {
-//        initialAssessmentCount.set(logic.updateCount("initial_application"));
-//        technicalAssessmentCount.set(logic.updateCount("Technical Assessment"));
-//        interviewCount.set(logic.updateCount("Interview"));
-//        decisionAndOfferCount.set(logic.updateCount("final_stage"));
-//        initialAssessmentCountLabel.textProperty().bind(Bindings.concat("Initial Assessment (", initialAssessmentCount, ")"));
-//        technicalAssessmentCountLabel.textProperty().bind(Bindings.concat("Technical Assessment (", technicalAssessmentCount, ")"));
-//        interviewCountLabel.textProperty().bind(Bindings.concat("Interview (", interviewCount, ")"));
-//        decisionAndOfferCountLabel.textProperty().bind(Bindings.concat("Decision & Offer (", decisionAndOfferCount, ")"));
-//    }
-
+    @FXML
     public void updateOverviewCount() {
-        initialAssessmentCountLabel.textProperty().bind(Bindings.concat("Initial Assessment (", logic.initialAssessmentCountProperty(), ")"));
-        technicalAssessmentCountLabel.textProperty().bind(Bindings.concat("Technical Assessment (", logic.technicalAssessmentCountProperty(), ")"));
-        interviewCountLabel.textProperty().bind(Bindings.concat("Interview (", logic.interviewCountProperty(), ")"));
-        decisionAndOfferCountLabel.textProperty().bind(Bindings.concat("Decision & Offer (", logic.decisionAndOfferCountProperty(), ")"));
+        initialAssessmentCount.set(logic.updateCount("initial_application"));
+        technicalAssessmentCount.set(logic.updateCount("Technical Assessment"));
+        interviewCount.set(logic.updateCount("Interview"));
+        decisionAndOfferCount.set(logic.updateCount("final_stage"));
+        initialAssessmentCountLabel.textProperty().bind(Bindings.concat("Initial Assessment (", initialAssessmentCount, ")"));
+        technicalAssessmentCountLabel.textProperty().bind(Bindings.concat("Technical Assessment (", technicalAssessmentCount, ")"));
+        interviewCountLabel.textProperty().bind(Bindings.concat("Interview (", interviewCount, ")"));
+        decisionAndOfferCountLabel.textProperty().bind(Bindings.concat("Decision & Offer (", decisionAndOfferCount, ")"));
     }
 
     public void deselectAllButtons() {
@@ -262,18 +237,7 @@ public class MainWindow extends UiPart<Stage> {
 
     void show() {
         primaryStage.show();
-        refreshButton.setStyle(
-                "-fx-background-radius: 30em; " +
-                        "-fx-min-width: 30px; " +
-                        "-fx-min-height: 30px; " +
-                        "-fx-max-width: 30px; " +
-                        "-fx-max-height: 30px; " +
-                        "-fx-background-color: transparent; " +
-                        "-fx-border-color: white; " +
-                        "-fx-border-width: 2;" +
-                        "-fx-border-radius: 30em;"
 
-        );
     }
 
     /**

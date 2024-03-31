@@ -180,7 +180,7 @@ public class ModelManager implements Model {
      * all applicants will be showed.
      * Otherwise, only persons whose stage matches any of the selected stages are included.
      */
-    public void filterPersonsByButton(List<String> selectedStages, Consumer<Void> filterCompleteCallback) {
+    public void filterPersonsByButton(List<String> selectedStages) {
         Predicate<Person> stagePredicate = person -> {
             if (selectedStages.size() == TOTAL_NUMBER_OF_STAGES || selectedStages.isEmpty()) {
                 return true;
@@ -191,9 +191,6 @@ public class ModelManager implements Model {
 
         // Update the filtered person list based on the stagePredicate
         updateFilteredPersonList(stagePredicate);
-
-        // Invoke the callback to signal filtering completion
-        filterCompleteCallback.accept(null);
     }
 
 
@@ -216,19 +213,4 @@ public class ModelManager implements Model {
         return count;
     }
 
-    public IntegerProperty initialAssessmentCountProperty() {
-        return new SimpleIntegerProperty(updateCount("initial_application"));
-    }
-
-    public IntegerProperty technicalAssessmentCountProperty() {
-        return new SimpleIntegerProperty(updateCount("Technical Assessment"));
-    }
-
-    public IntegerProperty interviewCountProperty() {
-        return new SimpleIntegerProperty(updateCount("Interview"));
-    }
-
-    public IntegerProperty decisionAndOfferCountProperty() {
-        return new SimpleIntegerProperty(updateCount("final_stage"));
-    }
 }

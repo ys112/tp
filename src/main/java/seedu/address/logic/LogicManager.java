@@ -46,7 +46,6 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         addressBookParser = new AddressBookParser();
-        initialize();
     }
 
     @Override
@@ -55,7 +54,6 @@ public class LogicManager implements Logic {
     }
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
-        initialize();
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
@@ -69,81 +67,39 @@ public class LogicManager implements Logic {
         } catch (IOException ioe) {
             throw new CommandException(String.format(FILE_OPS_ERROR_FORMAT, ioe.getMessage()), ioe);
         }
-        updateCount("final_stage");
-        updateCount("initial_application");
-        updateCount("Interview");
-        updateCount("Technical Assessment");
         return commandResult;
     }
 
     @Override
     public ReadOnlyAddressBook getAddressBook() {
-        initialize();
         return model.getAddressBook();
     }
 
     @Override
     public ObservableList<Person> getFilteredPersonList() {
-        initialize();
         return model.getFilteredPersonList();
     }
 
     @Override
     public Path getAddressBookFilePath() {
-        initialize();
         return model.getAddressBookFilePath();
     }
 
     @Override
     public GuiSettings getGuiSettings() {
-        initialize();
         return model.getGuiSettings();
     }
 
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
-        initialize();
         model.setGuiSettings(guiSettings);
     }
 
     @Override
-    public void filterPersonsByButton(List<String> selectedStages, Consumer<Void> filterCompleteCallback) {
-        initialize();
-        model.filterPersonsByButton(selectedStages, filterCompleteCallback);
+    public void filterPersonsByButton(List<String> selectedStages) {
+        model.filterPersonsByButton(selectedStages);
     }
 
-    public void initialize() {
-        IntegerProperty initialAssessmentCountProperty = model.initialAssessmentCountProperty();
-        IntegerProperty technicalAssessmentCountProperty = model.technicalAssessmentCountProperty();
-        IntegerProperty interviewCountProperty = model.interviewCountProperty();
-        IntegerProperty decisionAndOfferCountProperty = model.decisionAndOfferCountProperty();
-
-        // Bind count properties to corresponding logic properties
-        initialAssessmentCountProperty.bind(model.initialAssessmentCountProperty());
-        technicalAssessmentCountProperty.bind(model.technicalAssessmentCountProperty());
-        interviewCountProperty.bind(model.interviewCountProperty());
-        decisionAndOfferCountProperty.bind(model.decisionAndOfferCountProperty());
-    }
-
-    @Override
-    public IntegerProperty initialAssessmentCountProperty() {
-        return model.initialAssessmentCountProperty();
-    }
-
-    @Override
-    public IntegerProperty technicalAssessmentCountProperty() {
-        return model.technicalAssessmentCountProperty();
-    }
-
-    @Override
-    public IntegerProperty interviewCountProperty() {
-        return model.interviewCountProperty();
-    }
-
-    @Override
-    public IntegerProperty decisionAndOfferCountProperty() {
-        return model.decisionAndOfferCountProperty();
-    }
 
 
 }
