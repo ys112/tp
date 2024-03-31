@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
+import javafx.beans.property.IntegerProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -93,6 +94,10 @@ public interface Model {
     void filterPersonList(Predicate<Person> predicate);
 
     int updateCount(String stageName);
+    public IntegerProperty decisionAndOfferCountProperty();
+    public IntegerProperty technicalAssessmentCountProperty();
+    public IntegerProperty interviewCountProperty();
+    public IntegerProperty initialAssessmentCountProperty();
 
 }
 

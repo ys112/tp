@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.function.Consumer;
 
+import javafx.beans.property.IntegerProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
@@ -11,6 +12,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
+import seedu.address.ui.UiManager;
 
 /**
  * API of the Logic component
@@ -63,4 +65,12 @@ public interface Logic {
      * @return The count of persons in the stage.
      */
     int updateCount(String stageName);
+
+    void initialize();
+    public IntegerProperty decisionAndOfferCountProperty();
+    public IntegerProperty technicalAssessmentCountProperty();
+    public IntegerProperty interviewCountProperty();
+    public IntegerProperty initialAssessmentCountProperty();
+
+
 }

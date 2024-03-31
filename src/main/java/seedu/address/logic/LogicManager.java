@@ -3,10 +3,12 @@ package seedu.address.logic;
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.logging.Logger;
 
+import javafx.beans.property.IntegerProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -35,6 +37,8 @@ public class LogicManager implements Logic {
     private final Storage storage;
     private final AddressBookParser addressBookParser;
 
+
+
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
@@ -42,10 +46,16 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         addressBookParser = new AddressBookParser();
+        initialize();
     }
 
     @Override
+    public int updateCount(String stageName) {
+        return model.updateCount(stageName);
+    }
+    @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
+        initialize();
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
@@ -68,42 +78,72 @@ public class LogicManager implements Logic {
 
     @Override
     public ReadOnlyAddressBook getAddressBook() {
+        initialize();
         return model.getAddressBook();
     }
 
     @Override
     public ObservableList<Person> getFilteredPersonList() {
-        updateCount("final_stage");
-        updateCount("initial_application");
-        updateCount("Interview");
-        updateCount("Technical Assessment");
+        initialize();
         return model.getFilteredPersonList();
     }
 
     @Override
     public Path getAddressBookFilePath() {
+        initialize();
         return model.getAddressBookFilePath();
     }
 
     @Override
     public GuiSettings getGuiSettings() {
+        initialize();
         return model.getGuiSettings();
     }
 
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
+        initialize();
         model.setGuiSettings(guiSettings);
     }
 
     @Override
     public void filterPersonsByButton(List<String> selectedStages, Consumer<Void> filterCompleteCallback) {
+        initialize();
         model.filterPersonsByButton(selectedStages, filterCompleteCallback);
     }
-    @Override
-    public int updateCount(String stageName) {
-        return model.updateCount(stageName);
+
+    public void initialize() {
+        IntegerProperty initialAssessmentCountProperty = model.initialAssessmentCountProperty();
+        IntegerProperty technicalAssessmentCountProperty = model.technicalAssessmentCountProperty();
+        IntegerProperty interviewCountProperty = model.interviewCountProperty();
+        IntegerProperty decisionAndOfferCountProperty = model.decisionAndOfferCountProperty();
+
+        // Bind count properties to corresponding logic properties
+        initialAssessmentCountProperty.bind(model.initialAssessmentCountProperty());
+        technicalAssessmentCountProperty.bind(model.technicalAssessmentCountProperty());
+        interviewCountProperty.bind(model.interviewCountProperty());
+        decisionAndOfferCountProperty.bind(model.decisionAndOfferCountProperty());
     }
 
+    @Override
+    public IntegerProperty initialAssessmentCountProperty() {
+        return model.initialAssessmentCountProperty();
+    }
+
+    @Override
+    public IntegerProperty technicalAssessmentCountProperty() {
+        return model.technicalAssessmentCountProperty();
+    }
+
+    @Override
+    public IntegerProperty interviewCountProperty() {
+        return model.interviewCountProperty();
+    }
+
+    @Override
+    public IntegerProperty decisionAndOfferCountProperty() {
+        return model.decisionAndOfferCountProperty();
+    }
 
 
 }

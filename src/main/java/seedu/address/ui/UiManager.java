@@ -30,6 +30,7 @@ public class UiManager implements Ui {
      */
     public UiManager(Logic logic) {
         this.logic = logic;
+
     }
 
     @Override

@@ -10,6 +10,8 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -212,5 +214,21 @@ public class ModelManager implements Model {
         }
         updateFilteredPersonList(currentPredicate);
         return count;
+    }
+
+    public IntegerProperty initialAssessmentCountProperty() {
+        return new SimpleIntegerProperty(updateCount("initial_application"));
+    }
+
+    public IntegerProperty technicalAssessmentCountProperty() {
+        return new SimpleIntegerProperty(updateCount("Technical Assessment"));
+    }
+
+    public IntegerProperty interviewCountProperty() {
+        return new SimpleIntegerProperty(updateCount("Interview"));
+    }
+
+    public IntegerProperty decisionAndOfferCountProperty() {
+        return new SimpleIntegerProperty(updateCount("final_stage"));
     }
 }

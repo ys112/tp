@@ -98,9 +98,11 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        initializeBindings();
     }
 
     public Stage getPrimaryStage() {
+        initializeBindings();
         return primaryStage;
     }
 
@@ -153,6 +155,8 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        logic.initialize();
+        initializeBindings();
         updateOverviewCount();
     }
 
@@ -207,18 +211,45 @@ public class MainWindow extends UiPart<Stage> {
         // Filter persons by selected stages and update counts after filtering
         logic.filterPersonsByButton(selectedStages, filterCompleteCallback);
     }
+    public void initializeBindings() {
+        // Retrieve count properties from the logic
+        IntegerProperty initialAssessmentCountProperty = logic.initialAssessmentCountProperty();
+        IntegerProperty technicalAssessmentCountProperty = logic.technicalAssessmentCountProperty();
+        IntegerProperty interviewCountProperty = logic.interviewCountProperty();
+        IntegerProperty decisionAndOfferCountProperty = logic.decisionAndOfferCountProperty();
+
+        // Bind count properties to corresponding UI labels
+        initialAssessmentCountLabel.textProperty().bind(Bindings.concat("Initial Assessment (", initialAssessmentCountProperty, ")"));
+        technicalAssessmentCountLabel.textProperty().bind(Bindings.concat("Technical Assessment (", technicalAssessmentCountProperty, ")"));
+        interviewCountLabel.textProperty().bind(Bindings.concat("Interview (", interviewCountProperty, ")"));
+        decisionAndOfferCountLabel.textProperty().bind(Bindings.concat("Decision & Offer (", decisionAndOfferCountProperty, ")"));
+    }
 
 
-    @FXML
+//    @FXML
+//    public void updateOverviewCount() {
+//        initialAssessmentCount.set(logic.updateCount("initial_application"));
+//        technicalAssessmentCount.set(logic.updateCount("Technical Assessment"));
+//        interviewCount.set(logic.updateCount("Interview"));
+//        decisionAndOfferCount.set(logic.updateCount("final_stage"));
+//        initialAssessmentCountLabel.textProperty().bind(Bindings.concat("Initial Assessment (", initialAssessmentCount, ")"));
+//        technicalAssessmentCountLabel.textProperty().bind(Bindings.concat("Technical Assessment (", technicalAssessmentCount, ")"));
+//        interviewCountLabel.textProperty().bind(Bindings.concat("Interview (", interviewCount, ")"));
+//        decisionAndOfferCountLabel.textProperty().bind(Bindings.concat("Decision & Offer (", decisionAndOfferCount, ")"));
+//    }
+
     public void updateOverviewCount() {
-        initialAssessmentCount.set(logic.updateCount("initial_application"));
-        technicalAssessmentCount.set(logic.updateCount("Technical Assessment"));
-        interviewCount.set(logic.updateCount("Interview"));
-        decisionAndOfferCount.set(logic.updateCount("final_stage"));
-        initialAssessmentCountLabel.textProperty().bind(Bindings.concat("Initial Assessment (", initialAssessmentCount, ")"));
-        technicalAssessmentCountLabel.textProperty().bind(Bindings.concat("Technical Assessment (", technicalAssessmentCount, ")"));
-        interviewCountLabel.textProperty().bind(Bindings.concat("Interview (", interviewCount, ")"));
-        decisionAndOfferCountLabel.textProperty().bind(Bindings.concat("Decision & Offer (", decisionAndOfferCount, ")"));
+        initialAssessmentCountLabel.textProperty().bind(Bindings.concat("Initial Assessment (", logic.initialAssessmentCountProperty(), ")"));
+        technicalAssessmentCountLabel.textProperty().bind(Bindings.concat("Technical Assessment (", logic.technicalAssessmentCountProperty(), ")"));
+        interviewCountLabel.textProperty().bind(Bindings.concat("Interview (", logic.interviewCountProperty(), ")"));
+        decisionAndOfferCountLabel.textProperty().bind(Bindings.concat("Decision & Offer (", logic.decisionAndOfferCountProperty(), ")"));
+    }
+
+    public void deselectAllButtons() {
+        initialAssessmentRadioButton.setSelected(false);
+        technicalAssessmentRadioButton.setSelected(false);
+        interviewRadioButton.setSelected(false);
+        decisionOfferRadioButton.setSelected(false);
     }
 
 
