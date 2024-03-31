@@ -14,10 +14,10 @@ box Model MODEL_COLOR_T1
 participant "m:Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("edit_applicant 2 /stage waitlisted")
+[-> LogicManager : execute("edit 2 /stage waitlisted")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("edit_applicant 2 /stage waitlisted")
+LogicManager -> AddressBookParser : parseCommand("edit 2 /stage waitlisted")
 activate AddressBookParser
 
 create EditApplicantCommandParser
