@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.testutil.TypicalApplicants.getTypicalApplicantsAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -17,6 +18,7 @@ import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.applicant.Applicant;
 import seedu.address.model.person.Person;
 
 /**
@@ -27,6 +29,7 @@ public class DeleteCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
+    private Model modelWithAppl = new ModelManager(getTypicalApplicantsAddressBook(), new UserPrefs());
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
@@ -64,6 +67,27 @@ public class DeleteCommandTest {
         showNoPerson(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_validIndexFilteredApplicantList_success() {
+        showPersonAtIndex(modelWithAppl, INDEX_FIRST_PERSON);
+
+        Person personToDelete = modelWithAppl.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        assert personToDelete instanceof Applicant;
+        Applicant applicantToDelete = (Applicant) personToDelete;
+
+        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
+            Messages.format(applicantToDelete));
+
+        Model expectedModel = new ModelManager(modelWithAppl.getAddressBook(), new UserPrefs());
+        expectedModel.deletePerson(applicantToDelete);
+        showNoPerson(expectedModel);
+
+        assertCommandSuccess(deleteCommand, modelWithAppl, expectedMessage, expectedModel);
+
     }
 
     @Test
