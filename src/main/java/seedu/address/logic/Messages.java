@@ -89,4 +89,20 @@ public class Messages {
         return builder.toString();
     }
 
+    /**
+     * Formats the {@code applicant} for display to the user
+     * for NoteCommand testing.
+     */
+    public static String formatNoteTest(Applicant applicant) {
+        return new ToStringBuilder(applicant)
+                .add("name", applicant.getName())
+                .add("phone", applicant.getPhone())
+                .add("email", applicant.getEmail())
+                .add("address", applicant.getAddress())
+                .add("tags", applicant.getTags())
+                .add("note", applicant.getNote())
+                .add("noteDate", applicant.getNoteDate())
+                .toString();
+    }
+
 }
