@@ -65,4 +65,6 @@ public interface Logic {
 
     public ObservableList<Role> getFilteredRoleList();
 
+    public int[] updateRoleCount(String roleName);
+
 }

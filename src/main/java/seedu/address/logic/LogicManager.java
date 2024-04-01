@@ -3,9 +3,13 @@ package seedu.address.logic;
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
 import java.nio.file.Path;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -16,6 +20,7 @@ import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.applicant.Applicant;
 import seedu.address.model.applicant.Role;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
@@ -44,11 +49,57 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         addressBookParser = new AddressBookParser();
+        // Add listener to update filtered roles when filtered persons change
+//        model.getFilteredPersonList().addListener((ListChangeListener<Person>) change -> {
+//            while (change.next()) {
+//                if (change.wasAdded() || change.wasRemoved() || change.wasUpdated()) {
+//                    updateFilteredRoles();
+//                    break;
+//                }
+//            }
+//        });
+////        model.addFilteredPersonsListener((ListChangeListener<Person>) change -> {
+////            while (change.next()) {
+////                if (change.wasAdded() || change.wasRemoved() || change.wasUpdated()) {
+////                    updateFilteredRoles();
+////                    break;
+////                }
+////            }
+////        });
+        updateFilteredRoles();
+    }
+
+    private void updateFilteredRoles() {
+        ObservableList<Role> filteredRoles = computeFilteredRoles();
+        model.setFilteredRoleList(filteredRoles);
+    }
+
+    /**
+     * Computes the filtered roles based on the current filtered persons in the model.
+     */
+    private ObservableList<Role> computeFilteredRoles() {
+        Set<Role> uniqueRoles = new HashSet<>();
+        for (Person person : model.getFilteredPersonList()) {
+            if (person instanceof Applicant) {
+                Applicant applicant = (Applicant) person;
+                Role role = applicant.getRole();
+                // Check if the role is unique, if so, add it to the set
+                if (!uniqueRoles.contains(role)) {
+                    uniqueRoles.add(role);
+                }
+            }
+        }
+        return FXCollections.observableArrayList(uniqueRoles);
     }
 
     @Override
     public int updateCount(String stageName) {
         return model.updateCount(stageName);
+    }
+
+    @Override
+    public int[] updateRoleCount(String roleName) {
+        return model.updateRoleCount(roleName);
     }
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
@@ -65,6 +116,7 @@ public class LogicManager implements Logic {
         } catch (IOException ioe) {
             throw new CommandException(String.format(FILE_OPS_ERROR_FORMAT, ioe.getMessage()), ioe);
         }
+        updateFilteredRoles();
         return commandResult;
     }
 
@@ -75,6 +127,7 @@ public class LogicManager implements Logic {
 
     @Override
     public ObservableList<Person> getFilteredPersonList() {
+        updateFilteredRoles();
         return model.getFilteredPersonList();
     }
 

@@ -111,6 +111,7 @@ public class EditApplicantCommand extends Command {
         }
 
         model.setPerson(personToEdit, editedApplicant);
+        //model.updateFilteredRoles();
         model.updateCount("final_stage");
         model.updateCount("initial_application");
         model.updateCount("Interview");

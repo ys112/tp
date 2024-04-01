@@ -8,6 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.Logic;
 import seedu.address.model.applicant.Applicant;
 import seedu.address.model.applicant.Role;
 import seedu.address.model.person.Person;
@@ -21,14 +22,16 @@ public class RoleListPanel extends UiPart<Region> {
 
     @FXML
     private ListView<Role> roleListView;
+    private final Logic logic;
 
     /**
      * Creates a {@code RoleListPanel} with the given {@code ObservableList}.
      */
-    public RoleListPanel(ObservableList<Role> roleList) {
+    public RoleListPanel(Logic logic, ObservableList<Role> roleList) {
         super(FXML);
+        this.logic = logic;
         roleListView.setItems(roleList);
-        roleListView.setCellFactory(listView -> new RoleListViewCell());
+        roleListView.setCellFactory(listView -> new RoleListViewCell(logic));
     }
 
     /**
@@ -36,6 +39,11 @@ public class RoleListPanel extends UiPart<Region> {
      * RoleCard}.
      */
     class RoleListViewCell extends ListCell<Role> {
+        private Logic logic;
+        public RoleListViewCell(Logic logic) {
+            this.logic = logic;
+        }
+
         @Override
         protected void updateItem(Role role, boolean empty) {
             super.updateItem(role, empty);
@@ -46,7 +54,7 @@ public class RoleListPanel extends UiPart<Region> {
                 return;
             }
 
-            setGraphic(new RoleCard(role, getIndex() + 1).getRoot());
+            setGraphic(new RoleCard(role, logic).getRoot());
 
         }
     }

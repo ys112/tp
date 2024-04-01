@@ -30,11 +30,11 @@
             <Label fx:id="applicantsCount" styleClass="cell_small_label"
                    text="\$applicantsCount" />
             <Label fx:id="initialAssessmentCount" styleClass="cell_small_label"
-                   text="\$Initial Assessment Count" />
+                   text="\$initialAssessmentCount" />
             <Label fx:id="technicalAssessmentCount" styleClass="cell_small_label"
-                   text="\$Technical Assessment Count" />
-            <Label fx:id="interviewCount" styleClass="cell_small_label" text="\$Interview Count" />
-            <Label fx:id="decisionCount" styleClass="cell_small_label" text="\$Decision Count" />
+                   text="\$technicalAssessmentCount" />
+            <Label fx:id="interviewCount" styleClass="cell_small_label" text="\$interviewCount" />
+            <Label fx:id="decisionCount" styleClass="cell_small_label" text="\$decisionCount" />
         </VBox>
         <rowConstraints>
             <RowConstraints />
