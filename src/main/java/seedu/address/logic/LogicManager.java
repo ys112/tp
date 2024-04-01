@@ -50,14 +50,14 @@ public class LogicManager implements Logic {
         this.storage = storage;
         addressBookParser = new AddressBookParser();
         //Add listener to update filtered roles when filtered persons change
-//        model.getFilteredPersonList().addListener((ListChangeListener<Person>) change -> {
-//            while (change.next()) {
-//                if (change.wasAdded() || change.wasRemoved() || change.wasUpdated()) {
-//                    updateFilteredRoles();
-//                    break;
-//                }
-//            }
-//        });
+        model.getFilteredPersonList().addListener((ListChangeListener<Person>) change -> {
+            while (change.next()) {
+                if (change.wasAdded() || change.wasRemoved() || change.wasUpdated()) {
+                    updateFilteredRoles();
+                    break;
+                }
+            }
+        });
 //        model.addFilteredPersonsListener((ListChangeListener<Person>) change -> {
 //            while (change.next()) {
 //                if (change.wasAdded() || change.wasRemoved() || change.wasUpdated()) {
@@ -69,34 +69,24 @@ public class LogicManager implements Logic {
 //        });
         model.getFilteredPersonList().addListener((ListChangeListener<Person>) change -> {
             System.out.println("Filtered persons list changed! PART ONE");
-            updateFilteredRoles();
-            System.out.println("Filtered persons list changed!");
+            System.out.println("Filtered persons list changed! PART ONE" + getFilteredRoleList());
+            updateFilteredRoles();//PUT SOMETHING ELSE THIS ISNT IT
+            System.out.println("Filtered persons list changed!"+ getFilteredRoleList());
         });
-        updateFilteredRoles();
+        //updateFilteredRoles();
     }
 
+    //something else changed it, this is not the changing one
+    //because running it give
     private void updateFilteredRoles() {
-        ObservableList<Role> filteredRoles = computeFilteredRoles();
-        model.setFilteredRoleList(filteredRoles);
+        System.out.println("Old Roles" + getFilteredRoleList());
+        model.updateFilteredRoles();
+
+        //ObservableList<Role> filteredRoles = model.updateFilteredRoles();
+        //model.setFilteredRoleList(filteredRoles);
+        System.out.println("New Roles" + getFilteredRoleList());
     }
 
-    /**
-     * Computes the filtered roles based on the current filtered persons in the model.
-     */
-    private ObservableList<Role> computeFilteredRoles() {
-        Set<Role> uniqueRoles = new HashSet<>();
-        for (Person person : model.getFilteredPersonList()) {
-            if (person instanceof Applicant) {
-                Applicant applicant = (Applicant) person;
-                Role role = applicant.getRole();
-                // Check if the role is unique, if so, add it to the set
-                if (!uniqueRoles.contains(role)) {
-                    uniqueRoles.add(role);
-                }
-            }
-        }
-        return FXCollections.observableArrayList(uniqueRoles);
-    }
 
     @Override
     public int updateCount(String stageName) {
@@ -122,7 +112,7 @@ public class LogicManager implements Logic {
         } catch (IOException ioe) {
             throw new CommandException(String.format(FILE_OPS_ERROR_FORMAT, ioe.getMessage()), ioe);
         }
-        updateFilteredRoles();
+        //updateFilteredRoles();
         return commandResult;
     }
 
@@ -133,7 +123,7 @@ public class LogicManager implements Logic {
 
     @Override
     public ObservableList<Person> getFilteredPersonList() {
-        updateFilteredRoles();
+        //updateFilteredRoles();
         return model.getFilteredPersonList();
     }
 

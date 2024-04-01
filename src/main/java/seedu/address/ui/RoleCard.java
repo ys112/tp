@@ -53,6 +53,7 @@ public class RoleCard extends UiPart<Region> {
         this.role = role;
         this.logic = logic;
         rolename.setText(role.toString());
+        System.out.println(role.toString());
         updateCounts();
     }
 

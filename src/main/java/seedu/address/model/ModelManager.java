@@ -5,7 +5,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.ui.MainWindow.TOTAL_NUMBER_OF_STAGES;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -45,8 +44,12 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredRoles = computeFilteredRoles();
+        filteredRoles = FXCollections.observableArrayList();
 
+        // Add a listener to update filtered roles when filtered persons change
+        filteredPersons.addListener((ListChangeListener<Person>) change -> {
+            updateFilteredRoles();
+        });
     }
 
     public ModelManager() {
@@ -181,17 +184,14 @@ public class ModelManager implements Model {
         this.filteredRoles.addAll(filteredRoles);
 
         // Print statement
-        System.out.println("Filtered roles list updated: " + filteredRoles);
+        System.out.println("Filtered roles list set: " + filteredRoles);
     }
 
-    /**
-     * Updates the filtered roles list based on the current filtered persons in the model.
-     */
-    // ANOTHER SUS
+    @Override
     public void updateFilteredRoles() {
-        ObservableList<Role> roles = computeFilteredRoles();
-        setFilteredRoleList(roles);
+
     }
+
 
     @Override
     public void addFilteredPersonsListener(ListChangeListener<Person> listener) {
@@ -266,7 +266,6 @@ public class ModelManager implements Model {
      */
 
     public int updateCount(String stageName) {
-        Predicate currentPredicate = filteredPersons.getPredicate();
         int count = 0;
         for (Person person : this.filteredPersons) {
             if (person instanceof Applicant) {
@@ -276,11 +275,6 @@ public class ModelManager implements Model {
                 }
             }
         }
-        if (currentPredicate == null) {
-            currentPredicate = PREDICATE_SHOW_ALL_PERSONS;
-        }
-        updateFilteredPersonList(currentPredicate);
-        computeFilteredRoles();
         return count;
     }
 
@@ -311,10 +305,10 @@ public class ModelManager implements Model {
                 }
             }
         }
-        computeFilteredRoles();
+        //computeFilteredRoles();
         return counts;
 
     }
-
-
 }
+
+
