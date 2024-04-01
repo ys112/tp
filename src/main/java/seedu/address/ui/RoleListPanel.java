@@ -10,7 +10,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
-import seedu.address.model.applicant.Applicant;
 import seedu.address.model.applicant.Role;
 import seedu.address.model.person.Person;
 
@@ -34,11 +33,8 @@ public class RoleListPanel extends UiPart<Region> {
 
         // Add listener to update RoleCards when the list changes
         logic.getFilteredPersonList().addListener((ListChangeListener.Change<? extends Person> change) -> {
-            System.out.println("!!!!!!!!!!");
             roleListView.setItems(logic.getFilteredRoleList());
             roleListView.setCellFactory(listView -> new RoleListViewCell(logic));
-            System.out.println("!!!Listener for new RoleLISt PLS WOERK" + roleList);
-            //roleListView.refresh(); // Refresh the list view to update the RoleCards
         });
     }
 
@@ -61,7 +57,6 @@ public class RoleListPanel extends UiPart<Region> {
                 setText(null);
                 return;
             }
-            System.out.println("this updateItem is called for role");
 
             setGraphic(new RoleCard(role, logic, roleListView.getItems()).getRoot());
 

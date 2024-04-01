@@ -1,12 +1,9 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.logic.Logic;
@@ -27,9 +24,8 @@ public class RoleCard extends UiPart<Region> {
      *
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
-    private final Logic logic;
-
     public final Role role;
+    private final Logic logic;
 
     @FXML
     private HBox cardPane;
@@ -48,17 +44,16 @@ public class RoleCard extends UiPart<Region> {
     private Label decisionCount;
 
     /**
-     * Creates a {@code PRoleCode} with the given {@code Role} and index to display.
+     * Creates a {@code RoleCode} with the given {@code Role} and index to display.
      */
     public RoleCard(Role role, Logic logic, ObservableList<Role> roleList) {
         super(FXML);
         this.role = role;
         this.logic = logic;
 
-        // Update counts whenever the role list changes
+        // Add a listener so that it update counts whenever the role list changes
         logic.getFilteredPersonList().addListener((ListChangeListener.Change<? extends Person> change) -> {
             while (change.next()) {
-                System.out.println("Listener Role Card Listener");
                 updateCounts(); // Update counts whenever the list changes
             }
         });
@@ -67,7 +62,6 @@ public class RoleCard extends UiPart<Region> {
     }
 
     private void updateCounts() {
-        System.out.println(role.toString());
         rolename.setText(role.toString());
         System.out.println(logic.getFilteredRoleList());
         String roleName = role.toString();

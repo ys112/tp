@@ -125,8 +125,6 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
         addressBook.setPerson(target, editedPerson);
         updateFilteredRoles();
-        System.out.println("set Person is ran");
-        //maybe see the filtered person
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -145,19 +143,16 @@ public class ModelManager implements Model {
                 // Check if the role is unique, if so, add it to the set
                 if (!uniqueRoles.contains(role)) {
                     uniqueRoles.add(role);
-                    System.out.println("Added role: " + role);
                 }
             }
         }
         ObservableList<Role> observableRoles = FXCollections.observableArrayList(uniqueRoles);
-        System.out.println("Added role size: " + observableRoles.size());
         return observableRoles;
     }
 
 
     @Override
     public ObservableList<Person> getFilteredPersonList() {
-        System.out.println("getFilteredPersonList() is ran");
         return filteredPersons;
     }
 
@@ -169,22 +164,7 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Role> getFilteredRoleList() {
-        System.out.println("getFilteredRoleList() is ran");
         return computeFilteredRoles();
-    }
-
-    // SUS MIGHT HVE PROBLEM
-    /**
-     * Sets the filtered roles list to the specified list.
-     * @param filteredRoles The list of filtered roles.
-     */
-    public void setFilteredRoleList(ObservableList<Role> filteredRoles) {
-        requireNonNull(filteredRoles);
-        this.filteredRoles.clear();
-        this.filteredRoles.addAll(filteredRoles);
-
-        // Print statement
-        System.out.println("Filtered roles list set: " + filteredRoles);
     }
 
     @Override
@@ -278,6 +258,12 @@ public class ModelManager implements Model {
         return count;
     }
 
+    /**
+     * Updates the count of applicants in each stage for a given role.
+     * @param roleName The name of the role for which the counts are updated.
+     * @return An array of integers representing the count of applicants in each stage.
+     * @throws AssertionError If an unexpected stage is encountered
+     */
     public int[] updateRoleCount(String roleName) {
         computeFilteredRoles();
         int[] counts = new int[1 + TOTAL_NUMBER_OF_STAGES];
@@ -305,7 +291,6 @@ public class ModelManager implements Model {
                 }
             }
         }
-        //computeFilteredRoles();
         return counts;
 
     }

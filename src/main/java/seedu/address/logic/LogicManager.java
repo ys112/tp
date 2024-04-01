@@ -3,13 +3,9 @@ package seedu.address.logic;
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
 import java.nio.file.Path;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -20,7 +16,6 @@ import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.applicant.Applicant;
 import seedu.address.model.applicant.Role;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
@@ -49,42 +44,6 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         addressBookParser = new AddressBookParser();
-        //Add listener to update filtered roles when filtered persons change
-        model.getFilteredPersonList().addListener((ListChangeListener<Person>) change -> {
-            while (change.next()) {
-                if (change.wasAdded() || change.wasRemoved() || change.wasUpdated()) {
-                    updateFilteredRoles();
-                    break;
-                }
-            }
-        });
-//        model.addFilteredPersonsListener((ListChangeListener<Person>) change -> {
-//            while (change.next()) {
-//                if (change.wasAdded() || change.wasRemoved() || change.wasUpdated()) {
-//                    updateFilteredRoles();
-//                    System.out.println("LISTENER IS WORKING WOW");
-//                    break;
-//                }
-//            }
-//        });
-        model.getFilteredPersonList().addListener((ListChangeListener<Person>) change -> {
-            System.out.println("Filtered persons list changed! PART ONE");
-            System.out.println("Filtered persons list changed! PART ONE" + getFilteredRoleList());
-            updateFilteredRoles();//PUT SOMETHING ELSE THIS ISNT IT
-            System.out.println("Filtered persons list changed!"+ getFilteredRoleList());
-        });
-        //updateFilteredRoles();
-    }
-
-    //something else changed it, this is not the changing one
-    //because running it give
-    private void updateFilteredRoles() {
-        System.out.println("Old Roles" + getFilteredRoleList());
-        model.updateFilteredRoles();
-
-        //ObservableList<Role> filteredRoles = model.updateFilteredRoles();
-        //model.setFilteredRoleList(filteredRoles);
-        System.out.println("New Roles" + getFilteredRoleList());
     }
 
 
@@ -112,7 +71,6 @@ public class LogicManager implements Logic {
         } catch (IOException ioe) {
             throw new CommandException(String.format(FILE_OPS_ERROR_FORMAT, ioe.getMessage()), ioe);
         }
-        //updateFilteredRoles();
         return commandResult;
     }
 
@@ -123,7 +81,6 @@ public class LogicManager implements Logic {
 
     @Override
     public ObservableList<Person> getFilteredPersonList() {
-        //updateFilteredRoles();
         return model.getFilteredPersonList();
     }
 
@@ -151,7 +108,4 @@ public class LogicManager implements Logic {
     public void filterPersonsByButton(List<String> selectedStages) {
         model.filterPersonsByButton(selectedStages);
     }
-
-
-
 }

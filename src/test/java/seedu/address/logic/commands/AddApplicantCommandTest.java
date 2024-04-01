@@ -16,6 +16,7 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
@@ -25,6 +26,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.applicant.Applicant;
+import seedu.address.model.applicant.Role;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.ApplicantBuilder;
 
@@ -172,6 +174,25 @@ public class AddApplicantCommandTest {
 
         @Override
         public int updateCount(String stageName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addFilteredPersonsListener(ListChangeListener<Person> personListener) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Role> getFilteredRoleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public int[] updateRoleCount(String roleName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredRoles() {
             throw new AssertionError("This method should not be called.");
         }
     }

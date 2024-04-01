@@ -98,8 +98,6 @@ public interface Model {
 
     int[] updateRoleCount(String roleName);
 
-    void setFilteredRoleList(ObservableList<Role> filteredRoles);
-
     void updateFilteredRoles();
     void addFilteredPersonsListener(ListChangeListener<Person> listener);
 
