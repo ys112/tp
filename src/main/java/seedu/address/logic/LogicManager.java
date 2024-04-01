@@ -49,7 +49,7 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         addressBookParser = new AddressBookParser();
-        // Add listener to update filtered roles when filtered persons change
+        //Add listener to update filtered roles when filtered persons change
 //        model.getFilteredPersonList().addListener((ListChangeListener<Person>) change -> {
 //            while (change.next()) {
 //                if (change.wasAdded() || change.wasRemoved() || change.wasUpdated()) {
@@ -58,14 +58,20 @@ public class LogicManager implements Logic {
 //                }
 //            }
 //        });
-////        model.addFilteredPersonsListener((ListChangeListener<Person>) change -> {
-////            while (change.next()) {
-////                if (change.wasAdded() || change.wasRemoved() || change.wasUpdated()) {
-////                    updateFilteredRoles();
-////                    break;
-////                }
-////            }
-////        });
+//        model.addFilteredPersonsListener((ListChangeListener<Person>) change -> {
+//            while (change.next()) {
+//                if (change.wasAdded() || change.wasRemoved() || change.wasUpdated()) {
+//                    updateFilteredRoles();
+//                    System.out.println("LISTENER IS WORKING WOW");
+//                    break;
+//                }
+//            }
+//        });
+        model.getFilteredPersonList().addListener((ListChangeListener<Person>) change -> {
+            System.out.println("Filtered persons list changed! PART ONE");
+            updateFilteredRoles();
+            System.out.println("Filtered persons list changed!");
+        });
         updateFilteredRoles();
     }
 

@@ -22,14 +22,12 @@ public class RoleListPanel extends UiPart<Region> {
 
     @FXML
     private ListView<Role> roleListView;
-    private final Logic logic;
 
     /**
      * Creates a {@code RoleListPanel} with the given {@code ObservableList}.
      */
     public RoleListPanel(Logic logic, ObservableList<Role> roleList) {
         super(FXML);
-        this.logic = logic;
         roleListView.setItems(roleList);
         roleListView.setCellFactory(listView -> new RoleListViewCell(logic));
     }
@@ -53,6 +51,7 @@ public class RoleListPanel extends UiPart<Region> {
                 setText(null);
                 return;
             }
+            System.out.println("this updateItem is called for role");
 
             setGraphic(new RoleCard(role, logic).getRoot());
 

@@ -120,8 +120,10 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
+        updateFilteredRoles();
+        System.out.println("set Person is ran");
+        //maybe see the filtered person
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -152,6 +154,7 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Person> getFilteredPersonList() {
+        System.out.println("getFilteredPersonList() is ran");
         return filteredPersons;
     }
 
@@ -163,23 +166,28 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Role> getFilteredRoleList() {
+        System.out.println("getFilteredRoleList() is ran");
         return computeFilteredRoles();
     }
 
+    // SUS MIGHT HVE PROBLEM
     /**
      * Sets the filtered roles list to the specified list.
      * @param filteredRoles The list of filtered roles.
      */
-    // SUS MIGHT HVE PROBLEM
     public void setFilteredRoleList(ObservableList<Role> filteredRoles) {
         requireNonNull(filteredRoles);
         this.filteredRoles.clear();
         this.filteredRoles.addAll(filteredRoles);
+
+        // Print statement
+        System.out.println("Filtered roles list updated: " + filteredRoles);
     }
 
     /**
      * Updates the filtered roles list based on the current filtered persons in the model.
      */
+    // ANOTHER SUS
     public void updateFilteredRoles() {
         ObservableList<Role> roles = computeFilteredRoles();
         setFilteredRoleList(roles);

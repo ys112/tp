@@ -101,7 +101,7 @@ public interface Model {
     void setFilteredRoleList(ObservableList<Role> filteredRoles);
 
     void updateFilteredRoles();
-
     void addFilteredPersonsListener(ListChangeListener<Person> listener);
+
 }
 
