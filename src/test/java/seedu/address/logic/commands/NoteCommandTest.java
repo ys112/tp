@@ -13,9 +13,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.applicant.Applicant;
 import seedu.address.model.person.Note;
-import seedu.address.model.person.Person;
 import seedu.address.testutil.ApplicantBuilder;
-import seedu.address.testutil.PersonBuilder;
 
 class NoteCommandTest {
 
@@ -25,11 +23,14 @@ class NoteCommandTest {
     void execute_addNoteUnfilteredList_success() {
 
         Applicant targetPerson = (Applicant) model.getFilteredPersonList().get(0);
-        Applicant editedPerson = (Applicant) new ApplicantBuilder(targetPerson).withNote("Updated Note").build();
+        Applicant editedPerson = (Applicant) new ApplicantBuilder(targetPerson)
+                .withNote("Updated Note").build();
 
-        NoteCommand executeCommand = new NoteCommand(INDEX_FIRST_PERSON, new Note("Updated Note"), false);
+        NoteCommand executeCommand = new NoteCommand(INDEX_FIRST_PERSON, new Note("Updated Note"),
+                false);
 
-        String expectedResult = String.format(executeCommand.MESSAGE_ADD_NOTE_SUCCESS, Messages.formatNoteTest(editedPerson));
+        String expectedResult = String.format(executeCommand.MESSAGE_ADD_NOTE_SUCCESS,
+                Messages.formatNoteTest(editedPerson));
         System.out.println(expectedResult);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
@@ -42,11 +43,14 @@ class NoteCommandTest {
     void execute_addNoteUnfilteredListWithDate_success() {
 
         Applicant targetPerson = (Applicant) model.getFilteredPersonList().get(0);
-        Applicant editedPerson = (Applicant) new ApplicantBuilder(targetPerson).withNote("Updated Note").withNoteDate().build();
+        Applicant editedPerson = (Applicant) new ApplicantBuilder(targetPerson)
+                .withNote("Updated Note").withNoteDate().build();
 
-        NoteCommand executeCommand = new NoteCommand(INDEX_FIRST_PERSON, new Note("Updated Note"), true);
+        NoteCommand executeCommand = new NoteCommand(INDEX_FIRST_PERSON, new Note("Updated Note"),
+                true);
 
-        String expectedResult = String.format(executeCommand.MESSAGE_ADD_NOTE_SUCCESS, Messages.formatNoteTest(editedPerson));
+        String expectedResult = String.format(executeCommand.MESSAGE_ADD_NOTE_SUCCESS,
+                Messages.formatNoteTest(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(targetPerson, editedPerson);
