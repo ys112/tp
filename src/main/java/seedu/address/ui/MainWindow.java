@@ -188,10 +188,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     public void handleRefresh() {
+        System.out.println("HANDLE REFRESH" + logic.getFilteredRoleList());
         updateOverviewCount();
     }
     @FXML
     private void handleFilter() {
+        System.out.println("HANDLE FILTER" + logic.getFilteredRoleList());
         List<String> selectedStages = new ArrayList<>();
         if (initialAssessmentRadioButton.isSelected()) {
             selectedStages.add("initial_application");

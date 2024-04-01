@@ -52,12 +52,14 @@ public class RoleCard extends UiPart<Region> {
         super(FXML);
         this.role = role;
         this.logic = logic;
-        rolename.setText(role.toString());
-        System.out.println(role.toString());
+        //rolename.setText(role.toString());
+        System.out.println("ROLE CARD IS CALLED" + role.toString());
         updateCounts();
     }
 
     private void updateCounts() {
+        rolename.setText(role.toString());
+        System.out.println(logic.getFilteredRoleList());
         String roleName = role.toString();
         int[] arrayOfCount = logic.updateRoleCount(roleName);
         applicantsCount.setText("Total Number Of Applicants: " + arrayOfCount[0]);
