@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -30,6 +31,15 @@ public class RoleListPanel extends UiPart<Region> {
         super(FXML);
         roleListView.setItems(roleList);
         roleListView.setCellFactory(listView -> new RoleListViewCell(logic));
+
+        // Add listener to update RoleCards when the list changes
+        logic.getFilteredPersonList().addListener((ListChangeListener.Change<? extends Person> change) -> {
+            System.out.println("!!!!!!!!!!");
+            roleListView.setItems(logic.getFilteredRoleList());
+            roleListView.setCellFactory(listView -> new RoleListViewCell(logic));
+            System.out.println("!!!Listener for new RoleLISt PLS WOERK" + roleList);
+            //roleListView.refresh(); // Refresh the list view to update the RoleCards
+        });
     }
 
     /**
@@ -53,7 +63,7 @@ public class RoleListPanel extends UiPart<Region> {
             }
             System.out.println("this updateItem is called for role");
 
-            setGraphic(new RoleCard(role, logic).getRoot());
+            setGraphic(new RoleCard(role, logic, roleListView.getItems()).getRoot());
 
         }
     }

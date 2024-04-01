@@ -259,6 +259,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay.setFeedbackToUser("Showing all applicants");
         List<String> emptyList = new ArrayList<>();
         logic.filterPersonsByButton(emptyList);
+        deselectAllButtons();
 
     }
 

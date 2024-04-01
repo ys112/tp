@@ -2,6 +2,8 @@ package seedu.address.ui;
 
 import java.util.Comparator;
 
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -48,16 +50,24 @@ public class RoleCard extends UiPart<Region> {
     /**
      * Creates a {@code PRoleCode} with the given {@code Role} and index to display.
      */
-    public RoleCard(Role role, Logic logic) {
+    public RoleCard(Role role, Logic logic, ObservableList<Role> roleList) {
         super(FXML);
         this.role = role;
         this.logic = logic;
-        //rolename.setText(role.toString());
-        System.out.println("ROLE CARD IS CALLED" + role.toString());
-        updateCounts();
+
+        // Update counts whenever the role list changes
+        logic.getFilteredPersonList().addListener((ListChangeListener.Change<? extends Person> change) -> {
+            while (change.next()) {
+                System.out.println("Listener Role Card Listener");
+                updateCounts(); // Update counts whenever the list changes
+            }
+        });
+
+        updateCounts(); // Initial update
     }
 
     private void updateCounts() {
+        System.out.println(role.toString());
         rolename.setText(role.toString());
         System.out.println(logic.getFilteredRoleList());
         String roleName = role.toString();
@@ -69,8 +79,5 @@ public class RoleCard extends UiPart<Region> {
         decisionCount.setText("Decision & Offer stage: " + arrayOfCount[4]);
     }
 
-
-
-
-    }
+}
 
