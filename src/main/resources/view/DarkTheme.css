@@ -388,3 +388,10 @@
 .radio-button:hover {
     -fx-border-color: #d8d8d8;
 }
+
+.button {
+    -fx-text-fill: #d8d8d8;
+    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-font-size: 14px;
+    -fx-font-family: "Segoe UI SemiBold"; /* Font family for the title */
+}

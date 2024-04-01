@@ -29,6 +29,8 @@ public class Person {
     private final Note note;
     private final String noteDate;
 
+    private String imagePath;
+
     /**
      * Every field must be present and not null.
      */
@@ -65,6 +67,10 @@ public class Person {
     }
     public String getNoteDate() {
         return noteDate;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
     /**

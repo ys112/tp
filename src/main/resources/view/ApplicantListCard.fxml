@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
@@ -33,7 +34,7 @@
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
       <Label fx:id="role" styleClass="cell_small_label" text="\$role" />
-      <Label fx:id="stage" styleClass="cell_small_label" text="\$stage"/>
+      <Label fx:id="stage" styleClass="cell_small_label" text="\$stage" />
       <Label fx:id="note" styleClass="cell_small_label" text="\$note" />
     </VBox>
       <rowConstraints>
