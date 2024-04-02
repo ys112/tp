@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -18,14 +19,19 @@ public class CommandResult {
 
     /** The application should exit. */
     private final boolean exit;
+    private boolean changeInButton;
+    private boolean[] newButtonState;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
+                         boolean changeInButton, boolean[] newButtonState) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.changeInButton = changeInButton;
+        this.newButtonState = newButtonState;
     }
 
     /**
@@ -33,7 +39,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false, false, new boolean[]{false, false, false, false});
     }
 
     public String getFeedbackToUser() {
@@ -42,6 +48,14 @@ public class CommandResult {
 
     public boolean isShowHelp() {
         return showHelp;
+    }
+
+    public boolean changeInButton() {
+        return changeInButton;
+    }
+
+    public boolean[] newButtonState() {
+        return newButtonState;
     }
 
     public boolean isExit() {
@@ -62,7 +76,9 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && exit == otherCommandResult.exit
+                && changeInButton == otherCommandResult.changeInButton
+                && newButtonState == otherCommandResult.newButtonState;
     }
 
     @Override
@@ -76,6 +92,8 @@ public class CommandResult {
                 .add("feedbackToUser", feedbackToUser)
                 .add("showHelp", showHelp)
                 .add("exit", exit)
+                .add("changeInButton", changeInButton)
+                .add("newButtonState", Arrays.toString(newButtonState))
                 .toString();
     }
 

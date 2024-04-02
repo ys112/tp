@@ -74,7 +74,7 @@ public class ExportCommand extends Command {
             throw new CommandException(String.format(FILE_OPS_ERROR_FORMAT, ioe.getMessage()), ioe);
         }
 
-        return new CommandResult(MESSAGE_SUCCESS, false, false);
+        return new CommandResult(MESSAGE_SUCCESS, false, false, false, new boolean[]{false, false, false, false});
     }
 
 }

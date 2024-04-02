@@ -69,9 +69,31 @@ public class FilterCommand extends Command {
 
             return roleMatches && stageMatches;
         };
-        model.filterPersonList(matchesCriteria);
-        //model.updateFilteredPersonList(matchesCriteria);
-        return new CommandResult(String.format(MESSAGE_SUCCESS));
+        if (!(filteredRole.roleName.isEmpty())) { // only search within the currently filtered list
+            model.filterPersonList(matchesCriteria);
+        } else { //if only filtering based on stage, it will return everything in that stage
+            model.updateFilteredPersonList(matchesCriteria);
+        }
+        boolean changeInButton = false;
+        boolean[] newButtonState = {false, false, false, false};
+        if (filteredStage.stageName.equals("initial_application")) {
+            changeInButton = true;
+            newButtonState = new boolean[]{true, false, false, false};
+        }
+        if (filteredStage.stageName.equals("Technical Assessment")) {
+            changeInButton = true;
+            newButtonState = new boolean[]{false, true, false, false};
+        }
+        if (filteredStage.stageName.equals("Interview")) {
+            changeInButton = true;
+            newButtonState = new boolean[]{false, false, true, false};
+        }
+        if (filteredStage.stageName.equals("final_stage")) {
+            changeInButton = true;
+            newButtonState = new boolean[]{false, false, false, true};
+        }
+        return new CommandResult(String.format(MESSAGE_SUCCESS), false, false, changeInButton,
+                newButtonState);
     }
 
     @Override

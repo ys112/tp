@@ -186,10 +186,6 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-//    @FXML
-//    public void handleRefresh() {
-//        updateOverviewCount();
-//    }
     @FXML
     private void handleFilter() {
         List<String> selectedStages = new ArrayList<>();
@@ -250,6 +246,13 @@ public class MainWindow extends UiPart<Stage> {
         decisionOfferRadioButton.setSelected(false);
     }
 
+    public void changeButtons(boolean[] newStateButton) {
+        initialAssessmentRadioButton.setSelected(newStateButton[0]);
+        technicalAssessmentRadioButton.setSelected(newStateButton[1]);
+        interviewRadioButton.setSelected(newStateButton[2]);
+        decisionOfferRadioButton.setSelected(newStateButton[3]);
+    }
+
     /**
      * Testing Phase
      */
@@ -258,7 +261,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay.setFeedbackToUser("Showing all applicants");
         List<String> emptyList = new ArrayList<>();
         logic.filterPersonsByButton(emptyList);
-        updateOverviewCount(); //new
+        updateOverviewCount();
         deselectAllButtons();
 
     }
@@ -307,6 +310,11 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.changeInButton()) {
+                boolean[] newStateButton = commandResult.newButtonState();
+                changeButtons(newStateButton);
             }
             updateOverviewCount();
             return commandResult;
