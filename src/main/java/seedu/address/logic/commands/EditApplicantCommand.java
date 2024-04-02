@@ -41,7 +41,7 @@ public class EditApplicantCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
     public static final String DEFAULT_ROLE = "SWE";
-    public static final String DEFAULT_STAGE = "initial_application";
+    public static final String DEFAULT_STAGE = "Initial Application";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the details of the "
@@ -111,8 +111,8 @@ public class EditApplicantCommand extends Command {
         }
 
         model.setPerson(personToEdit, editedApplicant);
-        model.updateCount("final_stage");
-        model.updateCount("initial_application");
+        model.updateCount("Decision & Offer");
+        model.updateCount("Initial Application");
         model.updateCount("Interview");
         model.updateCount("Technical Assessment");
         return new CommandResult(String.format(MESSAGE_EDIT_APPLICANT_SUCCESS,

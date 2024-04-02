@@ -13,7 +13,7 @@ import seedu.address.model.person.Person;
 public class ApplicantBuilder extends PersonBuilder {
 
     public static final String DEFAULT_ROLE = "SWE";
-    public static final String DEFAULT_STAGE = "initial_application";
+    public static final String DEFAULT_STAGE = "Initial Application";
     private Role role;
     private Stage stage;
     /**

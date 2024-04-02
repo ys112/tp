@@ -119,7 +119,10 @@ public class ParserUtil {
 
     public static Stage parseStage(String stage) throws ParseException {
         requireNonNull(stage);
-        String trimmedStage = stage;
+        String trimmedStage = stage.trim();
+        if (!Stage.isValidStage(trimmedStage)) {
+            throw new ParseException(Stage.MESSAGE_CONSTRAINTS);
+        }
         return new Stage(trimmedStage);
     }
 

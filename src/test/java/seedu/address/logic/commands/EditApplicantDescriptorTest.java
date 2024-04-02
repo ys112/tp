@@ -6,11 +6,11 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_CHLOE;
 import static seedu.address.logic.commands.CommandTestUtil.NOTE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.ROLE_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.STAGE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STAGE_BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -65,7 +65,7 @@ public class EditApplicantDescriptorTest {
 
         // different stage -> returns false
         editedChloe =
-                new EditApplicantDescriptorBuilder(DESC_CHLOE).withStage(STAGE_DESC_BOB).build();
+                new EditApplicantDescriptorBuilder(DESC_CHLOE).withStage(VALID_STAGE_BOB).build();
         assertFalse(DESC_CHLOE.equals(editedChloe));
 
         // different note -> returns false

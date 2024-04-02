@@ -72,7 +72,7 @@ public class FilterCommand extends Command {
         model.updateFilteredPersonList(matchesCriteria);
         boolean changeInButton = false;
         boolean[] newButtonState = {false, false, false, false};
-        if (filteredStage.stageName.equals("initial_application")) {
+        if (filteredStage.stageName.equals("Initial Application")) {
             changeInButton = true;
             newButtonState = new boolean[]{true, false, false, false};
         }
@@ -84,7 +84,7 @@ public class FilterCommand extends Command {
             changeInButton = true;
             newButtonState = new boolean[]{false, false, true, false};
         }
-        if (filteredStage.stageName.equals("final_stage")) {
+        if (filteredStage.stageName.equals("Decision & Offer")) {
             changeInButton = true;
             newButtonState = new boolean[]{false, false, false, true};
         }

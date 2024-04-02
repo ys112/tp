@@ -190,7 +190,7 @@ public class MainWindow extends UiPart<Stage> {
     private void handleFilter() {
         List<String> selectedStages = new ArrayList<>();
         if (initialAssessmentRadioButton.isSelected()) {
-            selectedStages.add("initial_application");
+            selectedStages.add("Initial Application");
         }
         if (technicalAssessmentRadioButton.isSelected()) {
             selectedStages.add("Technical Assessment");
@@ -199,7 +199,7 @@ public class MainWindow extends UiPart<Stage> {
             selectedStages.add("Interview");
         }
         if (decisionOfferRadioButton.isSelected()) {
-            selectedStages.add("final_stage");
+            selectedStages.add("Decision & Offer");
         }
         // Filter persons by selected stages and update counts after filtering
         logic.filterPersonsByButton(selectedStages);
@@ -223,10 +223,10 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void updateOverviewCount() {
-        initialAssessmentCount.set(logic.updateCount("initial_application"));
+        initialAssessmentCount.set(logic.updateCount("Initial Application"));
         technicalAssessmentCount.set(logic.updateCount("Technical Assessment"));
         interviewCount.set(logic.updateCount("Interview"));
-        decisionAndOfferCount.set(logic.updateCount("final_stage"));
+        decisionAndOfferCount.set(logic.updateCount("Decision & Offer"));
         initialAssessmentCountLabel.textProperty().bind(Bindings.concat("Initial Assessment (",
                 initialAssessmentCount, ")"));
         technicalAssessmentCountLabel.textProperty().bind(Bindings.concat("Technical Assessment (",

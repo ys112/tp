@@ -263,13 +263,13 @@ public class ModelManager implements Model {
                 Applicant applicant = (Applicant) person;
                 if (applicant.getRole().equals(new Role(roleName))) {
                     counts[0]++;
-                    if (applicant.getStage().equals(new Stage("initial_application"))) {
+                    if (applicant.getStage().equals(new Stage("Initial Application"))) {
                         counts[1]++;
                     } else if (applicant.getStage().equals(new Stage("Technical Assessment"))) {
                         counts[2]++;
                     } else if (applicant.getStage().equals(new Stage("Interview"))) {
                         counts[3]++;
-                    } else if (applicant.getStage().equals(new Stage("final_stage"))) {
+                    } else if (applicant.getStage().equals(new Stage("Decision & Offer"))) {
                         counts[4]++;
                     } else {
                         throw new AssertionError("Unexpected stage encountered: "
