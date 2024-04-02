@@ -186,10 +186,10 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    @FXML
-    public void handleRefresh() {
-        updateOverviewCount();
-    }
+//    @FXML
+//    public void handleRefresh() {
+//        updateOverviewCount();
+//    }
     @FXML
     private void handleFilter() {
         List<String> selectedStages = new ArrayList<>();
@@ -214,6 +214,7 @@ public class MainWindow extends UiPart<Stage> {
         } else {
             resultDisplay.setFeedbackToUser("No stage selected so showing applicants in all stages");
         }
+        updateOverviewCount();
 
     }
 
@@ -257,6 +258,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay.setFeedbackToUser("Showing all applicants");
         List<String> emptyList = new ArrayList<>();
         logic.filterPersonsByButton(emptyList);
+        updateOverviewCount(); //new
         deselectAllButtons();
 
     }
@@ -306,7 +308,7 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
-
+            updateOverviewCount();
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);

@@ -205,23 +205,18 @@
                                     </AnchorPane>
                                 </content>
                                 <graphic>
-                                    <HBox alignment="CENTER_RIGHT">
+                                    <StackPane alignment="CENTER_RIGHT">
                                         <padding>
                                             <Insets right="5" />
                                         </padding>
                                         <children>
-                                            <Button fx:id="refreshButton" onAction="#handleRefresh"
-                                                    style="-fx-background-color: transparent;-fx-background-insets: 0;">
-                                                <graphic>
-                                                    <ImageView fitHeight="18.0" fitWidth="18.0">
-                                                        <image>
-                                                            <Image url="@../images/refresh_icon.png" />
-                                                        </image>
-                                                    </ImageView>
-                                                </graphic>
-                                            </Button>
+                                            <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../images/chart_icon.png" />
+                                                </image>
+                                            </ImageView>
                                         </children>
-                                    </HBox>
+                                    </StackPane>
                                 </graphic>
                             </TitledPane>
                         </children>
