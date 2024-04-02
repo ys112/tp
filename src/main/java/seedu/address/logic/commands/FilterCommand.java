@@ -69,11 +69,7 @@ public class FilterCommand extends Command {
 
             return roleMatches && stageMatches;
         };
-        if (!(filteredRole.roleName.isEmpty())) { // only search within the currently filtered list
-            model.filterPersonList(matchesCriteria);
-        } else { //if only filtering based on stage, it will return everything in that stage
-            model.updateFilteredPersonList(matchesCriteria);
-        }
+        model.updateFilteredPersonList(matchesCriteria);
         boolean changeInButton = false;
         boolean[] newButtonState = {false, false, false, false};
         if (filteredStage.stageName.equals("initial_application")) {
