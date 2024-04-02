@@ -1,11 +1,13 @@
 package seedu.address.ui;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Comparator;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -48,11 +50,14 @@ public class ApplicantCard extends UiPart<Region> {
     private Label stage;
     @FXML
     private FlowPane tags;
+    @FXML
+    private ImageView profile;
+    private final String defaultProfile = "data\\default-01.png";
 
     /**
      * Creates a {@code ApplicantCard} with the given {@code Applicant} and index to display.
      */
-    public ApplicantCard(Applicant applicant, int displayedIndex) {
+    public ApplicantCard(Applicant applicant, int displayedIndex, String img) {
         super(FXML);
         this.applicant = applicant;
         id.setText(displayedIndex + ". ");
@@ -65,6 +70,17 @@ public class ApplicantCard extends UiPart<Region> {
         applicant.getTags().stream()
             .sorted(Comparator.comparing(tag -> tag.tagName))
             .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        Path imagePath;
+        String currentDir = System.getProperty("user.dir");
+
+        if (img != null) {
+            imagePath = Paths.get(currentDir, img);
+        } else {
+            imagePath = Paths.get(currentDir, defaultProfile);
+        }
+
+        profile.setImage(new Image(imagePath.toUri().toString()));
 
         String noteDate = "";
         if (!applicant.getNoteDate().isEmpty()) {

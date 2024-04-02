@@ -60,7 +60,8 @@ public class AddApplicantCommandParser implements Parser<AddApplicantCommand> {
         Note note = getOptionalNoteParameter(argMultimap);
         String noteWithDate = getOptionalNoteDateParameter(argMultimap);
 
-        Applicant applicant = new Applicant(name, phone, email, address, role, stage, tagList, note, noteWithDate);
+        Applicant applicant = new Applicant(name, phone, email, address, role, stage, tagList, note,
+                noteWithDate, null);
         return new AddApplicantCommand(applicant);
     }
 

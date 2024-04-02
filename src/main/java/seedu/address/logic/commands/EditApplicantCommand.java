@@ -103,7 +103,8 @@ public class EditApplicantCommand extends Command {
         } else {
             applicantToEdit = new Applicant((Person) personToEdit,
                     editApplicantDescriptor.getRole().orElse(new Role(DEFAULT_ROLE)),
-                    editApplicantDescriptor.getStage().orElse(new Stage(DEFAULT_STAGE)));
+                    editApplicantDescriptor.getStage().orElse(new Stage(DEFAULT_STAGE)),
+                    editApplicantDescriptor.getImg().orElse(""));
         }
         Applicant editedApplicant = createEditedApplicant(applicantToEdit, editApplicantDescriptor);
 
@@ -134,9 +135,11 @@ public class EditApplicantCommand extends Command {
         Stage updatedStage = editApplicantDescriptor.getStage().orElse(applicantToEdit.getStage());
         Set<Tag> updatedTags = editApplicantDescriptor.getTags().orElse(applicantToEdit.getTags());
         Note updatedNote = editApplicantDescriptor.getNote().orElse(applicantToEdit.getNote());
+        String updatedImg = editApplicantDescriptor.getImg().orElse(applicantToEdit.getImg());
+
         return new Applicant(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedRole, updatedStage, updatedTags,
-                updatedNote, editApplicantDescriptor.noteDate);
+                updatedRole, updatedStage, updatedTags, updatedNote,
+                editApplicantDescriptor.noteDate, updatedImg);
     }
 
 
@@ -178,6 +181,7 @@ public class EditApplicantCommand extends Command {
         private Set<Tag> tags;
         private Note note;
         private String noteDate;
+        private String img;
 
         public EditApplicantDescriptor() {}
 
@@ -263,6 +267,14 @@ public class EditApplicantCommand extends Command {
 
         public void setNoteDate(String noteDate) {
             this.noteDate = noteDate;
+        }
+
+        public Optional<String> getImg() {
+            return Optional.ofNullable(img);
+        }
+
+        public void setImg(String img) {
+            this.img = img;
         }
 
         /**
