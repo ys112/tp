@@ -97,8 +97,6 @@ public interface Model {
     int updateCount(String stageName);
 
     int[] updateRoleCount(String roleName);
-
-    void updateFilteredRoles();
     void addFilteredPersonsListener(ListChangeListener<Person> listener);
 
 }

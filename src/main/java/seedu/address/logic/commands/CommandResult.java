@@ -78,12 +78,12 @@ public class CommandResult {
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit
                 && changeInButton == otherCommandResult.changeInButton
-                && newButtonState == otherCommandResult.newButtonState;
+                && Arrays.equals(newButtonState, otherCommandResult.newButtonState);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, exit, changeInButton, Arrays.hashCode(newButtonState));
     }
 
     @Override

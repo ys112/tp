@@ -191,10 +191,6 @@ public class AddApplicantCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override
-        public void updateFilteredRoles() {
-            throw new AssertionError("This method should not be called.");
-        }
     }
 
     /**

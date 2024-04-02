@@ -45,11 +45,6 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredRoles = FXCollections.observableArrayList();
-
-        // Add a listener to update filtered roles when filtered persons change
-        filteredPersons.addListener((ListChangeListener<Person>) change -> {
-            updateFilteredRoles();
-        });
     }
 
     public ModelManager() {
@@ -124,7 +119,6 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
         addressBook.setPerson(target, editedPerson);
-        updateFilteredRoles();
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -167,11 +161,6 @@ public class ModelManager implements Model {
         return computeFilteredRoles();
     }
 
-    @Override
-    public void updateFilteredRoles() {
-
-    }
-
 
     @Override
     public void addFilteredPersonsListener(ListChangeListener<Person> listener) {
@@ -199,7 +188,6 @@ public class ModelManager implements Model {
 
         // Update the filtered person list with the combined predicate
         filteredPersons.setPredicate(combinedPredicate);
-        updateFilteredRoles();
     }
 
     @Override
@@ -236,7 +224,6 @@ public class ModelManager implements Model {
 
         // Update the filtered person list based on the stagePredicate
         updateFilteredPersonList(stagePredicate);
-        updateFilteredRoles();
     }
 
     /**
