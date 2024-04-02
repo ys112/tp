@@ -237,7 +237,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Testing Phase
+     * Deselects all button when Show All from List Menu is called
      */
     public void deselectAllButtons() {
         initialAssessmentRadioButton.setSelected(false);
@@ -245,6 +245,11 @@ public class MainWindow extends UiPart<Stage> {
         interviewRadioButton.setSelected(false);
         decisionOfferRadioButton.setSelected(false);
     }
+
+    /**
+     * Selects or unselects button such that there is coordination between the command line
+     * and Filter panel
+     */
 
     public void changeButtons(boolean[] newStateButton) {
         initialAssessmentRadioButton.setSelected(newStateButton[0]);
@@ -254,7 +259,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Testing Phase
+     * Shows all applicants
      */
     @FXML
     public void handleShowAll() {

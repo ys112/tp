@@ -19,7 +19,7 @@ public class ListCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(MESSAGE_SUCCESS, false, false, true, new boolean[]{false, false,
-                false, false});
+        return new CommandResult(MESSAGE_SUCCESS, false, false, true,
+                new boolean[]{false, false, false, false});
     }
 }
