@@ -82,10 +82,10 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && showHelp == otherCommandResult.showHelp
-                && showImport == otherCommandResult.showImport
+                && showHelp == otherCommandResult.showHelp;
+                && showImport == otherCommandResult.showImport;
                 && exit == otherCommandResult.exit;
-                && changeInButton == otherCommandResult.changeInButton
+                && changeInButton == otherCommandResult.changeInButton;
                 && Arrays.equals(newButtonState, otherCommandResult.newButtonState);
     }
 
