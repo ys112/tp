@@ -21,8 +21,8 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.NoteCommand;
-import seedu.address.logic.commands.ShowImportCommand;
 import seedu.address.logic.commands.SearchApplicantCommand;
+import seedu.address.logic.commands.ShowImportCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
