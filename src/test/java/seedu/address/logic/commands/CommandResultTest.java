@@ -61,12 +61,12 @@ public class CommandResultTest {
 
         // different exit value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(),
-                new CommandResult("feedback", false, false, true, false, 
+                new CommandResult("feedback", false, false, true, false,
                         new boolean[]{false, false, false, false}).hashCode());
 
         // different showImport value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback",
-            false, true, falsefalse, 
+            false, true, false, false,
                         new boolean[]{false, false, false, false}).hashCode());
     }
 
