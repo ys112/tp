@@ -1,6 +1,9 @@
 package seedu.address.ui;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -9,6 +12,7 @@ import java.nio.file.StandardCopyOption;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,7 +26,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
-import org.json.simple.parser.ParseException;
 import seedu.address.model.applicant.Applicant;
 import seedu.address.model.person.Person;
 
