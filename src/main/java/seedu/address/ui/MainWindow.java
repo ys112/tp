@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -17,11 +18,13 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -43,6 +46,7 @@ public class MainWindow extends UiPart<Stage> {
     private RoleListPanel roleListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ImportWindow importWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -102,6 +106,10 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        importWindow = new ImportWindow();
+
+        // Configure import window to be a modal (inspired by AI)
+        importWindow.getRoot().initModality(Modality.APPLICATION_MODAL);
     }
 
     public Stage getPrimaryStage() {
@@ -184,6 +192,25 @@ public class MainWindow extends UiPart<Stage> {
         } else {
             helpWindow.focus();
         }
+    }
+    /**
+     * Opens the import window or focuses on it if it's already opened.
+     */
+    @FXML
+    private void handleImport() throws CommandException, ParseException {
+        if (!importWindow.isShowing()) {
+            importWindow.show();
+        }
+        if (importWindow.isShowing()) {
+            importWindow.focus();
+        }
+
+        Path filePath = importWindow.getSelectedFilePath();
+        if (filePath != null) {
+            logger.info("file path chosen: " + filePath);
+            executeCommand(ImportCommand.COMMAND_WORD + " " + filePath);
+        }
+        importWindow.clearFilePath();
     }
 
     @FXML
@@ -285,7 +312,7 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
-        primaryStage.hide();
+        primaryStage.close();
     }
 
     public PersonListPanel getPersonListPanel() {
@@ -311,6 +338,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isShowImport()) {
+                handleImport();
             }
 
             if (commandResult.isExit()) {

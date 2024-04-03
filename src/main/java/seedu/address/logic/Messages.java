@@ -25,6 +25,7 @@ public class Messages {
                 "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_INPUT_NOT_REQUIRED_FIELDS = "Input not required for the following field(s): ";
     public static final String MESSAGE_INVALID_FILE_NAME = "Cannot use file names HRConnect and ArchivedApplicants";
+    public static final String MESSAGE_INVALID_FILE_PATH = "Invalid json file path: ";
     public static final String MESSAGE_EMPTY_FILE_NAME = "Please input a file name";
     /**
      * Returns an error message indicating the duplicate prefixes.
@@ -87,6 +88,22 @@ public class Messages {
             .append("; Tags: ");
         applicant.getTags().forEach(builder::append);
         return builder.toString();
+    }
+
+    /**
+     * Formats the {@code applicant} for display to the user
+     * for NoteCommand testing.
+     */
+    public static String formatNoteTest(Applicant applicant) {
+        return new ToStringBuilder(applicant)
+                .add("name", applicant.getName())
+                .add("phone", applicant.getPhone())
+                .add("email", applicant.getEmail())
+                .add("address", applicant.getAddress())
+                .add("tags", applicant.getTags())
+                .add("note", applicant.getNote())
+                .add("noteDate", applicant.getNoteDate())
+                .toString();
     }
 
 }

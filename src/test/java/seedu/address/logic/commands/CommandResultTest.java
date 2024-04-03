@@ -17,7 +17,7 @@ public class CommandResultTest {
         // same values -> returns true
         assertTrue(commandResult.equals(new CommandResult("feedback")));
         assertTrue(commandResult.equals(new CommandResult("feedback", false,
-                false, false, new boolean[]{false, false, false, false})));
+                false, false, false, new boolean[]{false, false, false, false})));
 
         // same object -> returns true
         assertTrue(commandResult.equals(commandResult));
@@ -32,12 +32,16 @@ public class CommandResultTest {
         assertFalse(commandResult.equals(new CommandResult("different")));
 
         // different showHelp value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", true, false, false,
+        assertFalse(commandResult.equals(new CommandResult("feedback", true, false, false, false,
                 new boolean[]{false, false, false, false})));
 
         // different exit value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, true, false,
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, false, true, false,
                 new boolean[]{false, false, false, false})));
+
+        // different showImport value -> returns false
+        assertFalse(commandResult.equals(new CommandResult("feedback",
+            false, true, false, false, new boolean[]{false, false, false, false})));
     }
 
     @Test
@@ -52,12 +56,17 @@ public class CommandResultTest {
 
         // different showHelp value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(),
-                new CommandResult("feedback", true, false, false,
+                new CommandResult("feedback", true, false, false, false,
                         new boolean[]{false, false, false, false}).hashCode());
 
         // different exit value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(),
-                new CommandResult("feedback", false, true, false,
+                new CommandResult("feedback", false, false, true, false, 
+                        new boolean[]{false, false, false, false}).hashCode());
+
+        // different showImport value -> returns different hashcode
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback",
+            false, true, falsefalse, 
                         new boolean[]{false, false, false, false}).hashCode());
     }
 
