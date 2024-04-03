@@ -63,7 +63,6 @@ public class RoleCard extends UiPart<Region> {
 
     private void updateCounts() {
         rolename.setText(role.toString());
-        System.out.println(logic.getFilteredRoleList());
         String roleName = role.toString();
         int[] arrayOfCount = logic.updateRoleCount(roleName);
         applicantsCount.setText("Total Number Of Applicants: " + arrayOfCount[0]);

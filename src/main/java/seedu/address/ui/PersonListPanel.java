@@ -43,7 +43,6 @@ public class PersonListPanel extends UiPart<Region> {
                 setText(null);
                 return;
             }
-            System.out.println("this updateItem is called");
 
             if (person instanceof Applicant) {
                 setGraphic(new ApplicantCard((Applicant) person, getIndex() + 1).getRoot());
