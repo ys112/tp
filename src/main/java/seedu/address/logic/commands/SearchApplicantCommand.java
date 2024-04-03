@@ -1,17 +1,14 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 
-import java.util.Optional;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.applicant.Applicant;
-import seedu.address.model.applicant.Role;
-import seedu.address.model.applicant.Stage;
 import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
 
@@ -22,7 +19,8 @@ public class SearchApplicantCommand extends Command {
 
     public static final String COMMAND_WORD = "search";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Searches and fetches applicant by their note information."
+    public static final String MESSAGE_USAGE =
+            COMMAND_WORD + ": Searches and fetches applicant by their note information."
             + "Parameters: "
             + PREFIX_NOTE + " notes";
 

@@ -1,15 +1,12 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 
-import java.util.Optional;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.SearchApplicantCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.applicant.Role;
-import seedu.address.model.applicant.Stage;
 import seedu.address.model.person.Note;
 
 /**
@@ -29,7 +26,8 @@ public class SearchApplicantCommandParser implements Parser<SearchApplicantComma
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NOTE)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchApplicantCommand.MESSAGE_USAGE));
+            throw new ParseException(String
+                    .format(MESSAGE_INVALID_COMMAND_FORMAT, SearchApplicantCommand.MESSAGE_USAGE));
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NOTE);
