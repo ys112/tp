@@ -46,9 +46,9 @@ public class CommandTestUtil {
     public static final String VALID_ROLE_AMY = "SWE";
     public static final String VALID_ROLE_BOB = "Frontend Engineer";
     public static final String VALID_ROLE_CHLOE = "ML Engineer";
-    public static final String VALID_STAGE_AMY = "initial_application";
-    public static final String VALID_STAGE_BOB = "initial_application";
-    public static final String VALID_STAGE_CHLOE = "final_round";
+    public static final String VALID_STAGE_AMY = "Initial Application";
+    public static final String VALID_STAGE_BOB = "Initial Application";
+    public static final String VALID_STAGE_CHLOE = "Interview";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_NOTE_BOB = "forbes 30 under 30";
@@ -71,7 +71,7 @@ public class CommandTestUtil {
     public static final String ROLE_DESC_BOB = " " + PREFIX_ROLE + " " + VALID_ROLE_BOB;
     public static final String ROLE_DESC_CHLOE = " " + PREFIX_ROLE + " " + VALID_ROLE_CHLOE;
     public static final String STAGE_DESC_AMY = " " + PREFIX_STAGE + " " + VALID_ROLE_AMY;
-    public static final String STAGE_DESC_BOB = " " + PREFIX_STAGE + " " + VALID_ROLE_BOB;
+    public static final String STAGE_DESC_BOB = " " + PREFIX_STAGE + " " + VALID_STAGE_BOB;
     public static final String STAGE_DESC_CHLOE = " " + PREFIX_STAGE + " " + VALID_ROLE_CHLOE;
     public static final String NOTE_DESC_BOB = " " + PREFIX_NOTE + " " + VALID_NOTE_BOB;
     public static final String NOTEDATE_DESC_BOB = " " + PREFIX_NOTE_WITH_DATE + " " + VALID_NOTEDATE_BOB;

@@ -1,10 +1,13 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.applicant.Role;
 import seedu.address.model.person.Person;
 
 /**
@@ -79,9 +82,22 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
+    ObservableList<Role> getFilteredRoleList();
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    void filterPersonsByButton(List<String> selectedStages);
+
+    void filterPersonList(Predicate<Person> predicate);
+
+    int updateCount(String stageName);
+
+    int[] updateRoleCount(String roleName);
+    void addFilteredPersonsListener(ListChangeListener<Person> listener);
+
 }
+

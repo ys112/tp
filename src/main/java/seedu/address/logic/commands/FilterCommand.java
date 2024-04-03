@@ -70,7 +70,27 @@ public class FilterCommand extends Command {
             return roleMatches && stageMatches;
         };
         model.updateFilteredPersonList(matchesCriteria);
-        return new CommandResult(String.format(MESSAGE_SUCCESS));
+        boolean changeInButton = false;
+        boolean[] newButtonState = {false, false, false, false};
+        if (filteredStage.stageName.equals("Initial Application")) {
+            changeInButton = true;
+            newButtonState = new boolean[]{true, false, false, false};
+        }
+        if (filteredStage.stageName.equals("Technical Assessment")) {
+            changeInButton = true;
+            newButtonState = new boolean[]{false, true, false, false};
+        }
+        if (filteredStage.stageName.equals("Interview")) {
+            changeInButton = true;
+            newButtonState = new boolean[]{false, false, true, false};
+        }
+        if (filteredStage.stageName.equals("Decision & Offer")) {
+            changeInButton = true;
+            newButtonState = new boolean[]{false, false, false, true};
+        }
+        return new CommandResult(String.format(MESSAGE_SUCCESS), false, false, false,
+                changeInButton,
+                newButtonState);
     }
 
     @Override

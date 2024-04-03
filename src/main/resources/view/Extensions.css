@@ -18,3 +18,15 @@
 .tooltip-text {
     -fx-text-fill: white;
 }
+#refreshButton {
+    -fx-background-radius: 30em;
+    -fx-min-width: 30px;
+    -fx-min-height: 30px;
+    -fx-max-width: 30px;
+    -fx-max-height: 30px;
+    -fx-background-color: transparent;
+    -fx-border-color: white;
+    -fx-border-width: 2;
+    -fx-border-radius: 30em;
+}
+

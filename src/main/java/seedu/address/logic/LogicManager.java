@@ -3,6 +3,7 @@ package seedu.address.logic;
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -15,6 +16,7 @@ import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.applicant.Role;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
@@ -33,6 +35,8 @@ public class LogicManager implements Logic {
     private final Storage storage;
     private final AddressBookParser addressBookParser;
 
+
+
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
@@ -42,6 +46,16 @@ public class LogicManager implements Logic {
         addressBookParser = new AddressBookParser();
     }
 
+
+    @Override
+    public int updateCount(String stageName) {
+        return model.updateCount(stageName);
+    }
+
+    @Override
+    public int[] updateRoleCount(String roleName) {
+        return model.updateRoleCount(roleName);
+    }
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
@@ -57,7 +71,6 @@ public class LogicManager implements Logic {
         } catch (IOException ioe) {
             throw new CommandException(String.format(FILE_OPS_ERROR_FORMAT, ioe.getMessage()), ioe);
         }
-
         return commandResult;
     }
 
@@ -69,6 +82,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
+    }
+
+    @Override
+    public ObservableList<Role> getFilteredRoleList() {
+        return model.getFilteredRoleList();
     }
 
     @Override
@@ -84,5 +102,10 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public void filterPersonsByButton(List<String> selectedStages) {
+        model.filterPersonsByButton(selectedStages);
     }
 }
