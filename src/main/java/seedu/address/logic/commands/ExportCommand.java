@@ -47,7 +47,7 @@ public class ExportCommand extends Command {
     public ExportCommand(String fileName) {
         requireNonNull(fileName);
         this.fileName = fileName.trim();
-        savePath = Paths.get("data", fileName + ".json");
+        savePath = Paths.get("data", this.fileName + ".json");
     }
 
     @Override
@@ -74,7 +74,7 @@ public class ExportCommand extends Command {
             throw new CommandException(String.format(FILE_OPS_ERROR_FORMAT, ioe.getMessage()), ioe);
         }
 
-        return new CommandResult(MESSAGE_SUCCESS, false, false);
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 
 }
