@@ -16,6 +16,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -31,6 +32,9 @@ import seedu.address.model.person.Person;
  */
 public class PersonListPanel extends UiPart<Region> {
     private static final String FXML = "PersonListPanel.fxml";
+    private static final String UPDATE_PIC_BTN = "Update Picture";
+    private static final String UPDATE_PIC_BTN_CLASS = "button";
+    private static final String FILE_CHOOSER_TITLE = "Select Profile Image";
 
     @FXML
     private ListView<Person> personListView;
@@ -58,8 +62,8 @@ public class PersonListPanel extends UiPart<Region> {
                 return;
             }
 
-            Button updatePictureButton = new Button("Update Picture");
-            updatePictureButton.getStyleClass().add("button");
+            Button updatePictureButton = new Button(UPDATE_PIC_BTN);
+            updatePictureButton.getStyleClass().add(UPDATE_PIC_BTN_CLASS);
             updatePictureButton.setOnAction(event -> handleApplicantClick(event));
             updatePictureButton.setId(getIndex() + "");
 
@@ -87,7 +91,7 @@ public class PersonListPanel extends UiPart<Region> {
         FileChooser.ExtensionFilter imageFilter = new FileChooser
                 .ExtensionFilter("Image Files", "*.jpg", "*.png", "*.gif", "*.bmp");
         fileChooser.getExtensionFilters().add(imageFilter);
-        fileChooser.setTitle("Select Profile Image");
+        fileChooser.setTitle(FILE_CHOOSER_TITLE);
         File file = fileChooser.showOpenDialog(null);
 
         Button clickedButton = (Button) event.getSource();
@@ -113,9 +117,21 @@ public class PersonListPanel extends UiPart<Region> {
                     fileWriter.write(jsonObject.toJSONString());
                 }
 
+                showDialog();
+
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
         }
+    }
+
+    private void showDialog() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Image Uploaded");
+
+        alert.setHeaderText(null);
+        alert.setContentText("Changes will reflect after the app is restarted.");
+
+        alert.showAndWait();
     }
 }
