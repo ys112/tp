@@ -16,6 +16,7 @@ public class ShowImportCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(SHOW_IMPORT_WINDOW_MESSAGE, false, true, false);
+        return new CommandResult(SHOW_IMPORT_WINDOW_MESSAGE, false, true, false, false,
+                new boolean[]{false, false, false, false});
     }
 }

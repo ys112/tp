@@ -15,7 +15,8 @@ public class ShowImportCommandTest {
     @Test
     public void execute_showImport_success() {
         CommandResult expectedCommandResult = new CommandResult(SHOW_IMPORT_WINDOW_MESSAGE,
-            false, true, false);
+            false, true, false, false,
+                new boolean[]{false, false, false, false});
         assertCommandSuccess(new ShowImportCommand(), model, expectedCommandResult, expectedModel);
     }
 }

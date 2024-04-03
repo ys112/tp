@@ -91,7 +91,8 @@ public class CommandResult {
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, showImport, exit, changeInButton, Arrays.hashCode(newButtonState));
+        return Objects.hash(feedbackToUser, showHelp, showImport, exit, changeInButton,
+                Arrays.hashCode(newButtonState));
     }
 
     @Override

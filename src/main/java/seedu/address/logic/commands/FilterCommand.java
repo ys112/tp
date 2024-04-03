@@ -88,7 +88,8 @@ public class FilterCommand extends Command {
             changeInButton = true;
             newButtonState = new boolean[]{false, false, false, true};
         }
-        return new CommandResult(String.format(MESSAGE_SUCCESS), false, false, changeInButton,
+        return new CommandResult(String.format(MESSAGE_SUCCESS), false, false, false,
+                changeInButton,
                 newButtonState);
     }
 
