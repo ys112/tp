@@ -1,6 +1,7 @@
 package seedu.address.logic;
 
 import java.nio.file.Path;
+import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -8,6 +9,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.applicant.Role;
 import seedu.address.model.person.Person;
 
 /**
@@ -47,4 +49,22 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Filters the list of persons based on the selected stages.
+     * @param selectedStages List of selected stages.
+     */
+    void filterPersonsByButton(List<String> selectedStages);
+
+    /**
+     * Updates the count of persons in the specified stage.
+     * @param stageName Name of the stage.
+     * @return The count of persons in the stage.
+     */
+    int updateCount(String stageName);
+
+    public ObservableList<Role> getFilteredRoleList();
+
+    public int[] updateRoleCount(String roleName);
+
 }

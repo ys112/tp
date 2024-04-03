@@ -11,10 +11,12 @@ import static seedu.address.testutil.TypicalApplicants.IVAN_APPLICANT;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
@@ -24,6 +26,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.applicant.Applicant;
+import seedu.address.model.applicant.Role;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.ApplicantBuilder;
 
@@ -158,6 +161,36 @@ public class AddApplicantCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void filterPersonsByButton(List<String> selectedStages) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void filterPersonList(Predicate<Person> additionalPredicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+
+        @Override
+        public int updateCount(String stageName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addFilteredPersonsListener(ListChangeListener<Person> personListener) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Role> getFilteredRoleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public int[] updateRoleCount(String roleName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
     }
 
     /**

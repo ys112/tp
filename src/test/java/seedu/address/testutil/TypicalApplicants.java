@@ -19,49 +19,49 @@ public class TypicalApplicants {
             .withTags("friends").build();
 
     public static final Applicant ALICE_APPLICANT = new ApplicantBuilder(ALICE)
-        .withRole("SWE").withStage("initial_application").build();
+        .withRole("SWE").withStage("Initial Application").build();
 
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
         .withAddress("311, Clementi Ave 2, #02-25").withEmail("johnd@example.com").withPhone("98765432").build();
 
     public static final Applicant BENSON_APPLICANT = new ApplicantBuilder(BENSON)
-        .withRole("SWE").withStage("initial_application").build();
+        .withRole("SWE").withStage("Initial Application").build();
 
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").build();
 
     public static final Applicant CARL_APPLICANT = new ApplicantBuilder(CARL)
-        .withRole("UX designer").withStage("technical_assessment").build();
+        .withRole("UX designer").withStage("Technical Assessment").build();
 
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends").build();
     public static final Applicant DANIEL_APPLICANT = new ApplicantBuilder(DANIEL)
-        .withRole("UX designer").withStage("technical_assessment").build();
+        .withRole("UX designer").withStage("Technical Assessment").build();
 
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave").build();
     public static final Applicant ELLE_APPLICANT = new ApplicantBuilder(ELLE)
-        .withRole("Backend Engineer").withStage("interview").build();
+        .withRole("Backend Engineer").withStage("Interview").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo").build();
     public static final Applicant FIONA_APPLICANT = new ApplicantBuilder(FIONA)
-        .withRole("ML Engineer").withStage("decision_and_offer").build();
+        .withRole("ML Engineer").withStage("Decision & Offer").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street").build();
     public static final Applicant GEORGE_APPLICANT = new ApplicantBuilder(GEORGE)
-        .withRole("DevOps Engineer").withStage("decision_and_offer").build();
+        .withRole("DevOps Engineer").withStage("Decision & Offer").build();
 
     // Manually added
 
     public static final Person HELLEN = new PersonBuilder().withName("Hellen Kelly").withPhone("98453242")
         .withEmail("hellen@example.com").withAddress("9th street").build();
     public static final Applicant HELLEN_APPLICANT = new ApplicantBuilder(HELLEN)
-        .withRole("Cloud Engineer").withStage("initial_application").build();
+        .withRole("Cloud Engineer").withStage("Initial Application").build();
 
     public static final Person IVAN = new PersonBuilder().withName("Ivan Lim").withPhone("97233423")
         .withEmail("ivan@example.com").withAddress("10th street").build();
     public static final Applicant IVAN_APPLICANT = new ApplicantBuilder(IVAN)
-        .withRole("Network Engineer").withStage("initial_application").build();
+        .withRole("Network Engineer").withStage("Initial Application").build();
 
     private TypicalApplicants() {} // prevents instantiation
 

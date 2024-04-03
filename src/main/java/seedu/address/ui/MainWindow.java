@@ -1,11 +1,19 @@
 package seedu.address.ui;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -25,7 +33,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * a menu bar and space where other JavaFX elements can be placed.
  */
 public class MainWindow extends UiPart<Stage> {
-
+    public static final int TOTAL_NUMBER_OF_STAGES = 4;
     private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
@@ -35,6 +43,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private RoleListPanel roleListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private ImportWindow importWindow;
@@ -46,14 +55,41 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
+    private Button refreshButton;
+
+    @FXML
     private StackPane personListPanelPlaceholder;
+    @FXML
+    private StackPane roleListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+    @FXML
+    private Label initialAssessmentCountLabel;
+    @FXML
+    private Label technicalAssessmentCountLabel;
+    @FXML
+    private Label interviewCountLabel;
+    @FXML
+    private Label decisionAndOfferCountLabel;
+    @FXML
+    private RadioButton initialAssessmentRadioButton;
 
+    @FXML
+    private RadioButton technicalAssessmentRadioButton;
+
+    @FXML
+    private RadioButton interviewRadioButton;
+
+    @FXML
+    private RadioButton decisionOfferRadioButton;
+    private IntegerProperty initialAssessmentCount = new SimpleIntegerProperty(0);
+    private IntegerProperty technicalAssessmentCount = new SimpleIntegerProperty(0);
+    private IntegerProperty interviewCount = new SimpleIntegerProperty(0);
+    private IntegerProperty decisionAndOfferCount = new SimpleIntegerProperty(0);
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -121,6 +157,8 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+        roleListPanel = new RoleListPanel(logic, logic.getFilteredRoleList());
+        roleListPanelPlaceholder.getChildren().add(roleListPanel.getRoot());
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -129,6 +167,7 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        updateOverviewCount();
     }
 
     /**
@@ -174,8 +213,94 @@ public class MainWindow extends UiPart<Stage> {
         importWindow.clearFilePath();
     }
 
+    @FXML
+    private void handleFilter() {
+        List<String> selectedStages = new ArrayList<>();
+        if (initialAssessmentRadioButton.isSelected()) {
+            selectedStages.add("Initial Application");
+        }
+        if (technicalAssessmentRadioButton.isSelected()) {
+            selectedStages.add("Technical Assessment");
+        }
+        if (interviewRadioButton.isSelected()) {
+            selectedStages.add("Interview");
+        }
+        if (decisionOfferRadioButton.isSelected()) {
+            selectedStages.add("Decision & Offer");
+        }
+        // Filter persons by selected stages and update counts after filtering
+        logic.filterPersonsByButton(selectedStages);
+        if (selectedStages.size() == 4) {
+            resultDisplay.setFeedbackToUser("Showing applicants that are in all stages");
+        } else if (!selectedStages.isEmpty()) {
+            resultDisplay.setFeedbackToUser("Showing applicants that are in the selected stages");
+        } else {
+            resultDisplay.setFeedbackToUser("No stage selected so showing applicants in all stages");
+        }
+        updateOverviewCount();
+
+    }
+
+
+    /**
+     * Updates the overview count labels with the latest count values retrieved from the logic.
+     * Counts are updated for Initial Assessment, Technical Assessment, Interview, and Decision &
+     * Offer stages.
+     * The count values are bound to corresponding labels for display in the user interface.
+     */
+    @FXML
+    public void updateOverviewCount() {
+        initialAssessmentCount.set(logic.updateCount("Initial Application"));
+        technicalAssessmentCount.set(logic.updateCount("Technical Assessment"));
+        interviewCount.set(logic.updateCount("Interview"));
+        decisionAndOfferCount.set(logic.updateCount("Decision & Offer"));
+        initialAssessmentCountLabel.textProperty().bind(Bindings.concat("Initial Assessment (",
+                initialAssessmentCount, ")"));
+        technicalAssessmentCountLabel.textProperty().bind(Bindings.concat("Technical Assessment (",
+                technicalAssessmentCount, ")"));
+        interviewCountLabel.textProperty().bind(Bindings.concat("Interview (", interviewCount, ")"));
+        decisionAndOfferCountLabel.textProperty().bind(Bindings.concat("Decision & Offer (",
+                decisionAndOfferCount, ")"));
+    }
+
+    /**
+     * Deselects all button when Show All from List Menu is called
+     */
+    public void deselectAllButtons() {
+        initialAssessmentRadioButton.setSelected(false);
+        technicalAssessmentRadioButton.setSelected(false);
+        interviewRadioButton.setSelected(false);
+        decisionOfferRadioButton.setSelected(false);
+    }
+
+    /**
+     * Selects or unselects button such that there is coordination between the command line
+     * and Filter panel
+     */
+
+    public void changeButtons(boolean[] newStateButton) {
+        initialAssessmentRadioButton.setSelected(newStateButton[0]);
+        technicalAssessmentRadioButton.setSelected(newStateButton[1]);
+        interviewRadioButton.setSelected(newStateButton[2]);
+        decisionOfferRadioButton.setSelected(newStateButton[3]);
+    }
+
+    /**
+     * Shows all applicants
+     */
+    @FXML
+    public void handleShowAll() {
+        resultDisplay.setFeedbackToUser("Showing all applicants");
+        List<String> emptyList = new ArrayList<>();
+        logic.filterPersonsByButton(emptyList);
+        updateOverviewCount();
+        deselectAllButtons();
+
+    }
+
     void show() {
         primaryStage.show();
+
     }
 
     /**
@@ -191,7 +316,13 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     public PersonListPanel getPersonListPanel() {
+        updateOverviewCount();
         return personListPanel;
+    }
+
+    public RoleListPanel getRoleListPanel() {
+        updateOverviewCount();
+        return roleListPanel;
     }
 
     /**
@@ -217,6 +348,11 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            if (commandResult.changeInButton()) {
+                boolean[] newStateButton = commandResult.newButtonState();
+                changeButtons(newStateButton);
+            }
+            updateOverviewCount();
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);

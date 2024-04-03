@@ -55,7 +55,7 @@ public class AddApplicantCommandParser implements Parser<AddApplicantCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Role role = ParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get());
-        Stage stage = new Stage("initial_application");
+        Stage stage = new Stage("Initial Application");
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Note note = getOptionalNoteParameter(argMultimap);
         String noteWithDate = getOptionalNoteDateParameter(argMultimap);

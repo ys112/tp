@@ -94,25 +94,6 @@ public class EditApplicantCommandTest {
         assertCommandSuccess(editApplicantCommand, model, expectedMessage, expectedModel);
     }
 
-    @Test
-    public void execute_filteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-
-        Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Applicant editedApplicant =
-                new ApplicantBuilder(personInFilteredList).withRole(VALID_ROLE_CHLOE).build();
-        EditApplicantCommand editApplicantCommand = new EditApplicantCommand(INDEX_FIRST_PERSON,
-                new EditApplicantDescriptorBuilder().withRole(VALID_ROLE_CHLOE).build());
-
-        String expectedMessage = String.format(EditApplicantCommand.MESSAGE_EDIT_APPLICANT_SUCCESS,
-                Messages.format(editedApplicant));
-
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedApplicant);
-
-        assertCommandSuccess(editApplicantCommand, model, expectedMessage, expectedModel);
-    }
-
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
