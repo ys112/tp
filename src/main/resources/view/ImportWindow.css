@@ -1,0 +1,23 @@
+#selectButton, #importMessage {
+    -fx-text-fill: white;
+}
+
+#selectButton {
+    -fx-background-color: dimgray;
+}
+
+#selectButton:hover {
+    -fx-background-color: gray;
+}
+
+#selectButton:armed {
+    -fx-background-color: darkgray;
+}
+
+#importMessageContainer {
+    -fx-background-color: derive(#1d1d1d, 20%);
+}
+
+#buttonBar {
+    -fx-background-color: derive(#1d1d1d, 20%);
+}
