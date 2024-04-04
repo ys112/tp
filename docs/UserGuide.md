@@ -146,6 +146,7 @@ Examples:
 
 ### Filtering applicants by tag : `/filter`
 Filter through contact list based on what role or stage the applicant is in.
+
 Format: `/filter <Tag>`
 
 * Filters the contact list based on the `<Tag>` provided.
@@ -168,12 +169,13 @@ Examples:
 
 ### Exporting applicants contacts : `/export`
 Use filter or find to isolate the applicants that match the desired stage or role or name. Export will then extract those applicants' contacts into an external JSON file.
-Format: /export
+
+Format: `/export <FileName>`
 
 * Achieve an additional layer of organisation to properly arrange contacts
 
 Examples:
-*  `/export` will append contacts from that page onto another external JSON file.
+*  `/export saved_contancts` will save contacts from the current page into an external JSON file named "saved_contacts.txt".
 
 ### Importing applicants : `import`
 Using `import` will open a dialog for user to select the json file to import.
@@ -185,6 +187,10 @@ The json file must be exported from HRConnect for it to be recognised.
 
 Example: `import_file C:\tp\data\interesting.json` will import applicants from the interesting.json
 in the specified directory.
+
+### Creating recurrent email templates : `Email`
+
+Creates recurring email templates for the user to copy based on the application stage the user is targetting using the `Email` button on the Ui.
 
 ### Clearing all entries : `clear`
 
