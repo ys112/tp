@@ -9,7 +9,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.applicant.Applicant;
 import seedu.address.model.applicant.Role;
 import seedu.address.model.applicant.Stage;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 
 
