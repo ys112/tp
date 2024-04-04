@@ -31,6 +31,8 @@ public class JsonAdaptedApplicantTest {
     private static final String VALID_NOTE = TypicalPersons.BENSON.getNote().toString();
     private static final String VALID_NOTE_DATE = TypicalPersons.BENSON.getNoteDate();
 
+    private static final String VALID_IMG = TypicalPersons.BENSON.getImg();
+
     @Test
     public void toModelType_validApplicantDetails_returnsApplicant() throws Exception {
         JsonAdaptedApplicant applicant = new JsonAdaptedApplicant(BENSON_APPLICANT);
@@ -40,7 +42,7 @@ public class JsonAdaptedApplicantTest {
     @Test
     public void toModelType_nullRole_throwsIllegalValueException() {
         JsonAdaptedApplicant applicant = new JsonAdaptedApplicant(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-            null, VALID_STAGE, VALID_TAGS, VALID_NOTE, VALID_NOTE_DATE);
+            null, VALID_STAGE, VALID_TAGS, VALID_NOTE, VALID_NOTE_DATE, VALID_IMG);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Role.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, applicant::toModelType);
     }
@@ -49,7 +51,7 @@ public class JsonAdaptedApplicantTest {
     public void toModelType_nullStage_throwsIllegalValueException() {
         JsonAdaptedApplicant applicant =
                 new JsonAdaptedApplicant(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_ROLE, null,
-                    VALID_TAGS, VALID_NOTE, VALID_NOTE_DATE);
+                    VALID_TAGS, VALID_NOTE, VALID_NOTE_DATE, VALID_IMG);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Stage.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, applicant::toModelType);
     }

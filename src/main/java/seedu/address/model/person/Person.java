@@ -28,12 +28,13 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
     private final Note note;
     private final String noteDate;
+    private final String img;
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-                  Note note, String noteDate) {
+                  Note note, String noteDate, String img) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -42,6 +43,7 @@ public class Person {
         this.tags.addAll(tags);
         this.note = note;
         this.noteDate = handleNoteDateNull(noteDate);
+        this.img = img;
     }
 
     public Name getName() {
@@ -63,8 +65,13 @@ public class Person {
     public Note getNote() {
         return note;
     }
+
     public String getNoteDate() {
         return noteDate;
+    }
+
+    public String getImg() {
+        return img;
     }
 
     /**

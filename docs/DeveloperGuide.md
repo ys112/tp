@@ -166,18 +166,18 @@ the same effect in `Storage` component.
 
 ### \[Developed\] Add applicant feature
 The add applicant feature allows users to add applicants with the following details: `Name`, `Phone`, `Email`,
-`Address`, `Role`, `Tag`, `Note` and `Date`. 
+`Address`, `Role`, `Tag`, `Note` and `Date`.
 
 #### How the feature is implemented
-* The add applicant is designed in mind with how the `Applicant` class extends `Person` class 
+* The add applicant is designed in mind with how the `Applicant` class extends `Person` class
 to maximize the benefits of inheritance.
-* In the add applicant command and parser, the applicant is parse to into `addPerson()` as `Applicant`.  
+* In the add applicant command and parser, the applicant is parse to into `addPerson()` as `Applicant`.
 * In the `JsonAdaptedPerson` class, subtype declarators are used to declare the inheritance relationship between person 
-and applicant, hence it can store and differentiate applicants from person when retrieved.   
+and applicant, hence it can store and differentiate applicants from person when retrieved.
 * There is also an input checker reminding users to not declare `/stage` (if they did) as newly added applicants are 
 assumed to be at the `'initial_application'` stage.
 * Instance check are done for `Applicant` at `personListPanel` to ensure the applicant card gets displayed and
-`JsonSerializableAddressBook` class to ensure the person objects that are `Applicant` are casted accordingly.  
+`JsonSerializableAddressBook` class to ensure the person objects that are `Applicant` are casted accordingly.
 
 
 ![AddApplicantSequenceDiagram.png](images%2FAddApplicantSequenceDiagram.png)
@@ -399,13 +399,13 @@ Priorities: Essential (needed for basic functionality) - `Essential`, Typical (c
     * 3a1. HRConnect shows an error message.
 
       Use case resumes at step 2.
-  
+
 * 3b. The unnecessary fields given.
 
     * 3a1. HRConnect shows an error message.
 
       Use case resumes at step 2.
-  
+
 * 3c. The contact details have been added before.
 
     * 3b1. HRConnect shows an error message.
