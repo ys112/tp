@@ -66,7 +66,7 @@ public class RoleCard extends UiPart<Region> {
         String roleName = role.toString();
         int[] arrayOfCount = logic.updateRoleCount(roleName);
         applicantsCount.setText("Total Number Of Applicants: " + arrayOfCount[0]);
-        initialAssessmentCount.setText("Initial Assessment stage: " + arrayOfCount[1]);
+        initialAssessmentCount.setText("Initial Application stage: " + arrayOfCount[1]);
         technicalAssessmentCount.setText("Technical Assessment stage: " + arrayOfCount[2]);
         interviewCount.setText("Interview stage: " + arrayOfCount[3]);
         decisionCount.setText("Decision & Offer stage: " + arrayOfCount[4]);
