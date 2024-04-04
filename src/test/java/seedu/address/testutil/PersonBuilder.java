@@ -33,6 +33,7 @@ public class PersonBuilder {
     private Set<Tag> tags;
     private Note note;
     private String noteDate;
+    private String img;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -45,6 +46,7 @@ public class PersonBuilder {
         tags = new HashSet<>();
         note = new Note(DEFAULT_NOTE);
         noteDate = DEFAULT_NOTE_DATE;
+        img = null;
     }
 
     /**
@@ -117,7 +119,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, tags, note, noteDate);
+        return new Person(name, phone, email, address, tags, note, noteDate, img);
     }
 
 }

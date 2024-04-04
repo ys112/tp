@@ -43,6 +43,7 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final String note;
     private final String noteDate;
+    private final String img;
 
 
     /**
@@ -52,7 +53,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("note") String note,
-                             @JsonProperty("noteDate") String noteDate) {
+                             @JsonProperty("noteDate") String noteDate, @JsonProperty("img") String img) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -62,6 +63,7 @@ class JsonAdaptedPerson {
         }
         this.note = note;
         this.noteDate = noteDate;
+        this.img = img;
     }
 
     /**
@@ -77,6 +79,7 @@ class JsonAdaptedPerson {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         noteDate = source.getNoteDate();
+        img = source.getImg();
     }
 
     /**
@@ -128,6 +131,9 @@ class JsonAdaptedPerson {
 
         final String modelNoteDate = noteDate;
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelNote, modelNoteDate);
+        final String modelImg = img;
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelNote,
+                modelNoteDate, modelImg);
     }
 }

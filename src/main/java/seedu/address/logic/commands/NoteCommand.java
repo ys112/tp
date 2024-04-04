@@ -60,7 +60,7 @@ public class NoteCommand extends Command {
         Applicant personToEdit = (Applicant) lastShownList.get(index.getZeroBased());
         Applicant editedPerson = new Applicant(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), personToEdit.getRole(), personToEdit.getStage(), personToEdit.getTags(),
-                note, generateDate());
+                note, generateDate(), personToEdit.getImg());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

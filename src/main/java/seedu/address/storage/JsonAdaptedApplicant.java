@@ -21,6 +21,7 @@ class JsonAdaptedApplicant extends JsonAdaptedPerson {
 
     private final String role;
     private final String stage;
+    private final String img;
 
     /**
      * Constructs a {@code JsonAdaptedApplicant} with the given person details.
@@ -30,10 +31,11 @@ class JsonAdaptedApplicant extends JsonAdaptedPerson {
                                 @JsonProperty("email") String email, @JsonProperty("address") String address,
                                 @JsonProperty("role") String role, @JsonProperty("stage") String stage,
                                 @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("note") String note,
-                                @JsonProperty("noteDate") String noteDate) {
-        super(name, phone, email, address, tags, note, noteDate);
+                                @JsonProperty("noteDate") String noteDate, @JsonProperty("img") String img) {
+        super(name, phone, email, address, tags, note, noteDate, img);
         this.role = role;
         this.stage = stage;
+        this.img = img;
     }
 
     /**
@@ -44,6 +46,7 @@ class JsonAdaptedApplicant extends JsonAdaptedPerson {
         super(source);
         this.role = source.getRole().roleName;
         this.stage = source.getStage().stageName;
+        this.img = source.getImg();
     }
 
     /**
@@ -69,7 +72,7 @@ class JsonAdaptedApplicant extends JsonAdaptedPerson {
         final Stage modelStage = new Stage(stage);
 
         return new Applicant(person.getName(), person.getPhone(), person.getEmail(), person.getAddress(),
-            modelRole, modelStage, person.getTags(), person.getNote(), person.getNoteDate());
+            modelRole, modelStage, person.getTags(), person.getNote(), person.getNoteDate(), person.getImg());
     }
 
 }
