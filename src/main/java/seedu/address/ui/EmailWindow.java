@@ -23,10 +23,44 @@ public class EmailWindow extends UiPart<Stage> {
     private static final String INTERVIEW = "Interview";
     private static final String DECISION_AND_OFFER = "Decision and Offer";
 
-    private static final String INITIAL_TEMPLATE = "Initial Application Template Placeholder";
-    private static final String TA_TEMPLATE = "Technical Assessment Template Placeholder";
-    private static final String INTERVIEW_TEMPLATE = "Interview Template Placeholder";
-    private static final String DO_TEMPLATE = "Decision and Offer Template Placeholder";
+    private static final String INITIAL_TEMPLATE = "Dear {Applicant Name}\n" +
+                "We really appreciate your application to the following role: {role_name}!\n" +
+                "We're excited that you have taken your first steps towards exploring a career at our company!\n" +
+                "Our talent acquisition team will be reviewing your profile and if you are suitable for the position, they will reach out to you directly via email for the next steps of your application process.\n" +
+                "Thank you and we'll be in touch soon!\n" +
+                "Warm regards,\n" +
+                "{organization} Talent Acquisition Team\n";
+
+    private static final String TA_TEMPLATE = "Dear {applicant_name},\n" +
+                "Congratulations on moving forward to the next step of your application process!\n" +
+                "As part of this process, you will be required to complete a technical assessment.\n" +
+                "Here are the details for the technical assessment:\n" +
+                "1.\tYou may access the test via this link {Link}.\n" +
+                "2.\tPlease complete the test by {date }.\n" +
+                "3.\tThis is a timed test, and you will have 60 minutes to complete the assessment.\n" +
+                "4.\tPlease ensure you have a stable internet connection.\n" +
+                "5.\tPlease ensure that you are in a distraction-free environment and do not receive external assistance for the duration of the assessment.\n" +
+                "6.\tYour test will be screened for plagiarism. In the event your assessment is flagged, it will result in the forfeiture of your assessment.\n" +
+                "We will review your assessment and get in touch with you regarding the next steps of your application within 5 business days of the deadline.\n" +
+                "If you have any questions, please feel free to reply to this email.\n" +
+                "Best Regards,\n" +
+                "{Organization} Talent Acquisition Team\n";
+
+    private static final String INTERVIEW_TEMPLATE = "Dear {applicant_name},\n" + //
+                "Great news! We are moving forward to the interview stage of your application!\n" +
+                "Please let us know your availability for the next two weeks so that we may schedule an interview with you.\n" +
+                "Please reach out to us if you have any questions.\n" +
+                "Best regards,\n" + //
+                "{organization} Talent Acquisition Team\n";
+
+    private static final String DO_TEMPLATE = "Dear {applicant_name},\n" +
+                "Congratulations! We are please to inform you that we will be offering you the internship position: {role_name}\n" +
+                "Please let us know by {date} if you would like to take on the offer so that we will be able to make the necessary arrangements.\n" +
+                "The official hours are 9am to 6pm from Monday to Friday.\n" +
+                "Do feel free to reply to this email should you have any questions.\n" +
+                "We look forward to hearing back from you!n" +
+                "Best regards,\n" +
+                "{organization} Talent Acquisition Team\n";
 
     private static final String INITIAL_MESSAGE = "Initial Application Email Template";
     private static final String TA_MESSAGE = "Technical Assessment Email Template";
@@ -79,7 +113,7 @@ public class EmailWindow extends UiPart<Stage> {
 
         } else {
             this.emailTemplateMessage = DO_TEMPLATE;
-            this.emailTemplateMessage = DO_MESSAGE;
+            this.message = DO_MESSAGE;
         }
 
         emailTemplate.setText(message);
