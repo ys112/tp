@@ -175,7 +175,7 @@ Format: `export <FileName>`
 * Achieve an additional layer of organisation to properly arrange contacts
 
 Examples:
-*  `export saved_contancts` will save contacts from the current page into an external JSON file named "saved_contacts.txt".
+*  `export saved_contacts` will save contacts from the current page into an external JSON file named "saved_contacts.txt".
 
 ### Importing applicants : `import`
 Using `import` will open a dialog for user to select the json file to import.
