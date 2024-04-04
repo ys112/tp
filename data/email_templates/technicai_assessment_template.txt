@@ -1,0 +1,14 @@
+Dear {applicant_name},
+Congratulations on moving forward to the next step of your application process!
+As part of this process, you will be required to complete a technical assessment.
+Here are the details for the technical assessment:
+1.	You may access the test via this link {Link}.
+2.	Please complete the test by {date – Maybe can automatically make it 1 week from sending}.
+3.	This is a timed test, and you will have 60 minutes to complete the assessment.
+4.	Please ensure you have a stable internet connection.
+5.	Please ensure that you are in a distraction-free environment and do not receive external assistance for the duration of the assessment.
+6.	Your test will be screened for plagiarism. In the event your assessment is flagged, it will result in the forfeiture of your assessment.
+We will review your assessment and get in touch with you regarding the next steps of your application within 5 business days of the deadline.
+If you have any questions, please feel free to reply to this email.
+Best Regards,
+{Organization} Talent Acquisition Team

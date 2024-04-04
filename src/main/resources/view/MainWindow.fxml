@@ -44,6 +44,12 @@
                         <MenuItem mnemonicParsing="false" onAction="#handleShowAll"
                                   text="Show All" />
                     </Menu>
+                    <Menu mnemonicParsing="false" text="Email">
+                        <MenuItem fx:id="emailTemplateItem" mnemonicParsing="false" onAction="#handleInitialTemplate" text="Initial Application Email" />
+                        <MenuItem fx:id="emailTemplateItem" mnemonicParsing="false" onAction="#handleTechnialAssessmentTemplate" text="Technical Assessment Email" />
+                        <MenuItem fx:id="emailTemplateItem" mnemonicParsing="false" onAction="#handleInterviewTemplate" text="Interview Email" />
+                        <MenuItem fx:id="emailTemplateItem" mnemonicParsing="false" onAction="#handleDecisionAndOfferTemplate" text="Decision and Offer Email" />
+                    </Menu>
                 </MenuBar>
                 <HBox VBox.vgrow="ALWAYS">
                     <VBox>

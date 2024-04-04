@@ -47,12 +47,16 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private ImportWindow importWindow;
+    private EmailWindow emailTemplateWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private MenuItem emailTemplateItem;
 
     @FXML
     private Button refreshButton;
@@ -107,6 +111,7 @@ public class MainWindow extends UiPart<Stage> {
 
         helpWindow = new HelpWindow();
         importWindow = new ImportWindow();
+        emailTemplateWindow = new EmailWindow();
 
         // Configure import window to be a modal (inspired by AI)
         importWindow.getRoot().initModality(Modality.APPLICATION_MODAL);
@@ -193,6 +198,67 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.focus();
         }
     }
+
+    /**
+     * Opens the email window and sets it to the initial application email type
+     */
+    @FXML
+    public void handleInitialTemplate() {
+
+        emailTemplateWindow.setTemplate("Initial");
+
+        if (!emailTemplateWindow.isShowing()) {
+            emailTemplateWindow.show();
+        } else {
+            emailTemplateWindow.focus();
+        }
+    }
+
+    /**
+     * Opens the email window and sets it to the technical assessment email type
+     */
+    @FXML
+    public void handleTechnialAssessmentTemplate() {
+
+        emailTemplateWindow.setTemplate("Technical Assessment");
+
+        if (!emailTemplateWindow.isShowing()) {
+            emailTemplateWindow.show();
+        } else {
+            emailTemplateWindow.focus();
+        }
+    }
+
+    /**
+     * Opens the email window and sets it to the interview email type
+     */
+    @FXML
+    public void handleInterviewTemplate() {
+
+        emailTemplateWindow.setTemplate("Interview");
+
+        if (!emailTemplateWindow.isShowing()) {
+            emailTemplateWindow.show();
+        } else {
+            emailTemplateWindow.focus();
+        }
+    }
+
+    /**
+     * Opens the email window and sets it to the decision and offer email type
+     */
+    @FXML
+    public void handleDecisionAndOfferTemplate() {
+
+        emailTemplateWindow.setTemplate("Decision and Offer");
+
+        if (!emailTemplateWindow.isShowing()) {
+            emailTemplateWindow.show();
+        } else {
+            emailTemplateWindow.focus();
+        }
+    }
+
     /**
      * Opens the import window or focuses on it if it's already opened.
      */
