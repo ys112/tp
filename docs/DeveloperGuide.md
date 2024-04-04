@@ -186,6 +186,11 @@ assumed to be at the `'Initial Application'` stage.
 ### \[Developed\] Edit applicant feature
 The `edit` command gives users the ability to edit the applicants' details. The details that can be edited include `Name`, `Phone`, `Email`, `Address`, `Stage`, `Role`, `Note` and `Tag`. Note that at least one field has to be chosen.
 
+#### How the feature is implemented
+* The `edit` is implemented using the `EditApplicantCommand`, `EditApplicantDescriptor` and `EditApplicantCommandParser` classes
+* The `edit` receives an index of the applicant to be edited and an EditApplicantDescriptor class which consists of the updated fields of the applicant.
+* Note that the checks will be done on the fields that the user want to input to ensure is valid. For example, `Stage` can only be one of the four forms `Initial Application`, `Technical Assessment`, `Interview`, `Decision & Offer`. Hence, if user was to input `edit 1 /stage WaitListed`, this will not be possible and the applicant will not be edited.
+
 ![EditSequenceDiagram](images/EditSequenceDiagram.png)
 
 ### \[Developed\] Note feature
