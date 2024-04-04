@@ -72,7 +72,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `RoleListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -175,7 +175,7 @@ to maximize the benefits of inheritance.
 * In the `JsonAdaptedPerson` class, subtype declarators are used to declare the inheritance relationship between person 
 and applicant, hence it can store and differentiate applicants from person when retrieved.
 * There is also an input checker reminding users to not declare `/stage` (if they did) as newly added applicants are 
-assumed to be at the `'initial_application'` stage.
+assumed to be at the `'Initial Application'` stage.
 * Instance check are done for `Applicant` at `personListPanel` to ensure the applicant card gets displayed and
 `JsonSerializableAddressBook` class to ensure the person objects that are `Applicant` are casted accordingly.
 
@@ -185,6 +185,12 @@ assumed to be at the `'initial_application'` stage.
 
 ### \[Developed\] Edit applicant feature
 The `edit` command gives users the ability to edit the applicants' details. The details that can be edited include `Name`, `Phone`, `Email`, `Address`, `Stage`, `Role`, `Note` and `Tag`. Note that at least one field has to be chosen.
+
+#### How the feature is implemented
+* The `edit` is implemented using the `EditApplicantCommand`, `EditApplicantDescriptor` and `EditApplicantCommandParser` classes.
+* The `EditApplicantCommand` receives an index of the applicant to be edited and an EditApplicantDescriptor class which consists of the updated fields of the applicant.
+* Note that checks will be done on the fields that the user want to input to ensure is valid. For example, `Stage` can only be one of the four forms `Initial Application`, `Technical Assessment`, `Interview`, `Decision & Offer`. Hence, if user was to input `edit 1 /stage WaitListed`, this will not be possible and the applicant will not be edited.
+* Similarly, a check will be done to ensure that the index is valid.
 
 ![EditSequenceDiagram](images/EditSequenceDiagram.png)
 
