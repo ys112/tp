@@ -19,7 +19,7 @@ By using commands, HR officers can efficiently organize contacts for their recru
 
 1. Copy the file to the folder you want to use as the _home folder_ for your HRConnect.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar hrconnect.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar HRConnect.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
