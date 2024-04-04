@@ -185,6 +185,7 @@ public class ParserUtil {
      */
     public static String parseFileName(String fileName) throws ParseException {
         requireNonNull(fileName);
-        return fileName;
+        String trimmedFileName = fileName.trim();
+        return trimmedFileName;
     }
 }
