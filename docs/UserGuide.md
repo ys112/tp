@@ -15,11 +15,11 @@ By using commands, HR officers can efficiently organize contacts for their recru
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `hrconnect.jar` from [here](https://github.com/AY2324S2-CS2103-F15-3/tp/releases).
+1. Download the latest `HRConnect.jar` from [here](https://github.com/AY2324S2-CS2103-F15-3/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your HRConnect.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar hrconnect.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar HRConnect.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -28,7 +28,7 @@ By using commands, HR officers can efficiently organize contacts for their recru
 
    * `list` : Lists all contacts.
 
-   * `add_applicant /name John Doe /phone 98765432 /email johnd@example.com /address 311, Clementi Ave 2, #02-25 /role SWE /tag friends` : Adds a contact named `John Doe` to the HRConnect.
+   * `add /name John Doe /phone 98765432 /email johnd@example.com /address 311, Clementi Ave 2, #02-25 /role SWE /tag friends` : Adds a contact named `John Doe` to the HRConnect.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -58,7 +58,7 @@ By using commands, HR officers can efficiently organize contacts for their recru
 * Items in square brackets are optional.<br>
   e.g `/name NAME [/tag TAG]` can be used as `/name John Doe /tag friend` or as `/name John Doe`.
 
-* Parameters can be in any order for `add_applicant` and `edit` commands.<br>
+* Parameters can be in any order for `add` and `edit` commands.<br>
   e.g. if the command specifies `/name NAME /phone PHONE_NUMBER`, `/phone PHONE_NUMBER /name NAME` is also acceptable.
 
 * Parameters must be in strict order for `filter`, `note`, `export`, and `tag` command.
@@ -75,18 +75,18 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### Add an applicant: `add_applicant`
+### Add an applicant: `add`
 
 Adds an applicant to HRConnect.
 
-Format: `add_applicant /name Name /phone Phone_Number /email Email /address Address /role Role [/tag Tag]…​`
+Format: `add /name Name /phone Phone_Number /email Email /address Address /role Role [/note Note] [/tag Tag]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 An applicant can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add_applicant /name John Doe /phone 98765432 /email johnDoe@gmail.com /address John street, block 123, #01-01 /role CEO /tag friend`
+* `add /name John Doe /phone 98765432 /email johnDoe@gmail.com /address John street, block 123, #01-01 /role SWE /note Likes to swim`
 
 ### Listing all applicants : `list`
 
@@ -144,18 +144,6 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd applicant in the HRConnect.
 * `find Betsy` followed by `delete 1` deletes the 1st applicant in the results of the `find` command.
 
-### Adding tags to applicants: `/tag`
-
-Attaches specific tags to applicants for easy filtering later
-
-Format: `/tag <ApplicationID> <Tag>`
-
-* Maps `<Tag>` to the `<ApplicationID>`
-* `ApplicationID` must be a valid ID currently saved in HRConnect
-
-Examples:
-* `/tag 123456 <initial_application>` maps the tag `<initial_application>` to applicant 123456
-
 ### Filtering applicants by tag : `/filter`
 Filter through contact list based on what role or stage the applicant is in.
 Format: `/filter <Tag>`
@@ -186,6 +174,17 @@ Format: /export
 
 Examples:
 *  `/export` will append contacts from that page onto another external JSON file.
+
+### Importing applicants : `import`
+Using `import` will open a dialog for user to select the json file to import.
+The json file must be exported from HRConnect for it to be recognised.
+
+### Importing applicants (CLI way) : `import_file Filepath`
+Using `import_file` with valid Filepath pointing to the json file will directly import applicants without the dialog.
+The json file must be exported from HRConnect for it to be recognised.
+
+Example: `import_file C:\tp\data\interesting.json` will import applicants from the interesting.json
+in the specified directory.
 
 ### Clearing all entries : `clear`
 
@@ -218,7 +217,7 @@ Furthermore, certain edits can cause the HRConnect to behave in unexpected ways 
 
 Action | Format, Examples
 --------|------------------
-**Add_applicant** | `add_applicant /name Name /phone Phone_Number /email Email /address Address /role Role [/tag Tag]…​` <br> e.g., `add_applicant /name James Chow /phone 96622612 /email james@example.com /address 321, Clementi Ave 2, #02-25 /role Junior Engineer`
+**Add** | `add /name Name /phone Phone_Number /email Email /address Address /role Role [/note Note] [/tag Tag]…​` <br> e.g., `add /name James Chow /phone 96622612 /email james@example.com /address 321, Clementi Ave 2, #02-25 /role Junior Engineer /note Likes to swim`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit Index [/name Name] [/phone Phone] [/email Email] [/address Address] [/stage Stage] [/role Role] [/note Note] [/tag Tag]…​`<br> e.g., `edit 2 /stage waitlisted`
@@ -229,3 +228,5 @@ Action | Format, Examples
 **Filter** | `/filter <Tag>`  <br> e.g., `/filter initial_application`
 **Note** | `note <ApplicationId> /note <Note>`  <br> e.g., `note 1 /note S/Pass Holder`
 **Export** | `/export` <br> e.g., `/export`
+**Import** | `import`
+**Import (CLI)** | `import_file Filepath` <br> e.g., `import_file C:\tp\data\interesting.json`

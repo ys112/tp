@@ -372,6 +372,12 @@
     -fx-padding: 10px; /* Padding inside the content area */
 }
 
+.titled-pane .content .label {
+    -fx-text-fill: #d8d8d8;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 11pt;
+}
+
 .titled-pane .content Text {
     -fx-fill: #d8d8d8;
     -fx-font-size: 14px;

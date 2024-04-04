@@ -1,5 +1,6 @@
 package seedu.address.model;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -11,12 +12,15 @@ import static seedu.address.testutil.TypicalPersons.BENSON;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.TypicalApplicants;
 
 public class ModelManagerTest {
 
@@ -91,6 +95,93 @@ public class ModelManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void filterPersonsByButton_allButtonsUnselected_test() {
+        List<String> selectedStages = Collections.emptyList();
+        modelManager.addPerson(TypicalApplicants.CARL_APPLICANT);
+        modelManager.addPerson(TypicalApplicants.DANIEL_APPLICANT);
+        modelManager.addPerson(TypicalApplicants.ELLE_APPLICANT);
+        modelManager.addPerson(TypicalApplicants.FIONA_APPLICANT);
+
+        modelManager.filterPersonsByButton(selectedStages);
+
+        assertTrue(modelManager.getFilteredPersonList().size() == 4);
+    }
+
+    @Test
+    public void filterPersonsByButton_someButtonsSelected_test() {
+        List<String> selectedStages = Arrays.asList("Initial Application", "Technical Assessment");
+        modelManager.addPerson(TypicalApplicants.CARL_APPLICANT);
+        modelManager.addPerson(TypicalApplicants.DANIEL_APPLICANT);
+        modelManager.addPerson(TypicalApplicants.ELLE_APPLICANT);
+        modelManager.addPerson(TypicalApplicants.FIONA_APPLICANT);
+
+        modelManager.filterPersonsByButton(selectedStages);
+
+        assertTrue(modelManager.getFilteredPersonList().size() == 2);
+    }
+
+    @Test
+    public void filterPersonsByButton_allButtonsSelected_test() {
+        List<String> selectedStages = Collections.emptyList();
+        modelManager.addPerson(TypicalApplicants.CARL_APPLICANT);
+        modelManager.addPerson(TypicalApplicants.DANIEL_APPLICANT);
+        modelManager.addPerson(TypicalApplicants.ELLE_APPLICANT);
+        modelManager.addPerson(TypicalApplicants.FIONA_APPLICANT);
+
+        modelManager.filterPersonsByButton(selectedStages);
+
+        assertTrue(modelManager.getFilteredPersonList().size() == 4);
+    }
+
+    @Test
+    public void updateRoleCount_initialApplication_test() {
+        modelManager.addPerson(TypicalApplicants.BENSON_APPLICANT);
+        modelManager.addPerson(TypicalApplicants.ALICE_APPLICANT);
+        modelManager.addPerson(TypicalApplicants.CARL_APPLICANT);
+        modelManager.addPerson(TypicalApplicants.FIONA_APPLICANT);
+
+        int[] counts = modelManager.updateRoleCount("SWE");
+
+        assertArrayEquals(new int[]{2, 2, 0, 0, 0}, counts);
+    }
+
+    @Test
+    public void updateRoleCount_technicalAssessment_test() {
+        modelManager.addPerson(TypicalApplicants.BENSON_APPLICANT);
+        modelManager.addPerson(TypicalApplicants.ALICE_APPLICANT);
+        modelManager.addPerson(TypicalApplicants.CARL_APPLICANT);
+        modelManager.addPerson(TypicalApplicants.DANIEL_APPLICANT);
+
+        int[] counts = modelManager.updateRoleCount("UX designer");
+
+        assertArrayEquals(new int[]{2, 0, 2, 0, 0}, counts);
+    }
+
+    @Test
+    public void updateRoleCount_interview_test() {
+        modelManager.addPerson(TypicalApplicants.BENSON_APPLICANT);
+        modelManager.addPerson(TypicalApplicants.ALICE_APPLICANT);
+        modelManager.addPerson(TypicalApplicants.CARL_APPLICANT);
+        modelManager.addPerson(TypicalApplicants.ELLE_APPLICANT);
+
+        int[] counts = modelManager.updateRoleCount("Backend Engineer");
+
+        assertArrayEquals(new int[]{1, 0, 0, 1, 0}, counts);
+    }
+
+    @Test
+    public void updateRoleCount_decisionAndOffer_test() {
+        modelManager.addPerson(TypicalApplicants.BENSON_APPLICANT);
+        modelManager.addPerson(TypicalApplicants.ALICE_APPLICANT);
+        modelManager.addPerson(TypicalApplicants.CARL_APPLICANT);
+        modelManager.addPerson(TypicalApplicants.GEORGE_APPLICANT);
+
+        int[] counts = modelManager.updateRoleCount("DevOps Engineer");
+
+        assertArrayEquals(new int[]{1, 0, 0, 0, 1}, counts);
     }
 
     @Test

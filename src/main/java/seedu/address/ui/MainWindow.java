@@ -10,7 +10,6 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
@@ -320,7 +319,7 @@ public class MainWindow extends UiPart<Stage> {
         technicalAssessmentCount.set(logic.updateCount("Technical Assessment"));
         interviewCount.set(logic.updateCount("Interview"));
         decisionAndOfferCount.set(logic.updateCount("Decision & Offer"));
-        initialAssessmentCountLabel.textProperty().bind(Bindings.concat("Initial Assessment (",
+        initialAssessmentCountLabel.textProperty().bind(Bindings.concat("Initial Application (",
                 initialAssessmentCount, ")"));
         technicalAssessmentCountLabel.textProperty().bind(Bindings.concat("Technical Assessment (",
                 technicalAssessmentCount, ")"));
