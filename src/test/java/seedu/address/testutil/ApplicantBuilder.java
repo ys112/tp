@@ -13,9 +13,11 @@ import seedu.address.model.person.Person;
 public class ApplicantBuilder extends PersonBuilder {
 
     public static final String DEFAULT_ROLE = "SWE";
-    public static final String DEFAULT_STAGE = "initial_application";
+    public static final String DEFAULT_STAGE = "Initial Application";
     private Role role;
     private Stage stage;
+    private String img;
+
     /**
      * Creates a {@code ApplicantBuilder} with the default details.
      */
@@ -23,6 +25,7 @@ public class ApplicantBuilder extends PersonBuilder {
         super();
         role = new Role(DEFAULT_ROLE);
         stage = new Stage(DEFAULT_STAGE);
+        img = null;
     }
 
     /**
@@ -62,7 +65,7 @@ public class ApplicantBuilder extends PersonBuilder {
     @Override
     public Applicant build() {
         Person p = super.build();
-        return new Applicant(p, role, stage);
+        return new Applicant(p, role, stage, img);
     }
 
 }

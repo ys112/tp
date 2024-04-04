@@ -51,7 +51,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Note note = getOptionalNoteParameter(argMultimap);
         String noteWithDate = getOptionalNoteDateParameter(argMultimap);
 
-        Person person = new Person(name, phone, email, address, tagList, note, noteWithDate);
+        Person person = new Person(name, phone, email, address, tagList, note, noteWithDate, null);
 
         return new AddCommand(person);
     }

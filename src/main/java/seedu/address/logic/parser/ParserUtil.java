@@ -119,7 +119,10 @@ public class ParserUtil {
 
     public static Stage parseStage(String stage) throws ParseException {
         requireNonNull(stage);
-        String trimmedStage = stage;
+        String trimmedStage = stage.trim();
+        if (!Stage.isValidStage(trimmedStage)) {
+            throw new ParseException(Stage.MESSAGE_CONSTRAINTS);
+        }
         return new Stage(trimmedStage);
     }
 
@@ -182,6 +185,7 @@ public class ParserUtil {
      */
     public static String parseFileName(String fileName) throws ParseException {
         requireNonNull(fileName);
-        return fileName;
+        String trimmedFileName = fileName.trim();
+        return trimmedFileName;
     }
 }

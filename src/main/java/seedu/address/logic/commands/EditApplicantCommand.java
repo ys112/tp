@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -42,7 +41,7 @@ public class EditApplicantCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
     public static final String DEFAULT_ROLE = "SWE";
-    public static final String DEFAULT_STAGE = "initial_application";
+    public static final String DEFAULT_STAGE = "Initial Application";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the details of the "
@@ -103,7 +102,8 @@ public class EditApplicantCommand extends Command {
         } else {
             applicantToEdit = new Applicant((Person) personToEdit,
                     editApplicantDescriptor.getRole().orElse(new Role(DEFAULT_ROLE)),
-                    editApplicantDescriptor.getStage().orElse(new Stage(DEFAULT_STAGE)));
+                    editApplicantDescriptor.getStage().orElse(new Stage(DEFAULT_STAGE)),
+                    editApplicantDescriptor.getImg().orElse(""));
         }
         Applicant editedApplicant = createEditedApplicant(applicantToEdit, editApplicantDescriptor);
 
@@ -112,7 +112,10 @@ public class EditApplicantCommand extends Command {
         }
 
         model.setPerson(personToEdit, editedApplicant);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateCount("Decision & Offer");
+        model.updateCount("Initial Application");
+        model.updateCount("Interview");
+        model.updateCount("Technical Assessment");
         return new CommandResult(String.format(MESSAGE_EDIT_APPLICANT_SUCCESS,
                 Messages.format(editedApplicant)));
     }
@@ -134,9 +137,11 @@ public class EditApplicantCommand extends Command {
         Stage updatedStage = editApplicantDescriptor.getStage().orElse(applicantToEdit.getStage());
         Set<Tag> updatedTags = editApplicantDescriptor.getTags().orElse(applicantToEdit.getTags());
         Note updatedNote = editApplicantDescriptor.getNote().orElse(applicantToEdit.getNote());
+        String updatedImg = editApplicantDescriptor.getImg().orElse(applicantToEdit.getImg());
+
         return new Applicant(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedRole, updatedStage, updatedTags,
-                updatedNote, editApplicantDescriptor.noteDate);
+                updatedRole, updatedStage, updatedTags, updatedNote,
+                editApplicantDescriptor.noteDate, updatedImg);
     }
 
 
@@ -178,6 +183,7 @@ public class EditApplicantCommand extends Command {
         private Set<Tag> tags;
         private Note note;
         private String noteDate;
+        private String img;
 
         public EditApplicantDescriptor() {}
 
@@ -263,6 +269,14 @@ public class EditApplicantCommand extends Command {
 
         public void setNoteDate(String noteDate) {
             this.noteDate = noteDate;
+        }
+
+        public Optional<String> getImg() {
+            return Optional.ofNullable(img);
+        }
+
+        public void setImg(String img) {
+            this.img = img;
         }
 
         /**

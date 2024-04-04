@@ -104,7 +104,7 @@ public class EditCommand extends Command {
         Note updatedNote = editPersonDescriptor.getNote().orElse(personToEdit.getNote());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
-                updatedNote, editPersonDescriptor.noteDate);
+                updatedNote, editPersonDescriptor.noteDate, editPersonDescriptor.img);
     }
 
     @Override
@@ -143,6 +143,7 @@ public class EditCommand extends Command {
         private Set<Tag> tags;
         private Note note;
         private String noteDate;
+        private String img;
 
         public EditPersonDescriptor() {}
 
@@ -158,6 +159,7 @@ public class EditCommand extends Command {
             setTags(toCopy.tags);
             setNote(toCopy.note);
             setNoteDate(toCopy.noteDate);
+            setImg(toCopy.img);
         }
 
         /**
@@ -209,6 +211,10 @@ public class EditCommand extends Command {
 
         public void setNoteDate(String noteDate) {
             this.noteDate = noteDate;
+        }
+
+        public void setImg(String img) {
+            this.img = img;
         }
 
         /**

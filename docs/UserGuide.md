@@ -98,7 +98,7 @@ Format: `list`
 
 Edits an existing applicant in the HRConnect.
 
-Format: `edit Index [/name Name] [/phone Phone] [/email Email] [/address Address] [/stage Stage] 
+Format: `edit Index [/name Name] [/phone Phone] [/email Email] [/address Address] [/stage Stage]
 [/note Note] [/role Role] [/tag Tag]…​`
 
 * Edits the applicant at the specified `Index`. The index refers to the index number shown in the displayed applicant list. The index **must be a positive integer** 1, 2, 3, …​

@@ -2,15 +2,24 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.ui.MainWindow.TOTAL_NUMBER_OF_STAGES;
 
 import java.nio.file.Path;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.applicant.Applicant;
+import seedu.address.model.applicant.Role;
+import seedu.address.model.applicant.Stage;
 import seedu.address.model.person.Person;
 
 /**
@@ -22,6 +31,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final ObservableList<Role> filteredRoles;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +44,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredRoles = FXCollections.observableArrayList();
     }
 
     public ModelManager() {
@@ -101,22 +112,39 @@ public class ModelManager implements Model {
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        //updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
     }
 
     //=========== Filtered Person List Accessors =============================================================
 
+
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Computes the filtered roles based on the filtered persons.
+     * @return A filtered list containing the filtered roles.
      */
+    private ObservableList<Role> computeFilteredRoles() {
+        Set<Role> uniqueRoles = new HashSet<>();
+        for (Person person : this.filteredPersons) {
+            if (person instanceof Applicant) {
+                Applicant applicant = (Applicant) person;
+                Role role = applicant.getRole();
+                // Check if the role is unique, if so, add it to the set
+                if (!uniqueRoles.contains(role)) {
+                    uniqueRoles.add(role);
+                }
+            }
+        }
+        ObservableList<Role> observableRoles = FXCollections.observableArrayList(uniqueRoles);
+        return observableRoles;
+    }
+
+
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
@@ -126,6 +154,40 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<Role> getFilteredRoleList() {
+        return computeFilteredRoles();
+    }
+
+
+    @Override
+    public void addFilteredPersonsListener(ListChangeListener<Person> listener) {
+        filteredPersons.addListener(listener);
+    }
+
+
+
+    /**
+     * Updates the (currently filtered) person list with an additional predicate.
+     * This method filters from the current filtered list instead of the original list.
+     * @param additionalPredicate Additional predicate to apply to the current filtered list.
+     */
+    public void filterPersonList(Predicate<Person> additionalPredicate) {
+        requireNonNull(additionalPredicate);
+        // Get the current predicate
+        Predicate<? super Person> currentPredicate = filteredPersons.getPredicate();
+        // Combine the existing predicate with the additional predicate
+        Predicate<? super Person> combinedPredicate;
+        if (currentPredicate != null) {
+            combinedPredicate = p -> currentPredicate.test(p) && additionalPredicate.test(p);
+        } else {
+            combinedPredicate = additionalPredicate;
+        }
+
+        // Update the filtered person list with the combined predicate
+        filteredPersons.setPredicate(combinedPredicate);
     }
 
     @Override
@@ -145,4 +207,80 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
 
+    /**
+     * Filters the list of applicants based on the stages selected on side panel.
+     * If the number of selected stages is equal to the total number of stages or if no stages are selected,
+     * all applicants will be showed.
+     * Otherwise, only persons whose stage matches any of the selected stages are included.
+     */
+    public void filterPersonsByButton(List<String> selectedStages) {
+        Predicate<Person> stagePredicate = person -> {
+            if (selectedStages.size() == TOTAL_NUMBER_OF_STAGES || selectedStages.isEmpty()) {
+                return true;
+            }
+            Applicant applicant = (Applicant) person;
+            return selectedStages.contains(applicant.getStage().stageName);
+        };
+
+        // Update the filtered person list based on the stagePredicate
+        updateFilteredPersonList(stagePredicate);
+    }
+
+    /**
+     * Updates the count of persons at a specific stage.
+     * @param stageName The name of the stage for which the count needs to be updated.
+     * @return The count of persons at the specified stage in the filteredPersons.
+     */
+
+    public int updateCount(String stageName) {
+        int count = 0;
+        for (Person person : this.filteredPersons) {
+            if (person instanceof Applicant) {
+                Applicant applicant = (Applicant) person;
+                if (applicant.getStage().equals(new Stage(stageName))) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+    /**
+     * Updates the count of applicants in each stage for a given role.
+     * @param roleName The name of the role for which the counts are updated.
+     * @return An array of integers representing the count of applicants in each stage.
+     * @throws AssertionError If an unexpected stage is encountered
+     */
+    public int[] updateRoleCount(String roleName) {
+        computeFilteredRoles();
+        int[] counts = new int[1 + TOTAL_NUMBER_OF_STAGES];
+        counts[0] = 0;
+        for (int i = 1; i <= TOTAL_NUMBER_OF_STAGES; i++) {
+            counts[i] = 0;
+        }
+        for (Person person : this.filteredPersons) {
+            if (person instanceof Applicant) {
+                Applicant applicant = (Applicant) person;
+                if (applicant.getRole().equals(new Role(roleName))) {
+                    counts[0]++;
+                    if (applicant.getStage().equals(new Stage("Initial Application"))) {
+                        counts[1]++;
+                    } else if (applicant.getStage().equals(new Stage("Technical Assessment"))) {
+                        counts[2]++;
+                    } else if (applicant.getStage().equals(new Stage("Interview"))) {
+                        counts[3]++;
+                    } else if (applicant.getStage().equals(new Stage("Decision & Offer"))) {
+                        counts[4]++;
+                    } else {
+                        throw new AssertionError("Unexpected stage encountered: "
+                                + applicant.getStage());
+                    }
+                }
+            }
+        }
+        return counts;
+
+    }
 }
+
+
