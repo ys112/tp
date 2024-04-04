@@ -9,6 +9,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.applicant.Applicant;
 import seedu.address.model.applicant.Role;
 import seedu.address.model.applicant.Stage;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 
 
@@ -62,6 +63,10 @@ class JsonAdaptedApplicant extends JsonAdaptedPerson {
         if (stage == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Stage.class.getSimpleName()));
         }
+        if (!Stage.isValidStage(stage)) {
+            throw new IllegalValueException(Stage.MESSAGE_CONSTRAINTS);
+        }
+
         final Stage modelStage = new Stage(stage);
 
         return new Applicant(person.getName(), person.getPhone(), person.getEmail(), person.getAddress(),
