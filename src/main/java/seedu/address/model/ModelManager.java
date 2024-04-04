@@ -12,7 +12,6 @@ import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -160,13 +159,6 @@ public class ModelManager implements Model {
     public ObservableList<Role> getFilteredRoleList() {
         return computeFilteredRoles();
     }
-
-
-    @Override
-    public void addFilteredPersonsListener(ListChangeListener<Person> listener) {
-        filteredPersons.addListener(listener);
-    }
-
 
 
     /**
