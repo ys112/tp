@@ -45,7 +45,7 @@ public class PersonListPanel extends UiPart<Region> {
     private static final String INFO_DIALOG_TEXT = "Image Uploaded";
     private static final String ERROR_DIALOG_TEXT = "Image Upload Failed";
 
-    private static final String ADDRESS_BOOK_DIR = "data/addressbook.json";
+    private static final String ADDRESS_BOOK_DIR = "data/HRConnect.json";
     private static final String DATA_PATH_NAME = "data";
     private static final String JSON_PERSON_OBJ_NAME = "persons";
     private static final String JSON_IMG_OBJ_NAME = "img";
