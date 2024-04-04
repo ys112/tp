@@ -167,15 +167,15 @@ Format: `note <ApplicationId> /note <Note>`
 Examples:
 * `note 1 /note S/Pass Holder` will add the note “S/Pass Holder” to the applicant identified by ID 1.
 
-### Exporting applicants contacts : `/export`
+### Exporting applicants contacts : `export`
 Use filter or find to isolate the applicants that match the desired stage or role or name. Export will then extract those applicants' contacts into an external JSON file.
 
-Format: `/export <FileName>`
+Format: `export <FileName>`
 
 * Achieve an additional layer of organisation to properly arrange contacts
 
 Examples:
-*  `/export saved_contancts` will save contacts from the current page into an external JSON file named "saved_contacts.txt".
+*  `export saved_contancts` will save contacts from the current page into an external JSON file named "saved_contacts.txt".
 
 ### Importing applicants : `import`
 Using `import` will open a dialog for user to select the json file to import.
