@@ -31,7 +31,7 @@ public class SampleDataUtil {
                 new Stage("Technical Assessment"), getTagSet("friends"), new Note(""), ""),
             new Applicant(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                     new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), new Role("SWE"),
-                new Stage("Initial Application"), getTagSet("colleagues", "friends"),
+                new Stage("Interview"), getTagSet("colleagues", "friends"),
                 new Note(""), ""),
             new Applicant(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                     new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), new Role("SWE"),
