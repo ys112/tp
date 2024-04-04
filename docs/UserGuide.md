@@ -15,7 +15,7 @@ By using commands, HR officers can efficiently organize contacts for their recru
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `hrconnect.jar` from [here](https://github.com/AY2324S2-CS2103-F15-3/tp/releases).
+1. Download the latest `HRConnect.jar` from [here](https://github.com/AY2324S2-CS2103-F15-3/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your HRConnect.
 
@@ -28,7 +28,7 @@ By using commands, HR officers can efficiently organize contacts for their recru
 
    * `list` : Lists all contacts.
 
-   * `add_applicant /name John Doe /phone 98765432 /email johnd@example.com /address 311, Clementi Ave 2, #02-25 /role SWE /tag friends` : Adds a contact named `John Doe` to the HRConnect.
+   * `add /name John Doe /phone 98765432 /email johnd@example.com /address 311, Clementi Ave 2, #02-25 /role SWE /tag friends` : Adds a contact named `John Doe` to the HRConnect.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -58,7 +58,7 @@ By using commands, HR officers can efficiently organize contacts for their recru
 * Items in square brackets are optional.<br>
   e.g `/name NAME [/tag TAG]` can be used as `/name John Doe /tag friend` or as `/name John Doe`.
 
-* Parameters can be in any order for `add_applicant` and `edit` commands.<br>
+* Parameters can be in any order for `add` and `edit` commands.<br>
   e.g. if the command specifies `/name NAME /phone PHONE_NUMBER`, `/phone PHONE_NUMBER /name NAME` is also acceptable.
 
 * Parameters must be in strict order for `filter`, `note`, `export`, and `tag` command.
@@ -79,7 +79,7 @@ Format: `help`
 
 Adds an applicant to HRConnect.
 
-Format: `add /name Name /phone Phone_Number /email Email /address Address /role Role /note Note [/tag Tag]…​`
+Format: `add /name Name /phone Phone_Number /email Email /address Address /role Role [/note Note] [/tag Tag]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 An applicant can have any number of tags (including 0)
@@ -217,7 +217,7 @@ Furthermore, certain edits can cause the HRConnect to behave in unexpected ways 
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add /name Name /phone Phone_Number /email Email /address Address /role Role /note Likes to swim [/tag Tag]…​` <br> e.g., `add /name James Chow /phone 96622612 /email james@example.com /address 321, Clementi Ave 2, #02-25 /role Junior Engineer /note Likes to swim`
+**Add** | `add /name Name /phone Phone_Number /email Email /address Address /role Role [/note Note] [/tag Tag]…​` <br> e.g., `add /name James Chow /phone 96622612 /email james@example.com /address 321, Clementi Ave 2, #02-25 /role Junior Engineer /note Likes to swim`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit Index [/name Name] [/phone Phone] [/email Email] [/address Address] [/stage Stage] [/role Role] [/note Note] [/tag Tag]…​`<br> e.g., `edit 2 /stage waitlisted`

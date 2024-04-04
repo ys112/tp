@@ -4,8 +4,7 @@
 
 ## HRConnect
 
-HRConnect is designed for HR officers in tech startups, streamlining the management of external contacts.
-It efficiently organizes contacts for potential hires, hiring agencies, and legal consultants, significantly
-reducing the time spent searching for contact information, thereby optimizing the recruiting process.
+HRConnect enables HR officers to efficiently organise applicants based on the hiring process and streamlines recruitment
+through filtering of applicants and ease of contact management with CLI commands.
 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
