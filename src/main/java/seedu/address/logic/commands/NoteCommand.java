@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_WITH_DATE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.time.LocalDate;
@@ -24,12 +25,14 @@ public class NoteCommand extends Command {
     public static final String COMMAND_WORD = "note";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the note of the person identified "
-            + "by the index number used in the last person listing. "
+            + "by the index number used in the last person listing. The date field is optional. "
             + "Existing note will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_NOTE + "[NOTE]\n"
+            + PREFIX_NOTE + " <NOTE> " + PREFIX_NOTE_WITH_DATE
+            + " [true/false]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_NOTE + "Likes to swim.";
+            + PREFIX_NOTE + "Likes to swim "
+            + PREFIX_NOTE_WITH_DATE + " [true/false]";
 
     public static final String MESSAGE_ADD_NOTE_SUCCESS = "Added note to Person: %1$s";
     public static final String MESSAGE_DELETE_NOTE_SUCCESS = "Removed note from Person: %1$s";
