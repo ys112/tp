@@ -188,7 +188,7 @@ The `edit` command gives users the ability to edit the applicants' details. The 
 
 #### How the feature is implemented
 * The `edit` is implemented using the `EditApplicantCommand`, `EditApplicantDescriptor` and `EditApplicantCommandParser` classes.
-* The `edit` receives an index of the applicant to be edited and an EditApplicantDescriptor class which consists of the updated fields of the applicant.
+* The `EditApplicantCommand` receives an index of the applicant to be edited and an EditApplicantDescriptor class which consists of the updated fields of the applicant.
 * Note that checks will be done on the fields that the user want to input to ensure is valid. For example, `Stage` can only be one of the four forms `Initial Application`, `Technical Assessment`, `Interview`, `Decision & Offer`. Hence, if user was to input `edit 1 /stage WaitListed`, this will not be possible and the applicant will not be edited.
 * Similarly, a check will be done to ensure that the index is valid.
 
