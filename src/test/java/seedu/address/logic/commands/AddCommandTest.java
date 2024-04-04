@@ -15,7 +15,6 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
@@ -174,10 +173,6 @@ public class AddCommandTest {
 
         @Override
         public void filterPersonList(Predicate<Person> additionalPredicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-        @Override
-        public void addFilteredPersonsListener(ListChangeListener<Person> personListener) {
             throw new AssertionError("This method should not be called.");
         }
 
