@@ -175,7 +175,7 @@ to maximize the benefits of inheritance.
 * In the `JsonAdaptedPerson` class, subtype declarators are used to declare the inheritance relationship between person 
 and applicant, hence it can store and differentiate applicants from person when retrieved.
 * There is also an input checker reminding users to not declare `/stage` (if they did) as newly added applicants are 
-assumed to be at the `'initial_application'` stage.
+assumed to be at the `'Initial Application'` stage.
 * Instance check are done for `Applicant` at `personListPanel` to ensure the applicant card gets displayed and
 `JsonSerializableAddressBook` class to ensure the person objects that are `Applicant` are casted accordingly.
 
