@@ -250,7 +250,7 @@ public class MainWindow extends UiPart<Stage> {
         technicalAssessmentCount.set(logic.updateCount("Technical Assessment"));
         interviewCount.set(logic.updateCount("Interview"));
         decisionAndOfferCount.set(logic.updateCount("Decision & Offer"));
-        initialAssessmentCountLabel.textProperty().bind(Bindings.concat("Initial Assessment (",
+        initialAssessmentCountLabel.textProperty().bind(Bindings.concat("Initial Application (",
                 initialAssessmentCount, ")"));
         technicalAssessmentCountLabel.textProperty().bind(Bindings.concat("Technical Assessment (",
                 technicalAssessmentCount, ")"));

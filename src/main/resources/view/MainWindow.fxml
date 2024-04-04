@@ -57,14 +57,17 @@
                                                     <HBox>
                                                         <children>
                                                             <StackPane>
-                                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Initial Assessment" />
+                                                                <Text strokeType="OUTSIDE"
+                                                                      strokeWidth="0.0"
+                                                                      text="Initial Application" />
                                                                 <padding>
                                                                     <Insets bottom="5" left="10" right="5" top="5" />
                                                                 </padding>
                                                             </StackPane>
                                                             <Region HBox.hgrow="ALWAYS" />
                                                             <StackPane>
-                                                                <RadioButton fx:id="initialAssessmentRadioButton" text="Initial Assessment"
+                                                                <RadioButton
+                                                                        fx:id="initialAssessmentRadioButton" text="Initial Application"
                                                                              onAction="#handleFilter" mnemonicParsing="false" prefWidth="0.0" />
                                                                 <padding>
                                                                     <Insets bottom="5" left="5" top="5" />
@@ -163,7 +166,7 @@
                                                         </padding>
                                                         <children>
                                                             <Label fx:id="initialAssessmentCountLabel"
-                                                                   text="Initial Assessment (0)" />
+                                                                   text="Initial Application (0)" />
                                                         </children>
                                                     </StackPane>
                                                     <StackPane alignment="CENTER_LEFT">
