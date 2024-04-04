@@ -10,7 +10,6 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
@@ -59,10 +58,8 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem emailTemplateItem;
 
     @FXML
-    private Button refreshButton;
-
-    @FXML
     private StackPane personListPanelPlaceholder;
+
     @FXML
     private StackPane roleListPanelPlaceholder;
 
