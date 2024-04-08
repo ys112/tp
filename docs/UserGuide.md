@@ -171,7 +171,7 @@ Examples:
 Examples:
 * `note 1 /note S/Pass Holder` will add the note “S/Pass Holder” to the applicant identified by Index 1.
 
-## Adding date to notes
+#### Adding date to notes
 * An optional `date` can be attached to the note when using the note command.
 * When used, it will attach today's date to the note in `MMMM d, yy` format (e.g March 3, 24).
 * Format: `note Index /note <Note> /date Flag`
