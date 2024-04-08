@@ -160,15 +160,24 @@ Examples:
 * `filter /role SWE` filters the contact list to show only applicants who applied for SWE role.
 
 ### Adding notes to applicants by tag : `/note`
-Facilitates the addition of notes or comments to individual applicant entries.
-Format: `note <ApplicationId> /note <Note>`
+* Facilitates the addition of notes or comments to individual applicant entries.
+* Format: `note Index /note <Note>`
 
+* Adds a note to the applicant at the specified `Index`.
 * Incorporate supplementary notes to enrich the applicant's profile.
-* Possible values for `<ApplicationId>` are integers.
+* Possible values for `Index` are positive integers.
 * Possible values for `<Note>` are any non-empty string that provides relevant commentary.
 
 Examples:
-* `note 1 /note S/Pass Holder` will add the note “S/Pass Holder” to the applicant identified by ID 1.
+* `note 1 /note S/Pass Holder` will add the note “S/Pass Holder” to the applicant identified by Index 1.
+
+## Adding date to notes
+* An optional `date` can be attached to the note when using the note command.
+* When used, it will attach today's date to the note in `MMMM d, yy` format (e.g March 3, 24).
+* Format: `note Index /note <Note> /date Flag`
+
+* The possible values for `Flag` is `true` and `false` (case-insensitive).
+* When `Flag` is set to `true`, a `date` will be attached to the note when displayed.
 
 ### Exporting applicants contacts : `export`
 Use filter or find to isolate the applicants that match the desired stage or role or name. Export will then extract those applicants' contacts into an external JSON file.
