@@ -160,8 +160,9 @@ Examples:
 * `filter /role SWE` filters the contact list to show only applicants who applied for SWE role.
 
 ### Adding notes to applicants by tag : `/note`
-* Facilitates the addition of notes or comments to individual applicant entries.
-* Format: `note Index /note <Note>`
+Facilitates the addition of notes or comments to individual applicant entries. 
+
+Format: `note Index /note <Note>`
 
 * Adds a note to the applicant at the specified `Index`.
 * Incorporate supplementary notes to enrich the applicant's profile.
