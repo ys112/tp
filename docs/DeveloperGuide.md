@@ -172,9 +172,9 @@ The add applicant feature allows users to add applicants with the following deta
 * The add applicant is designed in mind with how the `Applicant` class extends `Person` class
 to maximize the benefits of inheritance.
 * In the add applicant command and parser, the applicant is parse to into `addPerson()` as `Applicant`.
-* In the `JsonAdaptedPerson` class, subtype declarators are used to declare the inheritance relationship between person 
+* In the `JsonAdaptedPerson` class, subtype declarators are used to declare the inheritance relationship between person
 and applicant, hence it can store and differentiate applicants from person when retrieved.
-* There is also an input checker reminding users to not declare `/stage` (if they did) as newly added applicants are 
+* There is also an input checker reminding users to not declare `/stage` (if they did) as newly added applicants are
 assumed to be at the `'Initial Application'` stage.
 * Instance check are done for `Applicant` at `personListPanel` to ensure the applicant card gets displayed and
 `JsonSerializableAddressBook` class to ensure the person objects that are `Applicant` are casted accordingly.
