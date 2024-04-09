@@ -31,7 +31,7 @@ public class NoteCommand extends Command {
             + PREFIX_NOTE + " <NOTE> " + PREFIX_NOTE_WITH_DATE
             + " [true/false]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_NOTE + "Likes to swim "
+            + PREFIX_NOTE + " Likes to swim "
             + PREFIX_NOTE_WITH_DATE + " [true/false]";
 
     public static final String MESSAGE_ADD_NOTE_SUCCESS = "Added note to Person: %1$s";
