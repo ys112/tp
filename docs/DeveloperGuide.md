@@ -725,3 +725,10 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Planned Enhancements**
+
+**Note:** There are 5 people in our team, allowing us to have 2 x 5 = 10 planned enhancements.
+
+1. **Make the User Interface (UI) adapt to different window sizes:** Currently, the UI can only work at specific sizes, the user may need to adjust the window size such that all the components in the UI are visible. We plan to enhance the UI such that it is able to adapt to different window sizes and not have issues like components not being visible, or having white spaces when the window gets stretched too much.
