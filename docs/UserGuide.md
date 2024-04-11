@@ -185,9 +185,10 @@ Use filter or find to isolate the applicants that match the desired stage or rol
 Format: `export <FileName>`
 
 * Achieve an additional layer of organisation to properly arrange contacts
+* Specifying a `<FileName>` that already exists in the "data" folder will overwrite the existing one
 
 Examples:
-*  `export saved_contacts` will save contacts from the current page into an external JSON file named "saved_contacts.txt".
+*  `export saved_contacts` will save contacts from the current page into an external JSON file named "saved_contacts.json" under the "data" folder.
 
 ### Importing applicants : `import`
 Using `import` will open a dialog for user to select the json file to import.
@@ -245,6 +246,6 @@ Action | Format, Examples
 **Exit** | `exit`
 **Filter** | `/filter <Tag>`  <br> e.g., `/filter Intial Application`
 **Note** | `note <ApplicationId> /note <Note>`  <br> e.g., `note 1 /note S/Pass Holder`
-**Export** | `/export` <br> e.g., `/export`
+**Export** | `export <FileName>` <br> e.g., `export saved_contacts`
 **Import** | `import`
 **Import (CLI)** | `import_file Filepath` <br> e.g., `import_file C:\tp\data\interesting.json`
