@@ -163,14 +163,23 @@ Examples:
 
 ### Adding notes to applicants by tag : `/note`
 Facilitates the addition of notes or comments to individual applicant entries.
-Format: `note <ApplicationId> /note <Note>`
 
+Format: `note Index /note <Note>`
+
+* Adds a note to the applicant at the specified `Index`.
 * Incorporate supplementary notes to enrich the applicant's profile.
-* Possible values for `<ApplicationId>` are integers.
+* Possible values for `Index` are positive integers.
 * Possible values for `<Note>` are any non-empty string that provides relevant commentary.
 
 Examples:
-* `note 1 /note S/Pass Holder` will add the note “S/Pass Holder” to the applicant identified by ID 1.
+* `note 1 /note S/Pass Holder` will add the note “S/Pass Holder” to the applicant identified by Index 1.
+
+#### Adding date to notes
+* An optional `date` can be attached to the note when using the note command.
+* When used, it will attach today's date to the note in `MMMM d, yy` format (e.g March 3, 24).
+* Format: `note Index /note <Note> /date Flag`
+* The possible values for `Flag` is `true` and `false` (case-insensitive).
+* When `Flag` is set to `true`, a `date` will be attached to the note when displayed.
 
 ### Exporting applicants contacts : `export`
 Use filter or find to isolate the applicants that match the desired stage or role or name. Export will then extract those applicants' contacts into an external JSON file.
@@ -178,9 +187,10 @@ Use filter or find to isolate the applicants that match the desired stage or rol
 Format: `export <FileName>`
 
 * Achieve an additional layer of organisation to properly arrange contacts
+* Specifying a `<FileName>` that already exists in the "data" folder will overwrite the existing one
 
 Examples:
-*  `export saved_contacts` will save contacts from the current page into an external JSON file named "saved_contacts.txt".
+*  `export saved_contacts` will save contacts from the current page into an external JSON file named "saved_contacts.json" under the "data" folder.
 
 ### Importing applicants : `import`
 Using `import` will open a dialog for user to select the json file to import.
@@ -238,6 +248,6 @@ Action | Format, Examples
 **Exit** | `exit`
 **Filter** | `/filter <Tag>`  <br> e.g., `/filter Intial Application`
 **Note** | `note <ApplicationId> /note <Note>`  <br> e.g., `note 1 /note S/Pass Holder`
-**Export** | `/export` <br> e.g., `/export`
+**Export** | `export <FileName>` <br> e.g., `export saved_contacts`
 **Import** | `import`
 **Import (CLI)** | `import_file Filepath` <br> e.g., `import_file C:\tp\data\interesting.json`

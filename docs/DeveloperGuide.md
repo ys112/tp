@@ -172,9 +172,9 @@ The add applicant feature allows users to add applicants with the following deta
 * The add applicant is designed in mind with how the `Applicant` class extends `Person` class
 to maximize the benefits of inheritance.
 * In the add applicant command and parser, the applicant is parse to into `addPerson()` as `Applicant`.
-* In the `JsonAdaptedPerson` class, subtype declarators are used to declare the inheritance relationship between person 
+* In the `JsonAdaptedPerson` class, subtype declarators are used to declare the inheritance relationship between person
 and applicant, hence it can store and differentiate applicants from person when retrieved.
-* There is also an input checker reminding users to not declare `/stage` (if they did) as newly added applicants are 
+* There is also an input checker reminding users to not declare `/stage` (if they did) as newly added applicants are
 assumed to be at the `'Initial Application'` stage.
 * Instance check are done for `Applicant` at `personListPanel` to ensure the applicant card gets displayed and
 `JsonSerializableAddressBook` class to ensure the person objects that are `Applicant` are casted accordingly.
@@ -725,3 +725,12 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Planned Enhancements**
+
+**Note:** There are 5 people in our team, allowing us to have 2 x 5 = 10 planned enhancements.
+
+1. **Make the User Interface (UI) adapt to different window sizes:** Currently, the UI can only work at specific sizes, the user may need to adjust the window size such that all the components in the UI are visible during use, or when the application initially boots up. We plan to enhance the UI such that it is able to adapt to different window sizes and not have issues like components not being visible, or having white spaces when the window gets stretched too much.
+2. **Standardizing Error Messages Related to Index:** Some error messages related to commands that utilizes Indexes (e.g `delete`, `note`) do not have standardized error messages. Users may sometimes see "The person index provided is invalid", or different error messages referring to the same error. We plan to standardize such messages so that they do not cause confusions for user and make the experience when using the application smoother.
+3. **Allowing Contacts to Have the Same Name:** The application does not support people having the same name, even if they are two completely different person who just happens to have the same name. We plan to update this in the future such that this will become possible as it makes sense in the real world for two or more people to have the same name.
