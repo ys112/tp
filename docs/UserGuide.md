@@ -235,7 +235,7 @@ Each applicant has a `Update Picture` button, which enables the user to add a pr
 
 **Note:** Due to buggy implementation of this feature, a very specific set of steps needs to be performed in order for this feature to work.
 1. Before using this feature, use the `list` command at least once. This allows the `.json` file that stores the applicant information to be generated.
-2. Press the `Update Picture` button and select an image.
+2. Press the `Update Picture` button and select an image (only image file types are supported, using other file types may corrupt the application).
 3. After choosing an image, a popup should appear that explains to you that the application needs to be restarted for the changes to be reflected.
 4. Restart the application, and you should be able to see the profile picture being updated.
 5. In rare occasions, the feature may not work due to operating system complications.
