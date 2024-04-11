@@ -22,7 +22,7 @@ By using commands, HR officers can efficiently organize contacts for their recru
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar HRConnect.jar` command to run the application. A GUI similar to the below should appear in a few seconds.
    ![Ui](images/Ui.png)
 
-1.  The side panel Filter allows users to choose the `Stage` they want the applicants to be in. The Overview side panel gives users a quick overview on the count
+1.  The side panel Filter allows users to choose the `Stage` they want the applicants to be in. Note that selecting Stage will overwrite other commands except Find. The Overview side panel gives users a quick overview on the count
     of number of applicants in each stage. The Person List showcases the applicants in HRConnect while the Role List showcases the roles of those applicants.
     Note how the app contains some sample data.<br>
 
@@ -231,12 +231,12 @@ Action | Format, Examples
 **Add** | `add /name Name /phone Phone_Number /email Email /address Address /role Role [/note Note] [/tag Tag]…​` <br> e.g., `add /name James Chow /phone 96622612 /email james@example.com /address 321, Clementi Ave 2, #02-25 /role Junior Engineer /note Likes to swim`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit Index [/name Name] [/phone Phone] [/email Email] [/address Address] [/stage Stage] [/role Role] [/note Note] [/tag Tag]…​`<br> e.g., `edit 2 /stage waitlisted`
+**Edit** | `edit Index [/name Name] [/phone Phone] [/email Email] [/address Address] [/stage Stage] [/role Role] [/note Note] [/tag Tag]…​`<br> e.g., `edit 2 /stage Interview`
 **Find** | `find Keyword [More_Keywords]`<br> e.g., `find alice bob charlie`
 **List** | `list`
 **Help** | `help`
 **Exit** | `exit`
-**Filter** | `/filter <Tag>`  <br> e.g., `/filter initial_application`
+**Filter** | `/filter <Tag>`  <br> e.g., `/filter Intial Application`
 **Note** | `note <ApplicationId> /note <Note>`  <br> e.g., `note 1 /note S/Pass Holder`
 **Export** | `/export` <br> e.g., `/export`
 **Import** | `import`
