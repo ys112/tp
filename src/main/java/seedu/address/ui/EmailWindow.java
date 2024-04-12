@@ -66,7 +66,7 @@ public class EmailWindow extends UiPart<Stage> {
                 + "that we will be able to make the necessary arrangements.\n"
                 + "The official hours are 9am to 6pm from Monday to Friday.\n"
                 + "Do feel free to reply to this email should you have any questions.\n"
-                + "We look forward to hearing back from you!n"
+                + "We look forward to hearing back from you!\n"
                 + "Best regards,\n"
                 + "{organization} Talent Acquisition Team\n";
 

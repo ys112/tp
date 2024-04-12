@@ -68,6 +68,8 @@ public class EditApplicantCommand extends Command {
 
     public static final String MESSAGE_EDIT_APPLICANT_SUCCESS = "Edited Applicant: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_NO_CHANGES = "No changes were made to the selected applicant."
+            + " The information you provided to edit is already the same as existing data.";
     public static final String MESSAGE_DUPLICATE_APPLICANT = "This applicant already exists in "
             + "the address book.";
 
@@ -107,7 +109,13 @@ public class EditApplicantCommand extends Command {
         }
         Applicant editedApplicant = createEditedApplicant(applicantToEdit, editApplicantDescriptor);
 
-        if (editedApplicant.equals(personToEdit) && model.hasPerson(editedApplicant)) {
+        //if there were no changes done to it
+        if (editedApplicant.equals(personToEdit)) {
+            throw new CommandException(MESSAGE_NO_CHANGES);
+        }
+
+        //if the name of the person is edited to be the same as a current applicant in model
+        if (model.hasPerson(editedApplicant) && (editedApplicant.getName() != personToEdit.getName())) {
             throw new CommandException(MESSAGE_DUPLICATE_APPLICANT);
         }
 

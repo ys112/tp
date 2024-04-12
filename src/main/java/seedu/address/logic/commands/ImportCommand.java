@@ -23,7 +23,7 @@ public class ImportCommand extends Command {
     public static final String COMMAND_WORD = "import_file";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Imports contacts from another json file.\n"
-        + "Parameters: " + COMMAND_WORD + "FILE_PATH\n"
+        + "Parameters: " + COMMAND_WORD + " FILE_PATH\n"
         + "Example: " + COMMAND_WORD + " C:\\Users\\username\\Downloads\\import_contacts.json";
 
     public static final String MESSAGE_FILE_PATH = "Ensure the file path is valid, "

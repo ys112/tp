@@ -269,10 +269,13 @@ public class MainWindow extends UiPart<Stage> {
         }
 
         Path filePath = importWindow.getSelectedFilePath();
-        if (filePath != null) {
+        if (filePath == null) {
+            resultDisplay.setFeedbackToUser("No file was selected.");
+        } else {
             logger.info("file path chosen: " + filePath);
             executeCommand(ImportCommand.COMMAND_WORD + " " + filePath);
         }
+
         importWindow.clearFilePath();
     }
 

@@ -49,9 +49,9 @@ By using commands, HR officers can efficiently organize contacts for their recru
 
 **:information_source: Notes about the command format:**<br>
 
-* When users input a command along with its arguments, it will be trimmed (remove leading whitespace, trailing whitespace, and whitespace in between words when there are more than one space) and converted to lowercase for parsing.
+* When users input a command along with its arguments, it will be trimmed (remove leading whitespace, trailing whitespace, and whitespace in between words when there are more than one space).
 
-* When parsing arguments: “John Doe “, “John   Doe”, and “   John   Doe” will all be converted to “john doe”.
+* When parsing arguments: “John Doe “, “John   Doe”, and “   John   Doe” will all be converted to “John Doe”.
 
 * When parsing commands: “/FILTER”, “/FILTER   stage_one ”, “    /FILTER STAGE_ONE   ” will all be converted to “/filter stage_one”.
 
@@ -84,12 +84,14 @@ Adds an applicant to HRConnect.
 
 Format: `add /name Name /phone Phone_Number /email Email /address Address /role Role [/note Note] [/tag Tag]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-An applicant can have any number of tags (including 0)
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+* An applicant can have any number of tags (including 0)
+* Email addresses are not case-sensitive, so storing in upper or lower case letters would not affect email services from sending to applicant.
+* Stage input is not allowed here as stage is initialised to be Initial Application based on the workflow where newly added applicants start as so.
 </div>
 
 Examples:
-* `add /name John Doe /phone 98765432 /email johnDoe@gmail.com /address John street, block 123, #01-01 /role SWE /note Likes to swim`
+* `add /name John Doe /phone 98765432 /email johndoe@gmail.com /address John street, block 123, #01-01 /role SWE /note Likes to swim`
 
 ### Listing all applicants : `list`
 
@@ -223,14 +225,23 @@ HRConnect data are saved in the hard disk automatically after any command that c
 
 ### Editing the data file
 
-HRConnect data are saved automatically as a JSON file `[JAR file location]/data/hrconnect.json`. Advanced users are welcome to update data directly by editing that data file.
+HRConnect data are saved automatically as a JSON file `[JAR file location]/data/HRConnect.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, HRConnect will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the HRConnect to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
+### Updating applicant profile picture (Part of Planned Enhancement)
+Each applicant has a `Update Picture` button, which enables the user to add a profile picture for a particular applicant.
+![Update Picture Button](images/updateProfilePicture.png)
 
+**Note:** Due to buggy implementation of this feature, a very specific set of steps needs to be performed in order for this feature to work.
+1. Before using this feature, use the `list` command at least once. This allows the `.json` file that stores the applicant information to be generated.
+2. Press the `Update Picture` button and select an image (only image file types are supported, using other file types may corrupt the application).
+3. After choosing an image, a popup should appear that explains to you that the application needs to be restarted for the changes to be reflected.
+4. Restart the application, and you should be able to see the profile picture being updated.
+5. In rare occasions, the feature may not work due to operating system complications.
 
 ## Command summary
 
