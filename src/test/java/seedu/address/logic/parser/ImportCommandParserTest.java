@@ -11,6 +11,8 @@ import seedu.address.logic.commands.ImportCommand;
 
 public class ImportCommandParserTest {
 
+    private static final String VALID_FILEPATH = "C:\\tp\\data\\interesting.json";
+    private static final String INVALID_FILEPATH = "C:\\tp\\data\\interesting.txt";
     private final ImportCommandParser parser = new ImportCommandParser();
 
     @Test
@@ -22,7 +24,7 @@ public class ImportCommandParserTest {
     @Test
     public void parse_invalidPath_throwsParseException() {
         // not json extension
-        assertParseFailure(parser, "C:\\tp\\data\\interesting.txt",
+        assertParseFailure(parser, INVALID_FILEPATH,
             String.format(MESSAGE_INVALID_FILE_PATH, ImportCommand.MESSAGE_FILE_PATH));
 
         // not a file path
@@ -34,8 +36,8 @@ public class ImportCommandParserTest {
     public void parse_validArgs_returnsImportCommand() {
         // no leading and trailing whitespaces
         ImportCommand expectedImportCommand =
-            new ImportCommand("C:\\tp\\data\\interesting.json");
-        assertParseSuccess(parser, "C:\\tp\\data\\interesting.json", expectedImportCommand);
+            new ImportCommand(VALID_FILEPATH);
+        assertParseSuccess(parser, VALID_FILEPATH, expectedImportCommand);
     }
 
 }

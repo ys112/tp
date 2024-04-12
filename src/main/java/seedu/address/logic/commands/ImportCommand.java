@@ -30,6 +30,9 @@ public class ImportCommand extends Command {
         + "accessible and is a json file for HRConnect";
 
     public static final String MESSAGE_SUCCESS = "Successfully added new contacts.";
+    public static final String FILE_NOT_LOADED = "Data file could not be loaded.";
+    public static final String EMPTY_FILE = "Data file is empty";
+
 
     private static final Logger logger = LogsCenter.getLogger(ImportCommand.class);
     private final Path filePath;
@@ -54,13 +57,13 @@ public class ImportCommand extends Command {
             Optional<ReadOnlyAddressBook> addressBookOptional = addressBookStorage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Selected data file is empty");
-                throw new CommandException("Data file is empty");
+                throw new CommandException(EMPTY_FILE);
             }
 
             ReadOnlyAddressBook newData = addressBookOptional.get();
             addNewData(model, newData);
         } catch (DataLoadingException e) {
-            throw new CommandException("Data file could not be loaded.", e.getCause());
+            throw new CommandException(FILE_NOT_LOADED, e.getCause());
         }
 
         return new CommandResult(MESSAGE_SUCCESS);

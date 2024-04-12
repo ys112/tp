@@ -13,8 +13,6 @@ public class Stage {
     public static final String TECHNICAL_ASSESSMENT = "Technical Assessment";
     public static final String INTERVIEW = "Interview";
     public static final String DECISION_AND_OFFER = "Decision & Offer";
-
-
     public static final String MESSAGE_CONSTRAINTS = "Stage must be one of the following four options:"
             + "\n" + "1. " + INITIAL_APPLICATION + "\n"
             + "2. " + TECHNICAL_ASSESSMENT + "\n"
