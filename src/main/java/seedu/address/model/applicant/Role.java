@@ -6,6 +6,10 @@ package seedu.address.model.applicant;
 public class Role {
     public final String roleName;
 
+    /**
+     *  Constructs a role object with given role string.
+     * @param roleName role input string
+     */
     public Role(String roleName) {
         this.roleName = roleName;
     }

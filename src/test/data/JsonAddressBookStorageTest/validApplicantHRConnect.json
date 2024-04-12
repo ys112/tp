@@ -1,0 +1,87 @@
+{
+  "persons" : [ {
+    "@type" : "JsonAdaptedApplicant",
+    "name" : "Xiao Li",
+    "phone" : "92456721",
+    "email" : "xiaoli@hotmail.com",
+    "address" : "Blk 685 Rangoon road 3, #12-09",
+    "role" : "SWE",
+    "stage" : "Interview",
+    "tags" : [ ],
+    "note" : "Forbes 30 under 30",
+    "noteDate" : "",
+    "img" : null
+  }, {
+    "@type" : "JsonAdaptedApplicant",
+    "name" : "Alex Yeoh",
+    "phone" : "87438807",
+    "email" : "alexyeoh@example.com",
+    "address" : "Blk 30 Geylang Street 29, #06-40",
+    "role" : "Frontend Engineer",
+    "stage" : "Initial Application",
+    "tags" : [ "friends" ],
+    "note" : "",
+    "noteDate" : "",
+    "img" : null
+  }, {
+    "@type" : "JsonAdaptedApplicant",
+    "name" : "Bernice Yu",
+    "phone" : "99272758",
+    "email" : "berniceyu@example.com",
+    "address" : "Blk 30 Lorong 3 Serangoon Gardens, #07-18",
+    "role" : "SWE",
+    "stage" : "Technical Assessment",
+    "tags" : [ "colleagues", "friends" ],
+    "note" : "",
+    "noteDate" : "",
+    "img" : null
+  }, {
+    "@type" : "JsonAdaptedApplicant",
+    "name" : "Charlotte Oliveiro",
+    "phone" : "93210283",
+    "email" : "charlotte@example.com",
+    "address" : "Blk 11 Ang Mo Kio Street 74, #11-04",
+    "role" : "SWE",
+    "stage" : "Interview",
+    "tags" : [ "neighbours" ],
+    "note" : "",
+    "noteDate" : "",
+    "img" : null
+  }, {
+    "@type" : "JsonAdaptedApplicant",
+    "name" : "David Li",
+    "phone" : "91031282",
+    "email" : "lidavid@example.com",
+    "address" : "Blk 436 Serangoon Gardens Street 26, #16-43",
+    "role" : "SWE",
+    "stage" : "Decision & Offer",
+    "tags" : [ "family" ],
+    "note" : "",
+    "noteDate" : "",
+    "img" : null
+  }, {
+    "@type" : "JsonAdaptedApplicant",
+    "name" : "Irfan Ibrahim",
+    "phone" : "92492021",
+    "email" : "irfan@example.com",
+    "address" : "Blk 47 Tampines Street 20, #17-35",
+    "role" : "SWE",
+    "stage" : "Decision & Offer",
+    "tags" : [ "classmates" ],
+    "note" : "",
+    "noteDate" : "",
+    "img" : null
+  }, {
+    "@type" : "JsonAdaptedApplicant",
+    "name" : "Roy Balakrishnan",
+    "phone" : "92624417",
+    "email" : "royb@example.com",
+    "address" : "Blk 45 Aljunied Street 85, #11-31",
+    "role" : "SWE",
+    "stage" : "Initial Application",
+    "tags" : [ "colleagues" ],
+    "note" : "",
+    "noteDate" : "",
+    "img" : null
+  } ]
+}
