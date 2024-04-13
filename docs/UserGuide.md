@@ -22,10 +22,9 @@ By using commands, HR officers can efficiently organize contacts for their recru
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar HRConnect.jar` command to run the application. A GUI similar to the below should appear in a few seconds.
    ![Ui](images/Ui.png)
 
-1. The side panel Filter allows users to choose the `Stage` they want the applicants to be in. One can choose to select 0, 1, 2, 3 or all 4 radio buttons. Multiple selections are allowed so HR officers can efficiently see the applicants in the selected stages. Note that selecting 0 or 4 buttons will both give back the full list of applicants. It is also important to note that using this Filter side panel will overwrite all commands ie. if you previously used the `find` command to `find John`, selecting the `Interview` Stage button will give back the entire list of applicants in `Interview` Stage, not limited to those with John in their names.
-1. The Overview side panel gives users a quick overview on the count
-    of number of applicants in each stage. The Person List showcases the applicants in HRConnect while the Role List showcases the roles of those applicants.
-    Note how the app contains some sample data.<br>
+1. The side panel Filter allows users to choose the `Stage` they want the applicants to be in. Users can opt to select 0, 1, 2, 3 or all 4 radio buttons. Multiple selections are allowed so that HR officers can efficiently view the applicants in the selected stages. Note that selecting 0 or 4 buttons will both give back the full list of applicants in all 4 stages. It is also important to note that using this Filter side panel will overwrite all commands. For instance, if you previously used the `find` command to `find John`, selecting the `Interview` Stage button will display the entire list of applicants in `Interview` Stage, not limited to those with John in their names.
+
+1. The Overview side panel gives users a quick overview on the count of number of applicants in each stage. The Person List showcases the applicants in HRConnect while the Role List showcases the roles of those applicants. Note how the app contains some sample data.<br>
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
