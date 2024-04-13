@@ -24,29 +24,18 @@ public class FilterCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters applications by tags. "
             + "Parameters: "
-            + PREFIX_ROLE + " roles " + PREFIX_STAGE + " stages ";
+            + PREFIX_STAGE + " stages ";
 
-    public static final String MESSAGE_SUCCESS = "Persons Filtered: ";
-    private final Role filteredRole;
+    public static final String MESSAGE_SUCCESS = "Applicants at the following stage!";
     private final Stage filteredStage;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public FilterCommand(Optional<Role> filteredRole, Optional<Stage> filteredStage) {
+    public FilterCommand(Stage filteredStage) {
         //requireNonNull(filteredRole);
-        //requireNonNull(filteredStage);
-        if (filteredRole.equals(Optional.empty())) {
-            this.filteredRole = new Role("");
-        } else {
-            this.filteredRole = filteredRole.get();
-        }
-        if (filteredStage.equals(Optional.empty())) {
-            this.filteredStage = new Stage("");
-        } else {
-            this.filteredStage = filteredStage.get();
-        }
-
+        requireNonNull(filteredStage);
+        this.filteredStage = filteredStage;
     }
 
     @Override
@@ -59,15 +48,9 @@ public class FilterCommand extends Command {
             Applicant applicant = (Applicant) person;
 
             // Check if the roleName matches filteredRole and stageName matches filteredStage
-            boolean roleMatches = applicant.getRole().equals(filteredRole);
             boolean stageMatches = applicant.getStage().equals(filteredStage);
-            if (filteredRole.roleName.isEmpty()) {
-                roleMatches = true;
-            } else if (filteredStage.stageName.isEmpty()) {
-                stageMatches = true;
-            }
 
-            return roleMatches && stageMatches;
+            return stageMatches;
         };
         model.updateFilteredPersonList(matchesCriteria);
         boolean changeInButton = false;
@@ -105,13 +88,12 @@ public class FilterCommand extends Command {
         }
 
         FilterCommand otherAddCommand = (FilterCommand) other;
-        return filteredRole.equals(otherAddCommand.filteredRole) && filteredStage.equals(otherAddCommand.filteredStage);
+        return filteredStage.equals(otherAddCommand.filteredStage);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("toFilterRole", this.filteredRole)
                 .add("toFilterStage", this.filteredStage)
                 .toString();
     }
