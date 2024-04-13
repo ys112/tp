@@ -22,9 +22,9 @@ By using commands, HR officers can efficiently organize contacts for their recru
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar HRConnect.jar` command to run the application. A GUI similar to the below should appear in a few seconds.
    ![Ui](images/Ui.png)
 
-1.  The side panel Filter allows users to choose the `Stage` they want the applicants to be in. Note that selecting Stage will overwrite other commands except Find. The Overview side panel gives users a quick overview on the count
-    of number of applicants in each stage. The Person List showcases the applicants in HRConnect while the Role List showcases the roles of those applicants.
-    Note how the app contains some sample data.<br>
+1. Under the side panel Filter, users can choose the stage to view only applicants who are in that stage, ensuring that only applicants in the selected stage are displayed in HRConnect. Users can opt to select 0, 1, 2, 3 or all 4 radio buttons. Multiple selections are allowed so that HR officers can efficiently view the applicants in the selected stages. Note that selecting 0 or 4 buttons will both give back the full list of applicants in all 4 stages. It is also important to note that using this Filter side panel will overwrite all commands. For instance, if you previously used the `find` command to `find John`, selecting the `Interview` Stage button will display the entire list of applicants in `Interview` Stage, not limited to those with John in their names.
+
+1. The Overview side panel gives users a quick overview on the count of number of applicants in each stage. The Person List showcases the applicants in HRConnect while the Role List showcases the roles of those applicants. Note how the app contains some sample data.<br>
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -53,10 +53,10 @@ By using commands, HR officers can efficiently organize contacts for their recru
 
 * When parsing arguments: “John Doe “, “John   Doe”, and “   John   Doe” will all be converted to “John Doe”.
 
-* When parsing commands: “/FILTER”, “/FILTER   stage_one ”, “    /FILTER STAGE_ONE   ” will all be converted to “/filter stage_one”.
+* When parsing commands: “/FILTER”, “/FILTER   Interview ”, “    /FILTER Interview   ” will all be converted to “/filter Interview”.
 
 * Words in angle brackets `<>` are the parameters to be supplied by the user.<br>
-  e.g. in `/filter <Tag>`, `<Tag>` is a parameter which can be used as `/filter initial_application`.
+  e.g. in `/filter <Tag>`, `<Tag>` is a parameter which can be used as `/filter Interview`.
 
 * Items in square brackets are optional.<br>
   e.g `/name NAME [/tag TAG]` can be used as `/name John Doe /tag friend` or as `/name John Doe`.
@@ -109,6 +109,11 @@ Format: `edit Index [/name Name] [/phone Phone] [/email Email] [/address Address
 * Edits the applicant at the specified `Index`. The index refers to the index number shown in the displayed applicant list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* When editing stage, note that the names of Stages can only follow one of the following four options:
+  1. Initial Application
+  2. Technical Assessment
+  3. Interview
+  4. Decision & Offer
 * When editing tags, the existing tags of the applicant will be removed i.e adding of tags is not cumulative.
 * You can remove all the applicant’s tags by typing `/tag` without
     specifying any tags after it.
@@ -129,7 +134,13 @@ Format: `find Keyword [More_Keywords]`
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Applicants matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
+* To accommodate HR officers who deal with a large volume of applicants, executing
+  `find` two or more times without clicking on the buttons on the Filter side panel, or using the `filter` command, or using the `list` command, or clicking on `Show All` on the `List` Panel will lead to an `AND` search between the keywords provided between the different `find` searches. However, this will not affect the `OR` search mentioned previously amongst the keywords provided in
+  the same find command.<br>
+  e.g. User first executes `find John` and the HRConnect will return all applicants with John in the name. If the user then executes `find Doe` after the previous find command, HRConnect will only return those with both John *and* Doe in their names.<br>
+  e.g. User first executes `find John Yu` and the HRConnect will return all applicants with John or Yu in the name. If the user then executes `find Doe` directly after the previous find command, HRConnect will only return those with both John *and* Doe or those with both Yu *and* Doe in their names ie `John Yu` will not get returned.
+* Clicking on the buttons of Stages on the side panel Filter before executing `Find` command will return applicants that match the keyword and in the selected stages.
+  
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
@@ -155,10 +166,10 @@ Filter through contact list based on what role or stage the applicant is in.
 Format: `/filter <Tag>`
 
 * Filters the contact list based on the `<Tag>` provided.
-* Possible values for `<Tag>` are `initial_application`, `technical_assessment`, `interview`, `decision_and_offer`.
+* Possible values for `<Tag>` are `Initial Application`, `Technical Assessment`, `Interview`, `Decision & Offer`.
 
 Examples:
-* `filter /stage final_round` filters the contact list to show only applicants in the final round of application stage.
+* `filter /stage Interview` filters the contact list to show only applicants in the Interview stage.
 * `filter /role SWE` filters the contact list to show only applicants who applied for SWE role.
 
 ### Adding notes to applicants by tag : `/note`
@@ -255,7 +266,7 @@ Action | Format, Examples
 **List** | `list`
 **Help** | `help`
 **Exit** | `exit`
-**Filter** | `/filter <Tag>`  <br> e.g., `/filter Intial Application`
+**Filter** | `/filter <Tag>`  <br> e.g., `filter /stage Initial Application`
 **Note** | `note <ApplicationId> /note <Note>`  <br> e.g., `note 1 /note S/Pass Holder`
 **Export** | `export <FileName>` <br> e.g., `export saved_contacts`
 **Import** | `import`
