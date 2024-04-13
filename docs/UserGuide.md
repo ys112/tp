@@ -135,10 +135,11 @@ Format: `find Keyword [More_Keywords]`
 * Applicants matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 * To accommodate HR officers who deal with a large volume of applicants, executing
-  `find` two or more times without clicking on the buttons on the Filter side panel or using `filter` command or using `list` command or clicking on `Show All` on the `List` UI Panel will lead to an `AND` search between the keywords provided between the     searches. However, this will not affect the `OR` search mentioned previously amongst the keywords provided in
+  `find` two or more times without clicking on the buttons on the Filter side panel, or using the `filter` command, or using the `list` command, or clicking on `Show All` on the `List` Panel will lead to an `AND` search between the keywords provided between the different `find` searches. However, this will not affect the `OR` search mentioned previously amongst the keywords provided in
   the same find command.<br>
-  e.g. User first executes `find John` and the HRConnect will return all applicants with John in the name. If the user then executes `find Doe` directly after the previous find command, HRConnect will only return those with both John *and* Doe in their names.<br>
+  e.g. User first executes `find John` and the HRConnect will return all applicants with John in the name. If the user then executes `find Doe` after the previous find command, HRConnect will only return those with both John *and* Doe in their names.<br>
   e.g. User first executes `find John Yu` and the HRConnect will return all applicants with John or Yu in the name. If the user then executes `find Doe` directly after the previous find command, HRConnect will only return those with both John *and* Doe or those with both Yu *and* Doe in their names ie `John Yu` will not get returned.
+* Clicking on the buttons of Stages on the side panel Filter before executing `Find` command will return applicants that match the keyword and in the selected stages.
   
 Examples:
 * `find John` returns `john` and `John Doe`
