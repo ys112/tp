@@ -109,6 +109,11 @@ Format: `edit Index [/name Name] [/phone Phone] [/email Email] [/address Address
 * Edits the applicant at the specified `Index`. The index refers to the index number shown in the displayed applicant list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* When editing stage, note that the names of Stages can only follow one of the following four options:
+  1. Initial Application
+  2. Technical Assessment
+  3. Interview
+  4. Decision & Offer
 * When editing tags, the existing tags of the applicant will be removed i.e adding of tags is not cumulative.
 * You can remove all the applicant’s tags by typing `/tag` without
     specifying any tags after it.
