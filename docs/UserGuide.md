@@ -266,7 +266,7 @@ Action | Format, Examples
 **List** | `list`
 **Help** | `help`
 **Exit** | `exit`
-**Filter** | `/filter <Tag>`  <br> e.g., `/filter Intial Application`
+**Filter** | `/filter <Tag>`  <br> e.g., `filter /stage Initial Application`
 **Note** | `note <ApplicationId> /note <Note>`  <br> e.g., `note 1 /note S/Pass Holder`
 **Export** | `export <FileName>` <br> e.g., `export saved_contacts`
 **Import** | `import`
