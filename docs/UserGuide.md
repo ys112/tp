@@ -22,7 +22,7 @@ By using commands, HR officers can efficiently organize contacts for their recru
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar HRConnect.jar` command to run the application. A GUI similar to the below should appear in a few seconds.
    ![Ui](images/Ui.png)
 
-1. The side panel Filter allows users to choose the `Stage` they want the applicants to be in. Note that selecting Stage will overwrite all commands except Find.
+1. The side panel Filter allows users to choose the `Stage` they want the applicants to be in. One can choose to select 0, 1, 2, 3 or all 4 radio buttons. Multiple selections are allowed so HR officers can efficiently see the applicants in the selected stages. Note that selecting 0 or 4 buttons will both give back the full list of applicants. It is also important to note that using this Filter side panel will overwrite all commands ie. if you previously used the `find` command to `find John`, selecting the `Interview` Stage button will give back the entire list of applicants in `Interview` Stage, not limited to those with John in their names.
 1. The Overview side panel gives users a quick overview on the count
     of number of applicants in each stage. The Person List showcases the applicants in HRConnect while the Role List showcases the roles of those applicants.
     Note how the app contains some sample data.<br>
