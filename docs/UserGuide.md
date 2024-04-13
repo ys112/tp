@@ -53,10 +53,10 @@ By using commands, HR officers can efficiently organize contacts for their recru
 
 * When parsing arguments: “John Doe “, “John   Doe”, and “   John   Doe” will all be converted to “John Doe”.
 
-* When parsing commands: “/FILTER”, “/FILTER   stage_one ”, “    /FILTER STAGE_ONE   ” will all be converted to “/filter stage_one”.
+* When parsing commands: “/FILTER”, “/FILTER   Interview ”, “    /FILTER Interview   ” will all be converted to “/filter Interview”.
 
 * Words in angle brackets `<>` are the parameters to be supplied by the user.<br>
-  e.g. in `/filter <Tag>`, `<Tag>` is a parameter which can be used as `/filter initial_application`.
+  e.g. in `/filter <Tag>`, `<Tag>` is a parameter which can be used as `/filter Interview`.
 
 * Items in square brackets are optional.<br>
   e.g `/name NAME [/tag TAG]` can be used as `/name John Doe /tag friend` or as `/name John Doe`.
@@ -155,10 +155,10 @@ Filter through contact list based on what role or stage the applicant is in.
 Format: `/filter <Tag>`
 
 * Filters the contact list based on the `<Tag>` provided.
-* Possible values for `<Tag>` are `initial_application`, `technical_assessment`, `interview`, `decision_and_offer`.
+* Possible values for `<Tag>` are `Initial Application`, `Technical Assessment`, `Interview`, `Decision & Offer`.
 
 Examples:
-* `filter /stage final_round` filters the contact list to show only applicants in the final round of application stage.
+* `filter /stage Interview` filters the contact list to show only applicants in the Interview stage.
 * `filter /role SWE` filters the contact list to show only applicants who applied for SWE role.
 
 ### Adding notes to applicants by tag : `/note`
