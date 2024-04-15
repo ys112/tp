@@ -63,7 +63,7 @@ public class FilterCommand extends Command {
             boolean stageMatches = applicant.getStage().equals(filteredStage);
             if (filteredRole.roleName.isEmpty()) {
                 roleMatches = true;
-            } else if (filteredStage.stageName.isEmpty()) {
+            } else if (filteredStage.stageName.equals("INTERNAL_USE")) {
                 stageMatches = true;
             }
 
@@ -87,6 +87,10 @@ public class FilterCommand extends Command {
         if (filteredStage.stageName.equals("Decision & Offer")) {
             changeInButton = true;
             newButtonState = new boolean[]{false, false, false, true};
+        }
+        if (filteredStage.stageName.equals("INTERNAL_USE")) {
+            changeInButton = true;
+            newButtonState = new boolean[]{false, false, false, false};
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS), false, false, false,
                 changeInButton,
