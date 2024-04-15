@@ -258,6 +258,7 @@ Furthermore, certain edits can cause the HRConnect to behave in unexpected ways 
 
 ### Updating applicant profile picture (Part of Planned Enhancement)
 Each applicant has a `Update Picture` button, which enables the user to add a profile picture for a particular applicant.
+
 ![Update Picture Button](images/updateProfilePicture.png)
 
 **Note:** Due to buggy implementation of this feature, a very specific set of steps needs to be performed in order for this feature to work.
