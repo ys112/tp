@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAGE;
 
 import java.util.Optional;
@@ -22,9 +21,10 @@ public class FilterCommand extends Command {
 
     public static final String COMMAND_WORD = "filter";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters applications by tags. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Filters applications by the following tags: "
             + "Parameters: "
-            + PREFIX_ROLE + " roles " + PREFIX_STAGE + " stages ";
+            + PREFIX_STAGE + " stages ";
 
     public static final String MESSAGE_SUCCESS = "Persons Filtered: ";
     private final Role filteredRole;
@@ -109,13 +109,12 @@ public class FilterCommand extends Command {
         }
 
         FilterCommand otherAddCommand = (FilterCommand) other;
-        return filteredRole.equals(otherAddCommand.filteredRole) && filteredStage.equals(otherAddCommand.filteredStage);
+        return filteredStage.equals(otherAddCommand.filteredStage);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("toFilterRole", this.filteredRole)
                 .add("toFilterStage", this.filteredStage)
                 .toString();
     }

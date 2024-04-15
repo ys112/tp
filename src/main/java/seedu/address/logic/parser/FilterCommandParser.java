@@ -56,4 +56,3 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
-
