@@ -12,6 +12,7 @@ public class Stage {
     public static final String INITIAL_APPLICATION = "Initial Application";
     public static final String TECHNICAL_ASSESSMENT = "Technical Assessment";
     public static final String INTERVIEW = "Interview";
+    public static final String INTERNAL_USE = "INTERNAL_USE";
     public static final String DECISION_AND_OFFER = "Decision & Offer";
     public static final String MESSAGE_CONSTRAINTS = "Stage must be one of the following four options:"
             + "\n" + "1. " + INITIAL_APPLICATION + "\n"
@@ -19,7 +20,7 @@ public class Stage {
             + "3. " + INTERVIEW + "\n"
             + "4. " + DECISION_AND_OFFER + "\n";
     public static final String[] VALID_STAGE_NAMES =
-        { INITIAL_APPLICATION, TECHNICAL_ASSESSMENT, INTERVIEW, DECISION_AND_OFFER };
+        { INITIAL_APPLICATION, TECHNICAL_ASSESSMENT, INTERVIEW, DECISION_AND_OFFER, INTERNAL_USE };
     public final String stageName;
 
     /**
