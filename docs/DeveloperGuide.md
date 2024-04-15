@@ -257,11 +257,9 @@ the UI to the logic components and maintains the facade design pattern.
 **Target user profile**: HR officer for tech-related startup
 
 **Value proposition**:
-* Managing contacts for three main types of external liaisons:
-  * potential hires
-  * hiring agencies
-  * legal consultants
-*  Reduce time spent on searching for relevant contacts for liaisons.
+* HRConnect enables HR officers to efficiently organise applicants based on the hiring process.
+* Streamlines recruitment through filtering of applicants.
+* Ease of contact management with CLI commands.
 
 ### User stories
 
