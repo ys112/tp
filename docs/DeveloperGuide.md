@@ -417,14 +417,14 @@ Priorities: Essential (needed for basic functionality) - `Essential`, Typical (c
       Use case resumes at step 2.
 
 
-**Use case: Edit a person**
+**Use case: Edit an applicant**
 
 **MSS**
 
 1.  User requests to list of contacts
 2.  HRConnect shows a list of contacts
-3.  User requests to edit a specific person's details in the list
-4.  HRConnect edits the details belonging to the person
+3.  User requests to edit a specific applicant's details in the list
+4.  HRConnect edits the details belonging to the applicant
 
     Use case ends.
 
@@ -434,7 +434,7 @@ Priorities: Essential (needed for basic functionality) - `Essential`, Typical (c
 
   Use case ends.
 
-* 3a. The given index of the person is invalid.
+* 3a. The given index of the applicant is invalid.
 
     * 3a1. HRConnect shows an error message.
 
@@ -528,7 +528,7 @@ Priorities: Essential (needed for basic functionality) - `Essential`, Typical (c
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  HRConnect shows a list of persons
 
     Use case ends.
 
