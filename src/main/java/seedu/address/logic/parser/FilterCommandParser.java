@@ -1,12 +1,15 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAGE;
 
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.applicant.Role;
 import seedu.address.model.applicant.Stage;
 
 /**
@@ -22,18 +25,27 @@ public class FilterCommandParser implements Parser<FilterCommand> {
      */
     public FilterCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_STAGE);
+                ArgumentTokenizer.tokenize(args, PREFIX_ROLE, PREFIX_STAGE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_STAGE)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_ROLE) && (!arePrefixesPresent(argMultimap, PREFIX_STAGE)
+                || !argMultimap.getPreamble().isEmpty())) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
 
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_ROLE);
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_STAGE);
 
-        Stage filteredStage = ParserUtil.parseStage(argMultimap.getValue(PREFIX_STAGE).get());
+        Optional<Stage> filteredStage = Optional.empty();
+        Optional<Role> filteredRole = Optional.empty();
 
-        return new FilterCommand(filteredStage);
+        if (arePrefixesPresent(argMultimap, PREFIX_STAGE)) {
+            filteredStage = Optional.ofNullable(ParserUtil.parseStage(argMultimap.getValue(PREFIX_STAGE).get()));
+        }
+        if (arePrefixesPresent(argMultimap, PREFIX_ROLE)) {
+            filteredRole = Optional.ofNullable(ParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get()));
+        }
+
+        return new FilterCommand(filteredRole, filteredStage);
     }
 
     /**
@@ -44,4 +56,3 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
-

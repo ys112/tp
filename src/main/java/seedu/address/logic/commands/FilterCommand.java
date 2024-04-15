@@ -3,12 +3,14 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAGE;
 
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.applicant.Applicant;
+import seedu.address.model.applicant.Role;
 import seedu.address.model.applicant.Stage;
 import seedu.address.model.person.Person;
 
@@ -19,20 +21,32 @@ public class FilterCommand extends Command {
 
     public static final String COMMAND_WORD = "filter";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters applications by tags. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Filters applications by the following tags: "
             + "Parameters: "
             + PREFIX_STAGE + " stages ";
 
-    public static final String MESSAGE_SUCCESS = "Applicants at the following stage!";
+    public static final String MESSAGE_SUCCESS = "Persons Filtered: ";
+    private final Role filteredRole;
     private final Stage filteredStage;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public FilterCommand(Stage filteredStage) {
+    public FilterCommand(Optional<Role> filteredRole, Optional<Stage> filteredStage) {
         //requireNonNull(filteredRole);
-        requireNonNull(filteredStage);
-        this.filteredStage = filteredStage;
+        //requireNonNull(filteredStage);
+        if (filteredRole.equals(Optional.empty())) {
+            this.filteredRole = new Role("");
+        } else {
+            this.filteredRole = filteredRole.get();
+        }
+        if (filteredStage.equals(Optional.empty())) {
+            this.filteredStage = new Stage("");
+        } else {
+            this.filteredStage = filteredStage.get();
+        }
+
     }
 
     @Override
@@ -45,9 +59,15 @@ public class FilterCommand extends Command {
             Applicant applicant = (Applicant) person;
 
             // Check if the roleName matches filteredRole and stageName matches filteredStage
+            boolean roleMatches = applicant.getRole().equals(filteredRole);
             boolean stageMatches = applicant.getStage().equals(filteredStage);
+            if (filteredRole.roleName.isEmpty()) {
+                roleMatches = true;
+            } else if (filteredStage.stageName.isEmpty()) {
+                stageMatches = true;
+            }
 
-            return stageMatches;
+            return roleMatches && stageMatches;
         };
         model.updateFilteredPersonList(matchesCriteria);
         boolean changeInButton = false;
