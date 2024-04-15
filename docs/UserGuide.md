@@ -218,6 +218,8 @@ Examples:
 Using `import` will open a dialog for user to select the json file to import.
 The json file must be exported from HRConnect for it to be recognised.
 
+![import.png](images/import.png)
+
 ### Importing applicants (CLI way) : `import_file Filepath`
 Using `import_file` with valid Filepath pointing to the json file will directly import applicants without the dialog.
 The json file must be exported from HRConnect for it to be recognised.
