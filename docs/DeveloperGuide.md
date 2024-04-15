@@ -329,13 +329,13 @@ Priorities: Essential (needed for basic functionality) - `Essential`, Typical (c
 
 * 3b. The unnecessary fields given.
 
-    * 3a1. HRConnect shows an error message.
+    * 3b1. HRConnect shows an error message.
 
       Use case resumes at step 2.
 
 * 3c. The contact details have been added before.
 
-    * 3b1. HRConnect shows an error message.
+    * 3c1. HRConnect shows an error message.
 
       Use case resumes at step 2.
 
@@ -445,6 +445,19 @@ Priorities: Essential (needed for basic functionality) - `Essential`, Typical (c
     * 3b1. HRConnect shows an error message.
 
       Use case resumes at step 2.
+      
+* 3c. Newly applied changes were the same as before.
+
+    * 3c1. HRConnect shows an error message.
+
+      Use case resumes at step 2.
+
+* 3d. The applicant already exists in HRConnect.
+
+    * 3d1. HRConnect shows an error message.
+
+      Use case resumes at step 2.
+      
 
 **Use case: Export contacts**
 
